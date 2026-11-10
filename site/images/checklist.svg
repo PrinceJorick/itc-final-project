@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" role="img" aria-label="A long envelope holding an ID card and a pre-employment checklist with two of three items done">
+  <path d="M24 204.5H296" stroke="#D6D5CC"/>
+  <g transform="rotate(-8 106 74)">
+    <rect x="58" y="44" width="96" height="62" rx="4" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+    <rect x="66" y="54" width="20" height="24" rx="2" fill="#E7E6DD"/>
+    <path d="M94 60H140" stroke="#161A17" stroke-width="3" stroke-linecap="round"/>
+    <path d="M94 70H126" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M66 92H142" stroke="#D6D5CC"/>
+  </g>
+  <rect x="124" y="14" width="104" height="128" rx="4" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <path d="M136 30H192" stroke="#161A17" stroke-width="4" stroke-linecap="round"/>
+  <path d="M136 43H196" stroke="#E7E6DD" stroke-width="5" stroke-linecap="round"/>
+  <path d="M136 43H176" stroke="#1D5B4A" stroke-width="5" stroke-linecap="round"/>
+  <text x="201" y="46" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" fill="#161A17">2/3</text>
+  <path d="M132 55.5H220" stroke="#D6D5CC"/>
+  <rect x="136" y="64" width="11" height="11" rx="2" fill="#1D5B4A"/>
+  <path d="M138.5 69.5l2.5 2.5 4.5-5" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 69.5H206" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="136" y="84" width="11" height="11" rx="2" fill="#1D5B4A"/>
+  <path d="M138.5 89.5l2.5 2.5 4.5-5" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 89.5H198" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="136.75" y="104.75" width="9.5" height="9.5" rx="2" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <path d="M154 109.5H202" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M40 124H280V192a6 6 0 0 1-6 6H46a6 6 0 0 1-6-6z" fill="#E7E6DD" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M40 124L160 164L280 124" fill="none" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle cx="160" cy="164" r="5" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <rect x="206" y="172" width="60" height="18" rx="3" fill="#FFFFFF" stroke="#161A17" stroke-width="1.25"/>
+  <path d="M214 181H226" stroke="#1D5B4A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M231 181H256" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
