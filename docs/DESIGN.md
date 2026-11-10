@@ -43,7 +43,7 @@ Two Google Fonts, loaded with `<link>` and `display=swap`, each with a system fa
 | Body, forms, UI | **Atkinson Hyperlegible** (400, 700) | `system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif` | Designed by the Braille Institute for maximum legibility; clear letter shapes (I/l/1, 0/O) for long guides and forms |
 | Resume preview | System fonts only: Classic = `Georgia, "Times New Roman", serif`; Modern = `Arial, Helvetica, sans-serif` | — | ATS parsers and printers handle standard fonts best; the resume looks the same everywhere |
 
-Type scale (fluid with `clamp()`): body 1.0625rem (17px), line-height 1.6, measure about 68ch. Headings: h1 `clamp(2.1rem, 5vw, 3.4rem)`, h2 `clamp(1.6rem, 3.5vw, 2.3rem)`, h3 1.25rem. Headings use `text-wrap: balance`.
+Type scale (fluid with `clamp()`): body 1.0625rem (17px), line-height 1.6, measure about 68ch. Headings: h1 `clamp(2.1rem, 5vw, 3.4rem)`, h2 `clamp(1.6rem, 3.5vw, 2.3rem)`, h3 1.375rem (22px, a 1.29× step over body text). Headings use `text-wrap: balance`.
 
 ## Spacing, radius, shadow
 
