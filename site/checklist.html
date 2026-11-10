@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pre-Employment Checklist · OJT to Offer</title>
-  <meta name="description" content="A saved checklist of Philippine pre-employment documents (NBI, PSA, SSS, PhilHealth, Pag-IBIG, TIN) with where to get each one and what's free under RA 11261.">
+  <title>Pre-Employment Checklist · Simula</title>
+  <meta name="description" content="A saved checklist of Philippine pre-employment documents (NBI, PSA, SSS, PhilHealth, Pag-IBIG, TIN): where each one comes from, and which are free the first time under RA 11261.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/auth-config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/motion.js" defer></script>
   <script src="js/checklist.js" defer></script>
 </head>
 <body>
@@ -21,11 +24,11 @@
     <div class="container header-inner">
       <a class="brand" href="index.html">
         <img src="images/logo.svg" alt="" width="36" height="36">
-        <span data-site-name>OJT to Offer</span>
+        <span data-site-name>Simula</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span>Menu</span>
+        <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+        <span class="nav-toggle-label">Menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
@@ -35,6 +38,7 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html" aria-current="page">Checklist</a></li>
           <li><a href="about.html">About</a></li>
+          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
     </div>
@@ -45,11 +49,10 @@
     <section class="page-intro">
       <div class="container page-intro-inner">
         <div>
-          <h1>Pre-employment checklist</h1>
-          <p class="lead">Got the offer? Most employers will ask for these documents before your first day. Tick each one off as you get it. Your progress is saved on this device.</p>
-          <p><span class="badge-free">Free under RA 11261</span> marks documents you can get for free once as a first-time jobseeker.</p>
+          <h1>Papers to line up after the offer</h1>
+          <p class="lead">Before your first day, most employers will ask you to hand over a set of government documents. Collect them one by one — every box you tick is kept on this device.</p>
+          <p><span class="badge-free">Free under RA 11261</span> tags the documents a first-time jobseeker can claim without paying, once.</p>
         </div>
-        <img src="images/checklist.svg" alt="A long brown envelope holding pre-employment documents and a checklist" width="320" height="220">
       </div>
     </section>
 
@@ -76,40 +79,40 @@
         </div>
 
         <aside class="card checklist-aside" aria-labelledby="order-title">
-          <h2 id="order-title" class="h3">Get them in this order</h2>
+          <h2 id="order-title" class="h3">The order that saves you money</h2>
           <ol>
-            <li><strong>Barangay certification</strong> first, so the rest can be free.</li>
-            <li><strong>PSA birth certificate</strong>, since other agencies may ask for it.</li>
-            <li><strong>NBI and police clearance.</strong> Book online early; slots fill up.</li>
-            <li><strong>SSS, PhilHealth, Pag-IBIG, TIN.</strong> Often handled with HR after you're hired.</li>
+            <li><strong>Barangay certification</strong> comes first — it's what unlocks the free documents.</li>
+            <li><strong>PSA birth certificate</strong> next, since other offices may want to see it.</li>
+            <li><strong>NBI and police clearance.</strong> Reserve a slot online early; they go fast.</li>
+            <li><strong>SSS, PhilHealth, Pag-IBIG, TIN.</strong> HR often walks you through these after hiring.</li>
           </ol>
-          <p class="small muted">Fees and steps change. Always check the agency's official website before you go.</p>
+          <p class="small muted">Fees and steps change. Check the agency's official website before heading out.</p>
         </aside>
       </div>
     </section>
 
     <!-- RA 11261 explainer -->
-    <section id="ra11261" class="section section-band" aria-labelledby="ra-title">
+    <section id="ra11261" class="section section-band reveal" aria-labelledby="ra-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="ra-title">RA 11261: free documents for first-time jobseekers</h2>
-          <p class="lead">The <strong>First Time Jobseekers Assistance Act</strong> (Republic Act No. 11261, approved April 10, 2019) waives government fees for documents you need to apply for your first job.</p>
+          <h2 id="ra-title">RA 11261: the first-time jobseeker's free pass</h2>
+          <p class="lead">The <strong>First Time Jobseekers Assistance Act</strong> (Republic Act No. 11261, signed April 10, 2019) sets aside government fees for the documents your first application needs.</p>
         </div>
 
         <div class="grid grid-2 ra-grid">
           <div class="card">
-            <h3>What's free (Section 4)</h3>
+            <h3>What it covers (Section 4)</h3>
             <ul>
               <li>Police clearance</li>
               <li>NBI clearance</li>
               <li>Barangay clearance</li>
-              <li>Medical certificate from a public hospital (lab tests and other procedures are still charged)</li>
+              <li>Medical certificate from a public hospital (lab tests and similar procedures stay paid)</li>
               <li>Birth certificate</li>
               <li>Marriage certificate</li>
               <li>Transcript of records from state colleges and universities</li>
               <li>Tax Identification Number (TIN)</li>
               <li>Unified Multi-Purpose ID (UMID) card</li>
-              <li>Other government documents employers require from applicants</li>
+              <li>Other government papers an employer requires of an applicant</li>
             </ul>
           </div>
 
@@ -117,16 +120,16 @@
             <div class="card">
               <h3>How to claim it</h3>
               <ol>
-                <li>Get a <strong>barangay certification</strong> that you are a first-time jobseeker (Section 5). Barangays also ask you to sign an <strong>Oath of Undertaking</strong>.</li>
-                <li>Show the certification when you request each document.</li>
+                <li>Ask your <strong>barangay</strong> for a certification that you're a first-time jobseeker (Section 5). You'll also sign an <strong>Oath of Undertaking</strong> there.</li>
+                <li>Present that certification each time you request a document.</li>
               </ol>
-              <p>The law says the benefit can <mark>only be availed of once</mark> (Section 3), so get all your documents while your certification is valid.</p>
+              <p>The law lets you use the benefit <mark>only once</mark> (Section 3), so collect everything you might need while the certification is valid.</p>
             </div>
 
             <div class="card">
-              <h3>Not covered (Section 8)</h3>
+              <h3>What it doesn't cover (Section 8)</h3>
               <ul>
-                <li>PRC professional licensure exam fees</li>
+                <li>PRC licensure exam fees</li>
                 <li>DFA passport and authentication ("red ribbon") services</li>
                 <li>Civil Service Commission exams</li>
                 <li>LTO driver's license applications</li>
@@ -138,9 +141,9 @@
         <div class="note ra-note">
           <p class="note-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-            Check with your barangay
+            Ask your barangay first
           </p>
-          <p>Details like how long you must have lived in the barangay or how long the certification stays valid are set by the implementing rules and can differ in practice. Ask your barangay hall before you go. Read the full law on <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">LawPhil</a>.</p>
+          <p>Particulars — how long you must have lived in the barangay, how long the certification holds — are set by the implementing rules and vary in practice. Ask at the barangay hall before going. The law in full is on <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">LawPhil</a>.</p>
         </div>
       </div>
     </section>
@@ -150,8 +153,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>OJT to Offer</p>
-        <p>A free resume and interview guide for Filipino students.</p>
+        <p class="footer-name" data-site-name>Simula</p>
+        <p>A free, private guide from first resume to first offer.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
