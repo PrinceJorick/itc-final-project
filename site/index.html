@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OJT to Offer: Resume and Interview Guide for Filipino Students</title>
-  <meta name="description" content="Turn school projects and org work into a one-page resume, then practice the interview questions Filipino employers actually ask. Free, no sign-up.">
+  <title>Simula: Resume and Interview Guide for Filipino Students</title>
+  <meta name="description" content="Turn school projects and org work into a one-page resume, rehearse the questions Filipino employers really ask, and track every pre-employment document. Free, private, and kept on your device.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/auth-config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/motion.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -21,11 +24,11 @@
     <div class="container header-inner">
       <a class="brand" href="index.html">
         <img src="images/logo.svg" alt="" width="36" height="36">
-        <span data-site-name>OJT to Offer</span>
+        <span data-site-name>Simula</span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span>Menu</span>
+        <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+        <span class="nav-toggle-label">Menu</span>
       </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
@@ -35,6 +38,7 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
+          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
     </div>
@@ -42,62 +46,72 @@
 
   <main id="main">
 
-    <!-- Hero: the promise and the two main actions -->
+    <!-- Hero: the promise on the left, the preparation register on the right -->
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1>From school projects to your first job offer.</h1>
-          <p class="lead">Turn your capstone, org work, and contests into a one-page resume. Then practice the interview questions Filipino employers actually ask.</p>
+          <h1>Turn school work into your first job offer.</h1>
+          <p class="lead">Simula keeps your whole first application in one register: a one-page resume assembled from your projects and org work, the interview questions Filipino employers really ask, and every document you'll need to collect.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="builder.html">
-              Build my resume
+              Start my resume
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="btn btn-secondary" href="resume-guide.html">Read the resume guide</a>
+            <a class="btn btn-secondary" href="resume-guide.html">Read the guide first</a>
           </div>
-          <p class="hero-note">Free. No account. Your data stays on your device.</p>
+          <p class="hero-note">Free · Account optional · Nothing leaves your device</p>
         </div>
 
-        <!-- Original illustration: a resume rising out of the brown envelope -->
-        <div class="hero-art">
-          <svg viewBox="0 0 360 320" role="img" aria-labelledby="hero-art-title">
-            <title id="hero-art-title">A finished one-page resume rising out of a long brown envelope</title>
-            <ellipse cx="180" cy="304" rx="150" ry="10" fill="#E4DCCF"/>
-            <g class="hero-sheet">
-              <rect x="88" y="20" width="184" height="236" rx="6" fill="#FFFFFF" stroke="#1C2333" stroke-width="2.5"/>
-              <path d="M110 48h96" stroke="#1C2333" stroke-width="6" stroke-linecap="round"/>
-              <path d="M110 64h64" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-              <path d="M110 92h44" stroke="#2445A8" stroke-width="4" stroke-linecap="round"/>
-              <path d="M110 108h138M110 120h116" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-              <path d="M110 146h52" stroke="#2445A8" stroke-width="4" stroke-linecap="round"/>
-              <rect x="106" y="156" width="130" height="12" rx="2" fill="#FFE27A"/>
-              <path d="M110 162h120" stroke="#1C2333" stroke-width="3" stroke-linecap="round"/>
-              <path d="M110 178h104" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-              <path d="M110 204h40" stroke="#2445A8" stroke-width="4" stroke-linecap="round"/>
-              <path d="M110 220h132" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <path d="M40 176h280v118a8 8 0 0 1-8 8H48a8 8 0 0 1-8-8z" fill="#C8955A" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-            <path d="M40 176l140 58 140-58" fill="none" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-            <circle cx="180" cy="234" r="8" fill="#7A4E22" stroke="#1C2333" stroke-width="2"/>
-            <circle cx="290" cy="40" r="22" fill="#2445A8" stroke="#1C2333" stroke-width="2.5"/>
-            <path d="M279 40l7.5 7.5L302 32" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <!-- The preparation register: the site's signature object.
+             Each row is a link, a count, and a meter; motion.js fills them in. -->
+        <aside class="hero-register" aria-labelledby="register-title">
+          <div class="register-head">
+            <h2 class="register-title" id="register-title">Your preparation register</h2>
+            <p class="register-updated">Checked November 2026</p>
+          </div>
+          <ul class="register-rows">
+            <li class="register-row">
+              <a class="reg-main" href="resume-guide.html">
+                <span class="reg-name">The resume</span>
+                <span class="reg-detail">8 sections explained, then fitted onto one page</span>
+              </a>
+              <span class="reg-count" data-count="8">8</span>
+              <span class="reg-meter" aria-hidden="true"><i data-fill="19"></i></span>
+            </li>
+            <li class="register-row">
+              <a class="reg-main" href="interview.html">
+                <span class="reg-name">The interview</span>
+                <span class="reg-detail">22 questions, each with a tip and a sample answer</span>
+              </a>
+              <span class="reg-count" data-count="22">22</span>
+              <span class="reg-meter" aria-hidden="true"><i data-fill="51"></i></span>
+            </li>
+            <li class="register-row">
+              <a class="reg-main" href="checklist.html">
+                <span class="reg-name">The documents</span>
+                <span class="reg-detail">13 requirements, several free under RA 11261</span>
+              </a>
+              <span class="reg-count" data-count="13">13</span>
+              <span class="reg-meter" aria-hidden="true"><i data-fill="30"></i></span>
+            </li>
+          </ul>
+          <p class="register-foot">Every entry you fill in is kept on this device. Nothing is uploaded.</p>
+        </aside>
       </div>
     </section>
 
     <!-- The problem: what generic tools ask for vs what students have -->
-    <section class="section" aria-labelledby="problem-title">
+    <section class="section reveal" aria-labelledby="problem-title">
       <div class="container split">
         <div class="flow">
-          <h2 id="problem-title">Most resume tools assume you've already had a job.</h2>
-          <p>Open a typical template and the first big box says <strong>Work Experience</strong>. If you're a student, that box stays empty, and the whole resume feels empty too.</p>
-          <p>Most of these tools were built for other countries. They also leave out what Filipino applicants deal with: whether to add a photo, which government documents to prepare, and questions like <q>What is your expected salary?</q></p>
-          <p>And many charge you just to download your PDF.</p>
+          <h2 id="problem-title">Resume templates are drawn for people who already had a job.</h2>
+          <p>Open a typical builder and the largest box on the form reads <strong>Work Experience</strong>. If you're still studying, that box stays empty — and the whole page starts to feel empty with it.</p>
+          <p>Most of those tools were put together somewhere else, too. They skip what a Filipino applicant actually has to think about: whether to attach a photo, which government papers to line up, and how to answer <q>What's your expected salary?</q> in the room.</p>
+          <p>And quite a few of them wait until the final click to charge you for the PDF.</p>
         </div>
         <div class="compare-lists">
           <div class="compare-col compare-col-empty">
-            <h3>What templates ask for</h3>
+            <h3>What the templates ask for</h3>
             <ul>
               <li>Work experience</li>
               <li>Past job titles</li>
@@ -105,12 +119,12 @@
             </ul>
           </div>
           <div class="compare-col compare-col-full">
-            <h3>What you actually have</h3>
+            <h3>What you already hold</h3>
             <ul>
-              <li>Capstone and class projects</li>
-              <li>Org roles and events</li>
-              <li>Contests, hackathons, quiz bees</li>
-              <li>OJT, tutoring, volunteering, NSTP</li>
+              <li>Capstones and class projects</li>
+              <li>Org positions and events you helped run</li>
+              <li>Hackathons, quiz bees, and contests</li>
+              <li>OJT, tutoring, NSTP, and volunteer work</li>
             </ul>
           </div>
         </div>
@@ -118,91 +132,88 @@
     </section>
 
     <!-- Who it's for -->
-    <section class="section section-band" aria-labelledby="audience-title">
+    <section class="section section-band reveal" aria-labelledby="audience-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="audience-title">Made for Filipino students starting out</h2>
+          <h2 id="audience-title">Built for Filipino students at the starting line</h2>
         </div>
         <ul class="audience-list">
           <li>
             <h3>OJT and internship applicants</h3>
-            <p>Your school needs you placed by a deadline. Get a clean resume ready this week.</p>
+            <p>Your school sets a placement deadline. A clean one-pager can be ready this week.</p>
           </li>
           <li>
             <h3>Fresh graduates</h3>
-            <p>Applying for your first full-time job? Prepare your resume, your answers, and your documents in one go.</p>
+            <p>First full-time application? The resume, the answers, and the documents sit in one place here.</p>
           </li>
           <li>
             <h3>First and second years</h3>
-            <p>Start early. See what employers look for, then join the orgs and projects that build it.</p>
+            <p>See early what employers look for, then gather the orgs and projects that prove it.</p>
           </li>
         </ul>
       </div>
     </section>
 
     <!-- Three-step journey: Guide, Build, Practice -->
-    <section class="section" aria-labelledby="journey-title">
+    <section class="section reveal" aria-labelledby="journey-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="journey-title">Three steps to your first offer</h2>
-          <p class="lead">Do them in order, or jump to the one you need today.</p>
+          <h2 id="journey-title">Blank page to signed offer, in three passes</h2>
+          <p class="lead">Work through them in order, or open the one you need today.</p>
         </div>
         <ol class="journey">
           <li class="journey-step">
-            <img src="images/guide.svg" alt="" width="320" height="220" loading="lazy">
             <h3><span class="step-num">1</span> Guide</h3>
-            <p>Learn what goes on a fresh-grad resume, Philippine conventions, and how to turn school work into strong bullet points.</p>
+            <p>See what belongs on a fresh-graduate resume in the Philippines, and how to recast class and org work as bullet points that hold up.</p>
             <a href="resume-guide.html">Read the resume guide</a>
           </li>
-          <li class="journey-step">
-            <img src="images/checklist.svg" alt="" width="320" height="220" loading="lazy">
+          <li class="journey-step reveal-delay-1">
             <h3><span class="step-num">2</span> Build</h3>
-            <p>Fill in a simple form and watch your one-page resume take shape. Check it against a real job post, then save it as a PDF.</p>
+            <p>Fill in a plain form and watch the page assemble itself beside you. Check it against a real job post, then keep the PDF.</p>
             <a href="builder.html">Open the resume builder</a>
           </li>
-          <li class="journey-step">
-            <img src="images/interview.svg" alt="" width="320" height="220" loading="lazy">
+          <li class="journey-step reveal-delay-2">
             <h3><span class="step-num">3</span> Practice</h3>
-            <p>Flip through common interview questions with tips and sample answers, and draft your own using the STAR method.</p>
+            <p>Flip through the questions Filipino interviewers favor, each with a tip and a sample answer, then draft your own with the STAR method.</p>
             <a href="interview.html">Start practicing</a>
           </li>
         </ol>
-        <p class="journey-extra">Got the offer? <a href="checklist.html">Prepare your pre-employment documents</a>, many of them free under RA 11261.</p>
+        <p class="journey-extra">Offer in hand? <a href="checklist.html">Line up your pre-employment documents</a> — several are free the first time under RA 11261.</p>
       </div>
     </section>
 
     <!-- Why us: comparison with generic resume tools -->
-    <section class="section section-band" aria-labelledby="why-title">
+    <section class="section section-band reveal" aria-labelledby="why-title">
       <div class="container">
         <div class="section-head">
           <h2 id="why-title">Why not just use a global resume builder?</h2>
-          <p class="lead">They're good tools. They just weren't made for a Filipino student's first application.</p>
+          <p class="lead">They're good tools — for somebody's first job. Just not the one you're applying for.</p>
         </div>
         <div class="table-wrap">
           <table class="compare-table">
-            <caption class="visually-hidden">OJT to Offer compared with typical global resume tools</caption>
+            <caption class="visually-hidden">Simula compared with typical global resume builders</caption>
             <thead>
               <tr>
                 <th scope="col">What you need</th>
-                <th scope="col"><span data-site-name>OJT to Offer</span></th>
+                <th scope="col"><span data-site-name>Simula</span></th>
                 <th scope="col">Typical global tools</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Works with no work experience</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes: "No experience yet" mode</span></td>
-                <td>Experience section comes first</td>
+                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes — a no-experience mode puts projects first</span></td>
+                <td>The experience block leads</td>
               </tr>
               <tr>
-                <th scope="row">Philippine resume tips (photo, address, age)</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes</span></td>
+                <th scope="row">Philippine resume conventions (photo, address, age)</th>
+                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes, explained plainly</span></td>
                 <td>Rarely covered</td>
               </tr>
               <tr>
                 <th scope="row">Interview practice in the same place</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes, with Filipino interview questions</span></td>
-                <td>Usually a separate tool</td>
+                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Yes, with questions Filipino employers ask</span></td>
+                <td>Usually a separate product</td>
               </tr>
               <tr>
                 <th scope="row">Pre-employment documents and RA 11261</th>
@@ -210,27 +221,26 @@
                 <td>Not covered</td>
               </tr>
               <tr>
-                <th scope="row">Free PDF download</th>
+                <th scope="row">Downloading your PDF</th>
                 <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Always free</span></td>
                 <td>Often paid or watermarked</td>
               </tr>
               <tr>
-                <th scope="row">Account needed</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>No account</span></td>
-                <td>Sign-up required</td>
+                <th scope="row">Making an account</th>
+                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Optional</span></td>
+                <td>Required before you start</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="small muted table-source">Based on our review of 12 tools in November 2026, including Canva, Resume.io, Teal, Novoresume, and Kickresume. Sources are listed on the <a href="about.html#sources">About page</a>.</p>
       </div>
     </section>
 
     <!-- Closing call to action -->
-    <section class="section cta-band" aria-labelledby="cta-title">
+    <section class="section cta-band reveal" aria-labelledby="cta-title">
       <div class="container cta-inner">
-        <h2 id="cta-title">Your first resume can be ready today.</h2>
-        <p>It takes about 20 minutes. Load the sample to see how it works.</p>
+        <h2 id="cta-title">A working first resume can exist in twenty minutes.</h2>
+        <p>Load the sample to see how the pieces fit together, then swap in your own.</p>
         <a class="btn btn-light" href="builder.html">Start building</a>
       </div>
     </section>
@@ -241,8 +251,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>OJT to Offer</p>
-        <p>A free resume and interview guide for Filipino students.</p>
+        <p class="footer-name" data-site-name>Simula</p>
+        <p>A free, private guide from first resume to first offer.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
