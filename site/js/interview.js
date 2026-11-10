@@ -171,7 +171,7 @@ function renderQuestionList() {
 function openEditor(card) {
   editingId = card ? card.id : null;
   var title = document.getElementById("card-editor-title");
-  title.textContent = card ? "Edit your question" : "Write your own question";
+  title.textContent = card ? "Edit your question" : "Add your own question";
 
   document.getElementById("own-question").value = card ? card.question : "";
   document.getElementById("own-category").value = card ? card.category : "intro";
