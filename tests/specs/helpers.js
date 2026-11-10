@@ -6,12 +6,13 @@ const { expect } = require("@playwright/test");
 const SITE_DIR = path.resolve(__dirname, "../../site");
 
 const PAGES = [
-  { file: "index.html", title: /OJT to Offer/ },
+  { file: "index.html", title: /Simula/ },
   { file: "resume-guide.html", title: /Resume Guide/ },
   { file: "builder.html", title: /Resume Builder/ },
   { file: "interview.html", title: /Interview Practice/ },
   { file: "checklist.html", title: /Pre-Employment Checklist/ },
-  { file: "about.html", title: /About and Contact/ }
+  { file: "about.html", title: /About and Contact/ },
+  { file: "login.html", title: /Sign in/ }
 ];
 
 function pageUrl(file) {

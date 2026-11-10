@@ -110,6 +110,12 @@ for (const p of PAGES) {
 
 test("animations respect prefers-reduced-motion", async ({ page }) => {
   await openPage(page, "index.html");
-  const duration = await page.locator(".hero-sheet").evaluate((el) => getComputedStyle(el).animationDuration);
+  // The register meter fills through a width transition; under reduced motion it must be instant
+  const duration = await page.locator(".reg-meter i").first()
+    .evaluate((el) => getComputedStyle(el).transitionDuration);
   expect(parseFloat(duration)).toBeLessThan(0.01);
+  // Scroll-reveal sections must settle fully visible instead of animating in
+  const opacity = await page.locator(".reveal").first()
+    .evaluate((el) => getComputedStyle(el).opacity);
+  expect(parseFloat(opacity)).toBe(1);
 });

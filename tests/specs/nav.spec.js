@@ -39,7 +39,7 @@ test("desktop shows all nav links without a menu button", async ({ page }) => {
   await openPage(page, "index.html");
   test.skip(await isMobileMenu(page), "Desktop only");
   await expect(page.locator(".nav-toggle")).toBeHidden();
-  await expect(page.locator("#site-nav a")).toHaveCount(6);
+  await expect(page.locator("#site-nav a")).toHaveCount(7);
   for (const link of await page.locator("#site-nav a").all()) {
     await expect(link).toBeVisible();
   }
