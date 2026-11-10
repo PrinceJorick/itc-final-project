@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Interview Practice · OJT to Offer</title>
+  <title>Interview Practice · Simula</title>
   <meta name="description" content="Practice common Filipino job interview questions with tips and sample answers, the STAR method, attire advice, and online interview tips.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/auth-config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/motion.js" defer></script>
   <script src="js/interview.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- Site header: logo, main navigation, theme switch (same on every page) -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="images/logo.svg" alt="" width="36" height="36">
-        <span data-site-name>OJT to Offer</span>
+        <img src="images/logo.svg" alt="" width="32" height="32">
+        <span data-site-name>Simula</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span>Menu</span>
-      </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -35,46 +36,68 @@
           <li><a href="interview.html" aria-current="page">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
+          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
-
     <section class="page-intro">
       <div class="container page-intro-inner">
         <div>
           <h1>Practice your first interview</h1>
-          <p class="lead">Go through the questions Filipino employers ask most, see what a good answer sounds like, then write your own.</p>
+          <p class="lead">Answer common Filipino interview questions out loud, then compare with a tip and a sample answer.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#practice">Start practicing</a>
-            <a class="btn btn-secondary" href="#star">Learn the STAR method</a>
+            <a class="btn btn-secondary" href="#star">Use the STAR method</a>
           </div>
         </div>
-        <img src="images/interview.svg" alt="A laptop on a video call with a question and an answer in speech bubbles" width="320" height="220">
+        <figure class="illus">
+          <img src="images/interview.svg" alt="A laptop on a video call with a question bubble, an answer bubble, and a STAR progress meter" width="320" height="220">
+        </figure>
       </div>
     </section>
 
-    <!-- Practice tool: filters, flashcard, random question, question bank -->
+    <!-- Practice tool: filters, flashcard, your own cards, question bank -->
     <section id="practice" class="section" aria-labelledby="practice-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="practice-title">Flashcard practice</h2>
-          <p class="lead">Read the question, answer it out loud, then reveal the tip and a sample answer.</p>
+          <h2 id="practice-title">Flashcards</h2>
+          <p class="lead">Answer first, then reveal the tip and sample answer.</p>
         </div>
 
         <div class="practice">
-          <fieldset class="filter-bar">
-            <legend>Question type</legend>
-            <div class="filter-options">
-              <label class="filter-chip"><input type="radio" name="category" value="all" checked> All</label>
-              <label class="filter-chip"><input type="radio" name="category" value="intro"> Intro</label>
-              <label class="filter-chip"><input type="radio" name="category" value="behavioral"> Behavioral</label>
-              <label class="filter-chip"><input type="radio" name="category" value="technical"> Technical</label>
-              <label class="filter-chip"><input type="radio" name="category" value="closing"> Closing</label>
+          <div class="practice-bar">
+            <fieldset class="filter-bar">
+              <legend>Question type</legend>
+              <div class="filter-options">
+                <label class="filter-chip"><input type="radio" name="category" value="all" checked> All</label>
+                <label class="filter-chip"><input type="radio" name="category" value="intro"> Intro</label>
+                <label class="filter-chip"><input type="radio" name="category" value="behavioral"> Behavioral</label>
+                <label class="filter-chip"><input type="radio" name="category" value="technical"> Technical</label>
+                <label class="filter-chip"><input type="radio" name="category" value="closing"> Closing</label>
+                <label class="filter-chip"><input type="radio" name="category" value="yours"> Yours</label>
+              </div>
+            </fieldset>
+
+            <div class="practice-tools">
+              <button class="btn btn-secondary btn-small" type="button" id="add-card-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>
+                Add your own
+              </button>
             </div>
-          </fieldset>
+          </div>
 
           <div class="flashcard" id="flashcard" aria-live="polite">
             <p class="flashcard-meta"><span class="chip" id="card-category">Intro</span> <span class="muted" id="card-count">Question 1 of 22</span></p>
@@ -91,39 +114,82 @@
               <button class="btn btn-secondary" type="button" id="next-btn">Next</button>
               <button class="btn btn-quiet" type="button" id="random-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-                Random question
+                Random
               </button>
+              <button class="btn btn-quiet" type="button" id="edit-card-btn" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                Edit
+              </button>
+              <button class="btn btn-danger btn-small" type="button" id="delete-card-btn" hidden>Delete</button>
             </div>
           </div>
-        </div>
 
-        <details class="question-bank">
-          <summary>See all questions in this category</summary>
-          <ol id="question-list"></ol>
-        </details>
+          <!-- Shown when the "Yours" filter has no cards yet -->
+          <div class="flashcard-empty" id="yours-empty" hidden>
+            <p>No questions here yet. Add your own to practice them.</p>
+            <button class="btn btn-primary btn-small" type="button" id="empty-add-btn">Add your first question</button>
+          </div>
+
+          <!-- Add or edit one of your own cards -->
+          <form class="card card-editor" id="card-editor" hidden aria-labelledby="card-editor-title">
+            <h3 id="card-editor-title">Add your own question</h3>
+            <div class="field">
+              <label for="own-question">Question</label>
+              <input type="text" id="own-question" name="question" aria-describedby="own-question-error" placeholder="Why did you choose your course?">
+              <p class="error-text" id="own-question-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="own-category">Type</label>
+              <select id="own-category" name="category">
+                <option value="intro">Intro</option>
+                <option value="behavioral">Behavioral</option>
+                <option value="technical">Technical</option>
+                <option value="closing">Closing</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="own-tip">Tip <span class="hint">(optional)</span></label>
+              <textarea id="own-tip" name="tip" rows="2" placeholder="Mention one project and its result."></textarea>
+            </div>
+            <div class="field">
+              <label for="own-answer">Sample answer <span class="hint">(optional)</span></label>
+              <textarea id="own-answer" name="sampleAnswer" rows="3" placeholder="I chose BS IT because…"></textarea>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-primary btn-small" type="submit">Save card</button>
+              <button class="btn btn-quiet btn-small" type="button" id="own-cancel">Cancel</button>
+              <span class="small muted" id="own-status" role="status"></span>
+            </div>
+          </form>
+
+          <details class="question-bank" id="question-bank">
+            <summary>See all questions in this category</summary>
+            <ol id="question-list"></ol>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- STAR method with saved template -->
-    <section id="star" class="section section-band" aria-labelledby="star-title">
+    <!-- STAR method with a saved draft -->
+    <section id="star" class="section section-band reveal" aria-labelledby="star-title">
       <div class="container split">
         <div class="flow">
-          <h2 id="star-title">Answer with the STAR method</h2>
-          <p>For any question that starts with <q>Tell me about a time…</q>, tell a short story in four parts:</p>
+          <h2 id="star-title">Answer with STAR</h2>
+          <p>For <q>Tell me about a time…</q> questions, tell a short story in four parts:</p>
           <dl class="star-list">
-            <div><dt>S: Situation</dt><dd>Where were you? (class, org, OJT)</dd></div>
-            <div><dt>T: Task</dt><dd>What did you need to do?</dd></div>
-            <div><dt>A: Action</dt><dd>What did <em>you</em> do? This is the longest part.</dd></div>
-            <div><dt>R: Result</dt><dd>What happened? Use a number if you can.</dd></div>
+            <div><dt>Situation</dt><dd>Where were you? A class, org, or OJT.</dd></div>
+            <div><dt>Task</dt><dd>What did you need to do?</dd></div>
+            <div><dt>Action</dt><dd>What did <em>you</em> do? Spend the most time here.</dd></div>
+            <div><dt>Result</dt><dd>What changed? Use a number if you can.</dd></div>
           </dl>
-          <p>Aim for one to two minutes. Prepare three or four stories you can reuse for different questions.</p>
+          <p>Keep it under two minutes. Prepare three or four stories you can reuse.</p>
         </div>
 
         <form class="card star-form" id="star-form" aria-labelledby="star-form-title">
-          <h3 id="star-form-title">Draft your STAR answer</h3>
+          <h3 id="star-form-title">Draft your answer</h3>
           <p class="hint">Saved on this device as you type.</p>
           <div class="field">
-            <label for="star-question">Question you're answering</label>
+            <label for="star-question">Question</label>
             <input type="text" id="star-question" name="question" placeholder="Tell me about a time you worked in a team.">
           </div>
           <div class="field">
@@ -143,108 +209,109 @@
             <textarea id="star-r" name="result" rows="2" placeholder="We finished two days early and…"></textarea>
           </div>
           <div class="btn-row">
-            <button class="btn btn-danger btn-small" type="button" id="star-clear">Clear my answer</button>
+            <button class="btn btn-danger btn-small" type="button" id="star-clear">Clear</button>
             <span class="small muted" id="star-status" role="status"></span>
           </div>
         </form>
       </div>
     </section>
 
-    <!-- Common Filipino interview questions -->
-    <section class="section" aria-labelledby="common-title">
+    <!-- Questions that come up in almost every Filipino interview -->
+    <section class="section reveal" aria-labelledby="common-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="common-title">Questions you'll almost surely hear</h2>
-          <p class="lead">These come up in Filipino interviews for OJT, BPO, and entry-level jobs. Prepare them first.</p>
+          <h2 id="common-title">Four questions to prepare first</h2>
+          <p class="lead">They come up in most OJT, BPO, and entry-level interviews.</p>
         </div>
         <div class="grid grid-2">
           <div class="card">
             <h3><q>Tell me about yourself.</q></h3>
-            <p>Present, past, future in one minute: what you study now, one achievement that fits the job, and why you're here.</p>
+            <p>One minute: what you study, one achievement that fits the job, and why you applied.</p>
           </div>
           <div class="card">
             <h3><q>Why should we hire you?</q></h3>
-            <p>Match two or three strengths to what the job post asks for, each with a quick example.</p>
+            <p>Match two or three strengths to the job post, each with a quick example.</p>
           </div>
           <div class="card">
-            <h3><q>What is your expected salary?</q></h3>
-            <p>Research the range for the same role in your city on job sites before the interview. Give a range and say you're open to discussing it. For OJT, ask about allowance instead.</p>
+            <h3><q>What's your expected salary?</q></h3>
+            <p>Research the range for the role in your city, then give a range. For OJT, ask about the allowance.</p>
           </div>
           <div class="card">
-            <h3><q>Are you willing to work night shift?</q></h3>
-            <p>Common in BPO. Answer honestly. If yes, show you've thought about your commute and sleep.</p>
+            <h3><q>Can you work night shift?</q></h3>
+            <p>Common in BPO. Answer honestly; if yes, show you've planned your commute and sleep.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Attire and what to bring -->
-    <section class="section section-band" aria-labelledby="attire-title">
+    <!-- What to wear and bring -->
+    <section class="section section-band reveal" aria-labelledby="attire-title">
       <div class="container split">
         <div class="flow">
           <h2 id="attire-title">What to wear and bring</h2>
-          <p>Dress one step more formal than the job's daily wear. When in doubt, ask HR what the dress code is. That's a normal question.</p>
-          <h3>Safe choices</h3>
+          <p>Dress one step more formal than the office. If unsure, ask HR about the dress code.</p>
           <ul class="article-list">
-            <li><strong>Corporate or office:</strong> collared shirt or blouse, slacks or a knee-length skirt, closed shoes. A blazer is a plus.</li>
-            <li><strong>BPO and tech:</strong> smart casual: polo or blouse, dark pants, clean closed shoes.</li>
-            <li><strong>Avoid:</strong> jeans with rips, shorts, slippers or sandals, loud prints, strong perfume.</li>
+            <li><strong>Office:</strong> collared shirt or blouse, slacks or a knee-length skirt, closed shoes.</li>
+            <li><strong>BPO and tech:</strong> smart casual. Polo or blouse, dark pants, closed shoes.</li>
+            <li><strong>Avoid:</strong> ripped jeans, shorts, slippers, loud prints, strong perfume.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Bring in your brown envelope</h3>
+          <h3>Bring in a folder</h3>
           <ul class="check-list">
             <li>3–5 printed copies of your resume</li>
-            <li>Two valid IDs (and photocopies)</li>
-            <li>A black ballpen for forms</li>
+            <li>Two valid IDs and photocopies</li>
+            <li>A black ballpen</li>
             <li>2×2 and 1×1 ID photos</li>
-            <li>Any documents the employer asked for</li>
-            <li>The interviewer's name and the office address</li>
+            <li>Documents the employer asked for</li>
           </ul>
-          <p class="small"><a href="checklist.html">See the full pre-employment checklist</a></p>
+          <p class="small"><a href="checklist.html">See the full checklist</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Online interview tips -->
-    <section class="section" aria-labelledby="online-title">
+    <!-- Online interviews -->
+    <section class="section reveal" aria-labelledby="online-title">
       <div class="container">
         <div class="section-head">
           <h2 id="online-title">Online interview tips</h2>
-          <p class="lead">Many first interviews in the Philippines now happen over Zoom, Google Meet, or Teams. Treat the call like an office visit.</p>
+          <p class="lead">Treat a Zoom, Meet, or Teams call like an office visit.</p>
         </div>
         <ol class="tip-steps">
           <li>
             <h3>The day before</h3>
-            <p>Test the app, camera, and mic with a friend. Update the app. Charge your laptop and keep mobile data ready as a backup in case of brownouts or Wi-Fi drops.</p>
+            <p>Test your camera and mic, charge your laptop, and keep mobile data as a backup.</p>
           </li>
           <li>
             <h3>Your setup</h3>
-            <p>Sit facing a window or lamp so your face is lit. Use a plain wall behind you. Put the camera at eye level, using books if you need to.</p>
+            <p>Face a light source, use a plain background, and raise the camera to eye level.</p>
           </li>
           <li>
             <h3>Ten minutes before</h3>
-            <p>Close other apps and mute notifications. Tell your household you're in an interview. Keep your resume and notes open on the side.</p>
+            <p>Close other apps, mute notifications, and keep your resume open on the side.</p>
           </li>
           <li>
             <h3>During the call</h3>
-            <p>Look at the camera when you speak, not at your own video. Pause a second before answering in case of lag. If the connection drops, rejoin right away and apologize briefly.</p>
+            <p>Look at the camera when you speak. If the call drops, rejoin right away.</p>
           </li>
           <li>
             <h3>After the call</h3>
-            <p>Send a short thank-you email within the day. Mention one thing you discussed and that you're still interested.</p>
+            <p>Send a short thank-you email the same day.</p>
           </li>
         </ol>
       </div>
     </section>
-
   </main>
 
+  <!-- Site footer (same on every page) -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>OJT to Offer</p>
-        <p>A free resume and interview guide for Filipino students.</p>
+        <a class="brand" href="index.html">
+          <img src="images/logo.svg" alt="" width="28" height="28">
+          <span data-site-name>Simula</span>
+        </a>
+        <p>Free resume and interview prep for Filipino students.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
@@ -255,7 +322,7 @@
           <li><a href="about.html">About and Contact</a></li>
         </ul>
       </nav>
-      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any agency or company named on this site.</p>
     </div>
   </footer>
 

@@ -3,30 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About and Contact · OJT to Offer</title>
-  <meta name="description" content="Who made OJT to Offer, why, the sources behind our content, and how to reach the team.">
+  <title>About and Contact · Simula</title>
+  <meta name="description" content="Who made Simula, the sources behind our content, and how to reach the team.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/auth-config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/motion.js" defer></script>
   <script src="js/contact.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- Site header: logo, main navigation, theme switch (same on every page) -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="images/logo.svg" alt="" width="36" height="36">
-        <span data-site-name>OJT to Offer</span>
+        <img src="images/logo.svg" alt="" width="32" height="32">
+        <span data-site-name>Simula</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span>Menu</span>
-      </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -35,33 +36,43 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
+          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
-
     <section class="page-intro">
       <div class="container">
-        <h1>About <span data-site-name>OJT to Offer</span></h1>
-        <p class="lead">We're four first-year Computer Science students at Batangas State University – Alangilan. We built this because writing our own first resumes was harder than it should be.</p>
+        <h1>About <span data-site-name>Simula</span></h1>
+        <p class="lead"><em>Simula</em> is Filipino for "beginning." We're four Computer Science students at Batangas State University – Alangilan, and we built this to make first applications easier.</p>
       </div>
     </section>
 
     <!-- Mission -->
-    <section class="section" aria-labelledby="mission-title">
+    <section class="section reveal" aria-labelledby="mission-title">
       <div class="container split">
         <div class="flow">
           <h2 id="mission-title">Our mission</h2>
-          <p>Help every Filipino student turn what they already have (school projects, org work, contests) into a resume they're proud of, and walk into their first interview prepared.</p>
-          <p>Everything here is free, needs no account, and stays on your device. We don't collect or send any of your information.</p>
+          <p>Help Filipino students turn class projects, org work, and contests into a resume they're proud of, and walk into their first interview prepared.</p>
+          <p>Everything here is free and works without an account. Your data stays on your device.</p>
         </div>
         <div class="card">
           <h3>What we believe</h3>
           <ul class="check-list">
             <li>Start from what students already have.</li>
-            <li>One path, not a pile of tools: Guide, Build, Practice.</li>
+            <li>One path: Guide, Build, Practice.</li>
             <li>Local and accurate beats global and generic.</li>
             <li>Free and private by default.</li>
           </ul>
@@ -70,7 +81,7 @@
     </section>
 
     <!-- Team (roles: see docs/TEAM-ROLES.md; the team confirms assignments) -->
-    <section class="section section-band" aria-labelledby="team-title">
+    <section class="section section-band reveal" aria-labelledby="team-title">
       <div class="container">
         <div class="section-head">
           <h2 id="team-title">The team</h2>
@@ -82,7 +93,6 @@
             <div>
               <h3>Prince Jorick Fajutagana</h3>
               <p class="team-role">Developer</p>
-              <p>Built the resume builder and all the JavaScript features.</p>
             </div>
           </li>
           <li class="team-member">
@@ -90,7 +100,6 @@
             <div>
               <h3>Alloysia Mae</h3>
               <p class="team-role">Content and Research</p>
-              <p>Researched competitors and Philippine requirements, and wrote the guides.</p>
             </div>
           </li>
           <li class="team-member">
@@ -98,7 +107,6 @@
             <div>
               <h3>Elise Guerra</h3>
               <p class="team-role">Design and CSS</p>
-              <p>Shaped the brown-envelope look, colors, and layout.</p>
             </div>
           </li>
           <li class="team-member">
@@ -106,7 +114,6 @@
             <div>
               <h3>Sherwin Dollente Jr.</h3>
               <p class="team-role">Documentation and Presentation</p>
-              <p>Wrote the storyboard and wireframes, and leads the demo.</p>
             </div>
           </li>
         </ul>
@@ -114,40 +121,37 @@
     </section>
 
     <!-- Sources and credits -->
-    <section id="sources" class="section" aria-labelledby="sources-title">
+    <section id="sources" class="section reveal" aria-labelledby="sources-title">
       <div class="container">
         <div class="section-head">
           <h2 id="sources-title">Sources and credits</h2>
-          <p class="lead">Government facts were checked against official or primary sources in November 2026. Fees and procedures can change, so always confirm with the agency.</p>
+          <p class="lead">Government facts were checked in November 2026. Fees and steps change, so confirm with the agency.</p>
         </div>
         <div class="grid grid-2">
           <div class="card source-card">
             <h3>Laws and government sources</h3>
             <ul>
-              <li><a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">Republic Act No. 11261, First Time Jobseekers Assistance Act</a> (LawPhil)</li>
-              <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2011261.pdf" rel="noopener">RA 11261 full text</a> (Senate of the Philippines)</li>
-              <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2010911.pdf" rel="noopener">Republic Act No. 10911, Anti-Age Discrimination in Employment Act</a> (Senate of the Philippines)</li>
-              <li><a href="https://psa.gov.ph/" rel="noopener">Philippine Statistics Authority</a>: birth certificate fee (Citizen's Charter)</li>
-              <li><a href="https://clearance.nbi.gov.ph/" rel="noopener">NBI Clearance online</a></li>
+              <li><a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">RA 11261, First Time Jobseekers Assistance Act</a> (LawPhil)</li>
+              <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2011261.pdf" rel="noopener">RA 11261 full text</a> (Senate)</li>
+              <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2010911.pdf" rel="noopener">RA 10911, Anti-Age Discrimination in Employment Act</a> (Senate)</li>
+              <li><a href="https://psa.gov.ph/" rel="noopener">Philippine Statistics Authority</a></li>
+              <li><a href="https://clearance.nbi.gov.ph/" rel="noopener">NBI Clearance</a></li>
               <li><a href="https://pnpclearance.ph/" rel="noopener">PNP National Police Clearance System</a></li>
               <li><a href="https://orus.bir.gov.ph/" rel="noopener">BIR Online Registration and Update System</a></li>
-              <li><a href="https://www.sss.gov.ph/" rel="noopener">Social Security System</a></li>
-              <li><a href="https://www.philhealth.gov.ph/" rel="noopener">PhilHealth</a></li>
-              <li><a href="https://www.pagibigfund.gov.ph/" rel="noopener">Pag-IBIG Fund</a></li>
+              <li><a href="https://www.sss.gov.ph/" rel="noopener">SSS</a>, <a href="https://www.philhealth.gov.ph/" rel="noopener">PhilHealth</a>, and <a href="https://www.pagibigfund.gov.ph/" rel="noopener">Pag-IBIG Fund</a></li>
             </ul>
           </div>
           <div class="card source-card">
-            <h3>Career advice and research</h3>
+            <h3>Career advice</h3>
             <ul>
               <li><a href="https://ph.jobstreet.com/career-advice/article/tips-and-resume-sample-for-ojt-applicants" rel="noopener">JobStreet PH: Resume tips for OJT applicants</a></li>
               <li><a href="https://ph.jobstreet.com/career-advice/article/work-experience-in-your-resume" rel="noopener">JobStreet PH: Work experience in your resume</a></li>
-              <li><a href="https://www.kalibrr.com/blog/2019/08/characteristics-of-the-modern-filipino-jobseeker" rel="noopener">Kalibrr: Characteristics of the modern Filipino jobseeker</a></li>
-              <li>Competitor research on 12 resume and interview tools (Canva, Resume.io, Teal, Enhancv, Kickresume, Novoresume, Jobscan, Google Interview Warmup, Big Interview, JobStreet, Kalibrr, LinkedIn). Full list with links in the project's <code>docs/COMPETITORS.md</code>.</li>
+              <li><a href="https://www.kalibrr.com/blog/2019/08/characteristics-of-the-modern-filipino-jobseeker" rel="noopener">Kalibrr: The modern Filipino jobseeker</a></li>
             </ul>
-            <h3>Fonts, images, and icons</h3>
+            <h3>Fonts and images</h3>
             <ul>
-              <li><a href="https://fonts.google.com/specimen/Bricolage+Grotesque" rel="noopener">Bricolage Grotesque</a> and <a href="https://fonts.google.com/specimen/Atkinson+Hyperlegible" rel="noopener">Atkinson Hyperlegible</a> from Google Fonts (SIL Open Font License).</li>
-              <li>All illustrations, the logo, and icons are original SVGs made by the team for this site. No stock photos are used.</li>
+              <li><a href="https://fonts.google.com/specimen/IBM+Plex+Sans" rel="noopener">IBM Plex Sans</a> and <a href="https://fonts.google.com/specimen/IBM+Plex+Mono" rel="noopener">IBM Plex Mono</a> (SIL Open Font License).</li>
+              <li>The logo, illustrations, and icons are original work for this project.</li>
             </ul>
           </div>
         </div>
@@ -155,17 +159,17 @@
     </section>
 
     <!-- Contact form (demo: nothing is sent) -->
-    <section id="contact" class="section section-band" aria-labelledby="contact-title">
+    <section id="contact" class="section section-band reveal" aria-labelledby="contact-title">
       <div class="container split">
         <div class="flow">
           <h2 id="contact-title">Contact us</h2>
-          <p>Found a mistake, or have a tip for other students? Tell us.</p>
+          <p>Found a mistake or have a tip for other students? Let us know.</p>
           <div class="note note-info">
             <p class="note-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-              This is a demo form
+              Demo form
             </p>
-            <p>This is a static school project, so the form checks your entries but doesn't send them anywhere.</p>
+            <p>This is a school project. The form checks your entries but doesn't send them anywhere.</p>
           </div>
         </div>
 
@@ -195,7 +199,7 @@
             <textarea id="contact-message" name="message" rows="5" aria-describedby="contact-message-error" required></textarea>
             <p class="error-text" id="contact-message-error"></p>
           </div>
-          <button class="btn btn-primary" type="submit">Check and send (demo)</button>
+          <button class="btn btn-primary" type="submit">Send (demo)</button>
           <div class="success-message" id="contact-success" role="status" tabindex="-1" hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" width="22" height="22"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
             <p id="contact-success-text">Thanks! Your message looks good.</p>
@@ -203,14 +207,17 @@
         </form>
       </div>
     </section>
-
   </main>
 
+  <!-- Site footer (same on every page) -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>OJT to Offer</p>
-        <p>A free resume and interview guide for Filipino students.</p>
+        <a class="brand" href="index.html">
+          <img src="images/logo.svg" alt="" width="28" height="28">
+          <span data-site-name>Simula</span>
+        </a>
+        <p>Free resume and interview prep for Filipino students.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
@@ -221,7 +228,7 @@
           <li><a href="about.html">About and Contact</a></li>
         </ul>
       </nav>
-      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any agency or company named on this site.</p>
     </div>
   </footer>
 

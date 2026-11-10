@@ -1,16 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-label="A laptop on a video call with two speech bubbles, one asking a question and one answering">
-  <ellipse cx="160" cy="206" rx="130" ry="8" fill="#E4DCCF"/>
-  <!-- Laptop -->
-  <rect x="64" y="70" width="192" height="116" rx="8" fill="#FFFFFF" stroke="#1C2333" stroke-width="2.5"/>
-  <rect x="76" y="82" width="168" height="92" rx="4" fill="#E8EDFA"/>
-  <path d="M44 186h232l-14 14H58z" fill="#F3E6D3" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-  <!-- Interviewer on screen -->
-  <circle cx="160" cy="116" r="16" fill="#C8955A" stroke="#1C2333" stroke-width="2.5"/>
-  <path d="M128 174c4-20 18-30 32-30s28 10 32 30" fill="#2445A8" stroke="#1C2333" stroke-width="2.5"/>
-  <!-- Question bubble -->
-  <path d="M20 22h108a8 8 0 0 1 8 8v28a8 8 0 0 1-8 8H52l-14 12V66H20a8 8 0 0 1-8-8V30a8 8 0 0 1 8-8z" fill="#FFFFFF" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M30 38h80M30 50h52" stroke="#1C2333" stroke-width="4" stroke-linecap="round"/>
-  <!-- Answer bubble -->
-  <path d="M192 10h108a8 8 0 0 1 8 8v28a8 8 0 0 1-8 8h-18v12l-14-12h-76a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8z" fill="#FFE27A" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M204 26h84M204 38h60" stroke="#1C2333" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" role="img" aria-label="A laptop on a video call with a question bubble, an answer bubble and a STAR answer meter">
+  <path d="M24 204.5H296" stroke="#D6D5CC"/>
+  <rect x="72" y="72" width="176" height="108" rx="6" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <rect x="82" y="82" width="156" height="88" rx="3" fill="#E7E6DD"/>
+  <circle cx="160" cy="114" r="13" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <path d="M132 170c3-17 15-26 28-26s25 9 28 26z" fill="#1D5B4A" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="88" y="88" width="36" height="14" rx="3" fill="#FFFFFF"/>
+  <circle cx="95" cy="95" r="2.5" fill="#1D5B4A"/>
+  <text x="100" y="98.5" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="9" fill="#161A17">02:14</text>
+  <path d="M52 180H268L256 194H64z" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M20 16h104a6 6 0 0 1 6 6v30a6 6 0 0 1-6 6H54l-14 12V58H20a6 6 0 0 1-6-6V22a6 6 0 0 1 6-6z" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M26 31H112" stroke="#161A17" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M26 43H82" stroke="#8B908A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M196 10h102a6 6 0 0 1 6 6v30a6 6 0 0 1-6 6h-16v12l-14-12h-72a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6z" fill="#1D5B4A" stroke="#161A17" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M202 25H290" stroke="#FAFAF7" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M202 37H264" stroke="#FAFAF7" stroke-opacity="0.6" stroke-width="3" stroke-linecap="round"/>
+  <g font-family="IBM Plex Mono, ui-monospace, monospace" font-size="8" fill="#161A17">
+    <text x="262" y="84">S</text><text x="273" y="84">T</text><text x="284" y="84">A</text><text x="295" y="84">R</text>
+  </g>
+  <rect x="260" y="88" width="9" height="5" rx="1.5" fill="#1D5B4A"/>
+  <rect x="271" y="88" width="9" height="5" rx="1.5" fill="#1D5B4A"/>
+  <rect x="282" y="88" width="9" height="5" rx="1.5" fill="#1D5B4A"/>
+  <rect x="293" y="88" width="9" height="5" rx="1.5" fill="#E7E6DD" stroke="#D6D5CC" stroke-width="0.75"/>
 </svg>

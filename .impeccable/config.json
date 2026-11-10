@@ -13,22 +13,13 @@
         "reason": "Claude decision: Modern resume template uses Arial on purpose for ATS parsing and print reliability"
       },
       {
-        "rule": "cream-palette",
+        "rule": "low-contrast",
         "value": "*",
         "files": [
-          "site/*.html"
+          "site/builder.html"
         ],
-        "createdAt": "2026-11-10T05:13:31.299Z",
-        "reason": "Claude decision: deliberate bond-paper #FBF8F3 from the documented brown-envelope concept (docs/DESIGN.md)"
-      },
-      {
-        "rule": "cramped-padding",
-        "value": "*",
-        "files": [
-          "site/*.html"
-        ],
-        "createdAt": "2026-11-10T05:13:31.318Z",
-        "reason": "Claude decision: false positive; full-bleed bands get their inset from the child .container (16-32px) and table cells from th/td padding; verified in 375px and 1280px screenshots"
+        "createdAt": "2026-11-10T12:29:07.682Z",
+        "reason": "Claude decision: false positive; the only white-background element in dark mode is the resume sheet (intentionally black on white paper), and tests/specs/a11y.spec.js measures WCAG AA on the rendered builder in both light and dark and passes"
       }
     ]
   }

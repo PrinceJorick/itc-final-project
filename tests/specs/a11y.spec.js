@@ -30,7 +30,9 @@ for (const p of PAGES) {
           const target = el.closest(".filter-chip") || (el.closest(".switch") && el.closest(".switch").querySelector(".switch-track")) || el;
           const style = getComputedStyle(target);
           const hasOutline = style.outlineStyle !== "none" && parseFloat(style.outlineWidth) >= 2;
-          return { key: el.tagName + "#" + (el.id || el.textContent.trim().slice(0, 30)), visible: hasOutline };
+          // Text fields show focus as a 3px colored ring (box-shadow) instead of an outline
+          const hasRing = /\b3px\b/.test(style.boxShadow) && style.boxShadow !== "none";
+          return { key: el.tagName + "#" + (el.id || el.textContent.trim().slice(0, 30)), visible: hasOutline || hasRing };
         });
         if (!info) continue;
         expect(info.visible, `focus visible on ${info.key}`).toBe(true);
@@ -39,7 +41,8 @@ for (const p of PAGES) {
       expect(seen.size).toBeGreaterThan(5);
     });
 
-    test("text meets WCAG AA contrast", async ({ page }) => {
+    for (const scheme of ["light", "dark"]) test(`text meets WCAG AA contrast (${scheme} mode)`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: scheme });
       await openPage(page, p.file);
       await page.waitForLoadState("load");
       // Fill dynamic parts so their text is checked too
@@ -110,6 +113,12 @@ for (const p of PAGES) {
 
 test("animations respect prefers-reduced-motion", async ({ page }) => {
   await openPage(page, "index.html");
-  const duration = await page.locator(".hero-sheet").evaluate((el) => getComputedStyle(el).animationDuration);
+  // The register meter fills through a width transition; under reduced motion it must be instant
+  const duration = await page.locator(".reg-meter i").first()
+    .evaluate((el) => getComputedStyle(el).transitionDuration);
   expect(parseFloat(duration)).toBeLessThan(0.01);
+  // Scroll-reveal sections must settle fully visible instead of animating in
+  const opacity = await page.locator(".reveal").first()
+    .evaluate((el) => getComputedStyle(el).opacity);
+  expect(parseFloat(opacity)).toBe(1);
 });

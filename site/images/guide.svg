@@ -1,21 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-label="A resume page with key lines marked in yellow highlighter and a blue pen">
-  <!-- Desk shadow -->
-  <ellipse cx="160" cy="206" rx="120" ry="8" fill="#E4DCCF"/>
-  <!-- Resume sheet -->
-  <rect x="70" y="14" width="150" height="186" rx="6" fill="#FFFFFF" stroke="#1C2333" stroke-width="2.5"/>
-  <circle cx="96" cy="42" r="12" fill="#F3E6D3" stroke="#1C2333" stroke-width="2"/>
-  <path d="M116 36h70M116 48h44" stroke="#1C2333" stroke-width="4" stroke-linecap="round"/>
-  <!-- Highlighted lines -->
-  <rect x="84" y="70" width="110" height="12" rx="2" fill="#FFE27A"/>
-  <path d="M88 76h100" stroke="#1C2333" stroke-width="3" stroke-linecap="round"/>
-  <path d="M88 96h116M88 110h96" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-  <rect x="84" y="128" width="88" height="12" rx="2" fill="#FFE27A"/>
-  <path d="M88 134h78" stroke="#1C2333" stroke-width="3" stroke-linecap="round"/>
-  <path d="M88 154h116M88 168h70M88 182h90" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
-  <!-- Ballpoint pen -->
-  <g transform="rotate(35 250 120)">
-    <rect x="240" y="40" width="16" height="120" rx="4" fill="#2445A8" stroke="#1C2333" stroke-width="2.5"/>
-    <path d="M240 160l8 22 8-22z" fill="#F3E6D3" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
-    <rect x="236" y="56" width="5" height="40" rx="2" fill="#1C2333"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" role="img" aria-label="A resume sheet with its key lines marked and numbered, and a checked note in the margin">
+  <path d="M24 204.5H296" stroke="#D6D5CC"/>
+  <rect x="104" y="20" width="136" height="180" rx="4" fill="#E7E6DD" stroke="#161A17" stroke-width="1.5"/>
+  <rect x="88" y="12" width="136" height="186" rx="4" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <path d="M102 32H176" stroke="#161A17" stroke-width="5" stroke-linecap="round"/>
+  <path d="M102 44H150" stroke="#8B908A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M100 56.5H212" stroke="#D6D5CC"/>
+  <path d="M102 68H124" stroke="#1D5B4A" stroke-width="3" stroke-linecap="round"/>
+  <rect x="98" y="76" width="112" height="12" rx="2" fill="#E7E6DD"/>
+  <path d="M102 82H190" stroke="#161A17" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M102 96H204M102 106H180" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M100 118.5H212" stroke="#D6D5CC"/>
+  <path d="M102 130H130" stroke="#1D5B4A" stroke-width="3" stroke-linecap="round"/>
+  <rect x="98" y="138" width="96" height="12" rx="2" fill="#E7E6DD"/>
+  <path d="M102 144H176" stroke="#161A17" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M102 158H200M102 168H170" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M100 178.5H212" stroke="#D6D5CC"/>
+  <rect x="102.5" y="184.5" width="24" height="8" rx="4" fill="none" stroke="#1D5B4A"/>
+  <rect x="130.5" y="184.5" width="30" height="8" rx="4" fill="none" stroke="#1D5B4A"/>
+  <rect x="164.5" y="184.5" width="20" height="8" rx="4" fill="none" stroke="#1D5B4A"/>
+  <text x="58" y="85" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1D5B4A">01</text>
+  <path d="M74 82H94" stroke="#1D5B4A" stroke-width="0.75"/>
+  <text x="58" y="147" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="10" fill="#1D5B4A">02</text>
+  <path d="M74 144H94" stroke="#1D5B4A" stroke-width="0.75"/>
+  <path d="M212 82H240" stroke="#161A17" stroke-width="0.75"/>
+  <rect x="240" y="68" width="56" height="28" rx="4" fill="#FFFFFF" stroke="#161A17" stroke-width="1.5"/>
+  <rect x="248" y="76.5" width="11" height="11" rx="2" fill="#1D5B4A"/>
+  <path d="M250.5 82l2.5 2.5 4.5-5" fill="none" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M265 82H286" stroke="#8B908A" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   print.css: used only when printing builder.html (media="print").
+   print.css: loaded only by builder.html, only when printing (media="print").
    Hides everything except the resume and fits it on one page.
    ========================================================================== */
 
@@ -22,6 +22,8 @@
 html,
 body {
   background: #FFFFFF !important;
+  color: #000000 !important;
+  color-scheme: light;
 }
 
 /* Let the preview take the whole page */
@@ -35,6 +37,7 @@ body {
   padding: 0 !important;
   margin: 0 !important;
   background: none !important;
+  border: 0 !important;
   max-width: none !important;
 }
 
@@ -46,6 +49,7 @@ body {
 /* The resume: no shadow, true black text, print-friendly size */
 .resume {
   box-shadow: none !important;
+  border-radius: 0 !important;
   padding: 0 !important;
   min-height: 0 !important;
   font-size: 10.5pt !important;

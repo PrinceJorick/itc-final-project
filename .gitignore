@@ -17,3 +17,10 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Impeccable scratch output (design review captures, mocks, question logs)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
