@@ -93,7 +93,7 @@ npm run screenshots      # refreshes docs/screenshots/
 
 - **Stack:** HTML5, one CSS file (custom properties, Flexbox, Grid, media queries), vanilla JavaScript, `localStorage`. No frameworks, build tools, or backend. Google Fonts is the only external request the site makes as submitted; optional Supabase accounts add a CDN script only when configured by hand.
 - **Design and build skills:** ui-ux-pro-max (design system generation), impeccable (product context, design direction, craft checks, contrast hook, finish review), web research for competitors, title checks, and PH government facts; Playwright for testing and screenshots.
-- **Visual direction:** "The Trusted Ledger" — porcelain ground, register-green action color, serif display type over a hyperlegible sans body, hairline rules, tabular numerals, and gold reserved for the RA 11261 free-document mark. Full detail in [docs/DESIGN.md](docs/DESIGN.md).
+- **Visual direction:** minimal Simula brand: white paper, ledger-green actions, IBM Plex Sans and Mono, rounded corners, light and dark mode with a header toggle. Full detail in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Documentation for the team
 
@@ -106,8 +106,8 @@ npm run screenshots      # refreshes docs/screenshots/
 ## Credits
 
 - Content sources: see [SOURCES.md](SOURCES.md) and the About page.
-- Fonts: Source Serif 4 and Atkinson Hyperlegible (Google Fonts, SIL Open Font License).
-- Logo, favicon, and icons: original work for this project. No stock images.
+- Fonts: IBM Plex Sans and IBM Plex Mono (Google Fonts, SIL Open Font License).
+- Logo, favicon, illustrations, and icons: original work for this project (Simula brand artifact). No stock images.
 - Team: Prince Jorick Fajutagana, Alloysia Mae, Elise Guerra, Sherwin Dollente Jr.
 
 Not affiliated with any government agency or company named on this site. Fees and procedures change, so always confirm with the agency.
