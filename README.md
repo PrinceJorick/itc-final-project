@@ -80,7 +80,7 @@ Playwright runs every page and feature at 375px and 1280px against the site open
 cd tests
 npm install
 npx playwright install chromium
-npm test                 # 166 passing, 2 skipped (mobile-only / desktop-only checks)
+npm test                 # 154 passing; 14 skipped (12 opt-in screenshots + 2 viewport-only checks)
 npm run screenshots      # refreshes docs/screenshots/
 ```
 
