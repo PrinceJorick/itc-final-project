@@ -1,0 +1,19 @@
+# Dependencies (Playwright dev tooling only, lives in tests/)
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+# Editor folders
+.vscode/
+.idea/
+*.swp
