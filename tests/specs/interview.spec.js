@@ -67,3 +67,64 @@ test("STAR answer is saved and restored after reload", async ({ page }) => {
   await page.reload();
   await expect(page.locator("#star-s")).toHaveValue("");
 });
+
+test("write, edit, and delete your own card", async ({ page }) => {
+  // Start on the empty "Yours" shelf
+  await page.locator(".filter-chip", { hasText: "Yours" }).click();
+  await expect(page.locator("#yours-empty")).toBeVisible();
+  await expect(page.locator("#flashcard")).toBeHidden();
+
+  // Write one through the editor
+  await page.click("#empty-add-btn");
+  await page.fill("#own-question", "Why did you choose your course?");
+  await page.selectOption("#own-category", "intro");
+  await page.fill("#own-tip", "Point at one concrete reason.");
+  await page.fill("#own-answer", "I picked BS IT because of our robotics club.");
+  await page.click("#card-editor button[type=submit]");
+  await expect(page.locator("#card-question")).toHaveText("Why did you choose your course?");
+  await expect(page.locator("#card-category")).toHaveText("Yours");
+  await expect(page.locator("#edit-card-btn")).toBeVisible();
+  await expect(page.locator("#delete-card-btn")).toBeVisible();
+  await expect(page.locator("#own-status")).toHaveText("Saved on this device");
+  await expect(page.locator("#question-list li")).toHaveCount(1);
+
+  // It survives a reload (saved in localStorage)
+  await page.reload();
+  await page.locator(".filter-chip", { hasText: "Yours" }).click();
+  await expect(page.locator("#card-question")).toHaveText("Why did you choose your course?");
+
+  // It joins the built-ins under "All"
+  await page.locator(".filter-chip", { hasText: "All" }).click();
+  await expect(page.locator("#card-count")).toHaveText(/of 23/);
+  await expect(page.locator("#card-category")).toHaveText("Intro");
+
+  // Edit it from the "Yours" shelf
+  await page.locator(".filter-chip", { hasText: "Yours" }).click();
+  await page.click("#edit-card-btn");
+  await expect(page.locator("#card-editor-title")).toHaveText("Edit your question");
+  await expect(page.locator("#own-question")).toHaveValue("Why did you choose your course?");
+  await page.fill("#own-question", "Why did you pick IT over other courses?");
+  await page.click("#card-editor button[type=submit]");
+  await expect(page.locator("#card-question")).toHaveText("Why did you pick IT over other courses?");
+
+  // Delete it, and the shelf is empty again
+  await page.click("#delete-card-btn");
+  await expect(page.locator("#yours-empty")).toBeVisible();
+  await expect(page.locator("#own-status")).toHaveText("Deleted.");
+  await page.locator(".filter-chip", { hasText: "All" }).click();
+  await expect(page.locator("#card-count")).toHaveText(/of 22/);
+});
+
+test("the editor insists on a question before saving", async ({ page }) => {
+  await page.click("#add-card-btn");
+  await expect(page.locator("#card-editor")).toBeVisible();
+  await page.click("#card-editor button[type=submit]");
+  await expect(page.locator("#own-question-error")).toHaveText("Write the question first.");
+  await expect(page.locator("#own-question")).toHaveAttribute("aria-invalid", "true");
+  await expect(page.locator("#card-editor")).toBeVisible();
+
+  // Cancel closes the editor without saving anything
+  await page.click("#own-cancel");
+  await expect(page.locator("#card-editor")).toBeHidden();
+  await expect(await page.evaluate(() => localStorage.getItem("simulaCards"))).toBeNull();
+});
