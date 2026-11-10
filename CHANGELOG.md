@@ -4,6 +4,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 ### Changed
+- Live site moved to https://simula-itc.vercel.app (Vercel Authentication turned off so it is public).
 - Favicon now matches the full Simula logo.
 - Removed the GitHub Pages deployment (workflow deleted and Pages disabled). The site is served from Vercel only.
 
