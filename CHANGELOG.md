@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [0.5.0] - 2026-11-10
 ### Added
-- Playwright test suite in `tests/` (dev-only): 84 tests × 2 viewports (375px, 1280px). Covers page loads, console errors, outside requests, horizontal scroll, images, nav links, skip link, mobile menu, every feature end to end, keyboard focus, labels, and WCAG AA contrast.
+- Playwright test suite in `tests/` (dev-only): 78 tests × 2 viewports (375px, 1280px), plus opt-in screenshot capture (`npm run screenshots`). Covers page loads, console errors, outside requests, horizontal scroll, images, nav links, skip link, mobile menu, every feature end to end, keyboard focus, labels, and WCAG AA contrast.
 - Desktop and mobile screenshots of every page (`docs/screenshots/`).
 - GitHub Actions workflow that publishes `site/` to GitHub Pages without a build step.
 
