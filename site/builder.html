@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resume Builder · OJT to Offer</title>
+  <title>Resume Builder · Simula</title>
   <meta name="description" content="Build a one-page, ATS-friendly resume with live preview, two templates, a bullet helper, and a job-fit checker. Free, no sign-up, saved on your device.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/auth-config.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/motion.js" defer></script>
   <script src="js/builder.js" defer></script>
-  <link rel="stylesheet" href="css/print.css" media="print">
 </head>
 <body class="builder-page">
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- Site header: logo, main navigation, theme switch (same on every page) -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="images/logo.svg" alt="" width="36" height="36">
-        <span data-site-name>OJT to Offer</span>
+        <img src="images/logo.svg" alt="" width="32" height="32">
+        <span data-site-name>Simula</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span>Menu</span>
-      </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -36,17 +37,28 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
+          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
 
-    <section class="builder-intro">
+    <section class="builder-intro reveal">
       <div class="container">
         <h1>Resume builder</h1>
-        <p class="lead">Fill in what you have. Your resume updates on the right as you type, and it's saved on this device automatically.</p>
+        <p class="lead">Fill in what you have. Your resume updates as you type and saves on this device.</p>
       </div>
     </section>
 
@@ -115,7 +127,7 @@
         <fieldset class="form-section">
           <legend>Objective</legend>
           <div class="field">
-            <label for="objective">One or two sentences: the role you want and what you bring</label>
+            <label for="objective">The role you want and what you bring (1–2 sentences)</label>
             <textarea id="objective" name="objective" rows="3" placeholder="Third-year IT student seeking an OJT in technical support where I can use my troubleshooting skills."></textarea>
           </div>
         </fieldset>
@@ -135,19 +147,19 @@
 
         <fieldset class="form-section" id="organizations-section">
           <legend>Organizations and leadership</legend>
-          <p class="hint">Org roles, committees, and events. One bullet per line.</p>
+          <p class="hint">Roles, committees, and events. One bullet per line.</p>
           <div class="entry-list" id="organizations-list"></div>
           <button class="btn btn-secondary btn-small add-btn" type="button" data-add="organizations">+ Add organization</button>
         </fieldset>
 
         <fieldset class="form-section" id="experience-section">
           <legend>Work experience or OJT</legend>
-          <p class="hint">Internships, part-time jobs, freelance work. One bullet per line.</p>
+          <p class="hint">Internships, part-time jobs, freelancing. One bullet per line.</p>
           <div class="entry-list" id="experience-list"></div>
           <button class="btn btn-secondary btn-small add-btn" type="button" data-add="experience">+ Add experience</button>
         </fieldset>
         <p class="note note-info no-exp-note" id="no-exp-note" hidden>
-          <strong>No experience yet is on.</strong> The Experience section is hidden, and Projects and Organizations appear first on your resume.
+          <strong>No experience yet is on.</strong> The Experience section is tucked away, and Projects and Organizations step to the top of the page.
         </p>
 
         <fieldset class="form-section">
@@ -172,7 +184,7 @@
         <!-- Bullet helper: rule-based sentence builder -->
         <section class="tool-panel" id="bullet-helper" aria-labelledby="bh-title">
           <h2 id="bh-title">Bullet helper</h2>
-          <p class="hint">Pick a verb and fill in the blanks. We'll write the bullet, then you can add it to a project or org.</p>
+          <p class="hint">Fill in the blanks to write a strong bullet, then add it to a project or organization.</p>
           <div class="field-grid">
             <div class="field">
               <label for="bh-verb">Action verb</label>
@@ -208,7 +220,7 @@
         <!-- Job-fit checker: compare a posting with your skills -->
         <section class="tool-panel" id="job-fit" aria-labelledby="jf-title">
           <h2 id="jf-title">Job-fit checker</h2>
-          <p class="hint">Paste a job or OJT posting. We'll find the skills it mentions and check which ones are on your resume. Nothing is sent anywhere.</p>
+          <p class="hint">Paste a job or OJT post to see which of its skills your resume shows. Nothing is sent anywhere.</p>
           <div class="field">
             <label for="jf-posting">Job posting</label>
             <textarea id="jf-posting" rows="6" placeholder="Paste the job description here…"></textarea>
@@ -222,7 +234,7 @@
             <div class="jf-meter" aria-hidden="true"><div class="jf-meter-fill" id="jf-meter-fill"></div></div>
             <h3>Skills you already show <span class="muted" id="jf-matched-count"></span></h3>
             <ul class="chip-list" id="jf-matched"></ul>
-            <h3>Skills the post wants that your resume doesn't show <span class="muted" id="jf-missing-count"></span></h3>
+            <h3>Skills the post wants that your resume doesn't show yet <span class="muted" id="jf-missing-count"></span></h3>
             <ul class="chip-list" id="jf-missing"></ul>
             <h3>Tips</h3>
             <ul class="jf-tips" id="jf-tips"></ul>
@@ -243,11 +255,15 @@
     </div>
   </main>
 
+  <!-- Site footer (same on every page) -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>OJT to Offer</p>
-        <p>A free resume and interview guide for Filipino students.</p>
+        <a class="brand" href="index.html">
+          <img src="images/logo.svg" alt="" width="28" height="28">
+          <span data-site-name>Simula</span>
+        </a>
+        <p>Free resume and interview prep for Filipino students.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
@@ -258,7 +274,7 @@
           <li><a href="about.html">About and Contact</a></li>
         </ul>
       </nav>
-      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any agency or company named on this site.</p>
     </div>
   </footer>
 

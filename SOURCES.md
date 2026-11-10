@@ -35,5 +35,5 @@ Interview questions, tips, and sample answers were written by the team. Sample p
 
 ## Fonts, images, icons
 
-- [Bricolage Grotesque](https://fonts.google.com/specimen/Bricolage+Grotesque) and [Atkinson Hyperlegible](https://fonts.google.com/specimen/Atkinson+Hyperlegible), Google Fonts, SIL Open Font License 1.1.
-- All illustrations (`site/images/*.svg`), the logo, and inline icons are original work made for this project. No stock or third-party images are used.
+- [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) and [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono), Google Fonts, SIL Open Font License 1.1.
+- All illustrations (`site/images/*.svg`), the Simula logo, and inline icons are original work made for this project. No stock or third-party images are used.
