@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+### Changed
+- Favicon now matches the full Simula logo.
+- Removed the GitHub Pages deployment (workflow deleted and Pages disabled). The site is served from Vercel only.
+
 ## [1.1.0] - 2026-11-10
 ### Added
 - Light and dark mode with a sun/moon toggle in the header. The choice is saved per device; with no choice the site follows the device setting. Colors fade on switch, and the switch is instant with reduced motion.
