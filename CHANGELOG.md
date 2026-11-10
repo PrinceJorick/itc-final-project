@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [0.4.0] - 2026-11-10
+### Added
+- Resume builder: personal info, objective, education, projects, organizations, optional experience, skills, certifications; add/remove entries; live preview; Classic and Modern ATS-friendly templates; autosave to `localStorage` (`resumeDraft`); load sample; clear with confirmation; Download PDF via print.
+- "No experience yet" mode that hides Experience and moves Projects and Organizations first.
+- Rule-based bullet helper with one-click insert into a project or organization.
+- Job-fit checker with case-insensitive, whole-word keyword matching, match percentage, and tips.
+- Interview flashcards with category filters, previous/next, random question, question bank, and a saved STAR template.
+- Pre-employment checklist with saved checkboxes, progress bar, and expandable "How to get it".
+- Demo contact form with inline validation and success message.
+
+### Fixed
+- Checklist reset button no longer wraps on small screens.
+
 ## [0.3.0] - 2026-11-10
 ### Added
 - Six static pages: Home, Resume Guide, Builder, Interview, Checklist, About.
@@ -24,6 +37,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Saved build prompt and planning summary (`docs/inputs/`).
 - `.gitignore`.
 
+[0.4.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.4.0
 [0.3.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.3.0
 [0.2.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.2.0
 [0.1.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.1.0
