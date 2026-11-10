@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.0.0] - 2026-11-10
+### Added
+- Team handoff notes: storyboard, wireframe descriptions, theme details, 5-minute demo script for 4 speakers, and HTML/CSS Q&A notes (`docs/DOCS-NOTES.md`).
+- Team roles and page ownership with proposed assignments (`docs/TEAM-ROLES.md`).
+- Final README with live URL, title rationale, run steps, features, and credits.
+
 ## [0.5.0] - 2026-11-10
 ### Added
 - Playwright test suite in `tests/` (dev-only): 78 tests × 2 viewports (375px, 1280px), plus opt-in screenshot capture (`npm run screenshots`). Covers page loads, console errors, outside requests, horizontal scroll, images, nav links, skip link, mobile menu, every feature end to end, keyboard focus, labels, and WCAG AA contrast.
@@ -43,6 +49,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Saved build prompt and planning summary (`docs/inputs/`).
 - `.gitignore`.
 
+[1.0.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.0.0
 [0.5.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.5.0
 [0.4.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.4.0
 [0.3.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.3.0
