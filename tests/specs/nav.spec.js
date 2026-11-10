@@ -44,3 +44,48 @@ test("desktop shows all nav links without a menu button", async ({ page }) => {
     await expect(link).toBeVisible();
   }
 });
+
+test("theme toggle switches to dark, remembers it, and switches back", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "light" });
+  await openPage(page, "index.html");
+  const toggle = page.locator(".theme-toggle");
+  const bg = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+
+  await expect(toggle).toHaveAttribute("aria-pressed", "false");
+  const lightBg = await bg();
+  await toggle.click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(toggle).toHaveAttribute("aria-pressed", "true");
+  expect(await bg()).not.toBe(lightBg);
+
+  // The choice is saved and applied on every page
+  await openPage(page, "checklist.html");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await expect(page.locator(".theme-toggle")).toHaveAttribute("aria-pressed", "true");
+
+  await page.locator(".theme-toggle").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  expect(await bg()).toBe(lightBg);
+});
+
+test("follows the device's dark setting when nothing is saved", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await openPage(page, "index.html");
+  await expect(page.locator(".theme-toggle")).toHaveAttribute("aria-pressed", "true");
+  const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  expect(bg).toBe("rgb(15, 19, 17)");
+});
+
+test("the current page has a single highlight, with no underline", async ({ page }) => {
+  await openPage(page, "interview.html");
+  const current = page.locator('#site-nav a[aria-current="page"]');
+  if (await page.locator(".nav-toggle").isVisible()) await page.locator(".nav-toggle").click();
+  await current.click();
+  const style = await page.locator('#site-nav a[aria-current="page"]').evaluate((el) => {
+    const s = getComputedStyle(el);
+    return { line: s.textDecorationLine, shadow: s.boxShadow, outline: s.outlineStyle };
+  });
+  expect(style.line).toBe("none");
+  expect(style.shadow).toBe("none");
+  expect(style.outline).toBe("none"); // no focus ring after a mouse click
+});

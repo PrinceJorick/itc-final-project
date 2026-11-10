@@ -189,3 +189,26 @@ test("job-fit checker explains an empty posting", async ({ page }) => {
   await page.click("#jf-check");
   await expect(page.locator("#jf-tips")).toContainText("Paste a job or OJT posting first");
 });
+
+test("live preview is black and white in both templates and both themes", async ({ page }) => {
+  for (const scheme of ["light", "dark"]) {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.click("#load-sample");
+    for (const template of ["Classic", "Modern"]) {
+      await page.locator(".template-switch label", { hasText: template }).click();
+      const colors = await page.locator("#resume-preview").evaluate((sheet) => {
+        const found = new Set([getComputedStyle(sheet).backgroundColor]);
+        sheet.querySelectorAll("*").forEach((el) => {
+          const s = getComputedStyle(el);
+          found.add(s.color);
+          if (parseFloat(s.borderBottomWidth) > 0) found.add(s.borderBottomColor);
+        });
+        return [...found];
+      });
+      for (const color of colors) {
+        const [r, g, b] = color.match(/\d+/g).map(Number);
+        expect(Math.max(r, g, b) - Math.min(r, g, b), `${template} ${scheme}: ${color} is gray`).toBeLessThanOrEqual(2);
+      }
+    }
+  }
+});
