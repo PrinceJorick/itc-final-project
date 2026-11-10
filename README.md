@@ -2,7 +2,7 @@
 
 **A free resume and interview guide for Filipino students.** Turn school projects and org work into a one-page resume, practice the interview questions local employers actually ask, and prepare your pre-employment documents, including the ones that are free under RA 11261.
 
-**Live site:** https://simula-mu.vercel.app (Vercel) · mirror: https://princejorick.github.io/itc-final-project/ (GitHub Pages)
+**Live site:** https://simula-mu.vercel.app
 
 CC 100 Introduction to Computing Final Project · CS 1103 Group 4 · Batangas State University – Alangilan, College of Informatics and Computing Sciences · 1st Semester AY 2026–2027
 Category 12: Employment and Career Services → Resume and Interview Guide
@@ -30,7 +30,7 @@ Live web search was unavailable in this session, so the record here is what we c
 No install, no build. Either:
 
 - **Offline:** open `site/index.html` in any modern browser (double-click it). Everything works from `file://`; without internet, the system fonts take over, and signing in is simply not available (see Accounts below).
-- **Online:** visit https://simula-mu.vercel.app. Vercel serves the `site/` folder as-is ([`vercel.json`](vercel.json), no build step) and redeploys on every push to `main`. GitHub Actions ([`.github/workflows/pages.yml`](.github/workflows/pages.yml)) also publishes it to https://princejorick.github.io/itc-final-project/.
+- **Online:** visit https://simula-mu.vercel.app. Vercel serves the `site/` folder as-is ([`vercel.json`](vercel.json), no build step) and redeploys on every push to `main`.
 
 For submission, zip or upload the `site/` folder to Google Drive.
 
