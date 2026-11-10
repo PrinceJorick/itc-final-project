@@ -1,0 +1,79 @@
+/* ==========================================================================
+   print.css: used only when printing builder.html (media="print").
+   Hides everything except the resume and fits it on one page.
+   ========================================================================== */
+
+/* Page size: A4 and Letter both fit with these margins */
+@page {
+  margin: 12mm 14mm;
+}
+
+/* Hide the site around the resume */
+.skip-link,
+.site-header,
+.site-footer,
+.builder-intro,
+.builder-toolbar,
+.builder-form,
+.preview-head {
+  display: none !important;
+}
+
+html,
+body {
+  background: #FFFFFF !important;
+}
+
+/* Let the preview take the whole page */
+.builder-layout,
+.preview-pane,
+.preview-scroll {
+  display: block !important;
+  position: static !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  max-width: none !important;
+}
+
+.container {
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+/* The resume: no shadow, true black text, print-friendly size */
+.resume {
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  font-size: 10.5pt !important;
+  line-height: 1.35 !important;
+  color: #000000 !important;
+}
+
+.resume-name {
+  font-size: 20pt !important;
+}
+
+.resume-section {
+  break-inside: avoid;
+}
+
+.resume-item {
+  break-inside: avoid;
+}
+
+/* Links print as plain text */
+.resume a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Keep the Modern template's blue accents when printing */
+.resume-modern .resume-name,
+.resume-modern .resume-section h2 {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
