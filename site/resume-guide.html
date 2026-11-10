@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resume Guide · Simula</title>
-  <meta name="description" content="Writing a one-page resume as a Filipino student with no job history: which sections to use, local conventions, what to avoid, and how to turn school work into strong bullets.">
+  <meta name="description" content="How to write a one-page resume as a Filipino student with no work experience: sections, Philippine conventions, dos and don'ts, and strong bullet examples.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
@@ -19,16 +20,13 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- Site header: logo, main navigation, theme switch (same on every page) -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="images/logo.svg" alt="" width="36" height="36">
+        <img src="images/logo.svg" alt="" width="32" height="32">
         <span data-site-name>Simula</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
-        <span class="nav-toggle-label">Menu</span>
-      </button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -40,19 +38,31 @@
           <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode" title="Switch to dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
     </div>
   </header>
 
   <main id="main">
-
     <!-- Page intro -->
     <section class="page-intro">
       <div class="container page-intro-inner">
         <div>
-          <h1>Writing a resume before you've ever been hired</h1>
-          <p class="lead">You're carrying more material than you think. This guide walks through what to include, what local employers expect, and how to present school work so it reads as real preparation.</p>
-          <p class="small muted">Roughly a 10-minute read.</p>
+          <h1>Write a resume with no work experience</h1>
+          <p class="lead">What to include, what Philippine employers expect, and how to make school work count.</p>
+          <p class="small muted">About a 5-minute read.</p>
         </div>
+        <figure class="illus">
+          <img src="images/guide.svg" alt="A resume page with its key lines marked and a checked note in the margin" width="320" height="220">
+        </figure>
       </div>
     </section>
 
@@ -62,7 +72,7 @@
       <nav class="toc" aria-labelledby="toc-title">
         <p class="toc-title" id="toc-title">On this page</p>
         <ol>
-          <li><a href="#sections">Resume sections, one by one</a></li>
+          <li><a href="#sections">Resume sections</a></li>
           <li><a href="#ph-conventions">Philippine conventions</a></li>
           <li><a href="#dos-donts">Dos and don'ts</a></li>
           <li><a href="#bullets">Weak vs strong bullets</a></li>
@@ -74,40 +84,40 @@
 
         <!-- 1. Sections -->
         <section id="sections" aria-labelledby="sections-title">
-          <h2 id="sections-title">Resume sections, one by one</h2>
-          <p>For a student or fresh graduate, follow this order, and lift your strongest section toward the top.</p>
+          <h2 id="sections-title">Resume sections</h2>
+          <p>Use this order as a student or fresh graduate.</p>
           <dl class="section-list">
             <div>
               <dt>Contact details</dt>
-              <dd>Complete name, mobile number, a professional address (<code>firstname.lastname@…</code>), city and province, plus a LinkedIn or portfolio link if you keep one.</dd>
+              <dd>Full name, mobile number, a professional email, city and province, and LinkedIn or portfolio if you have one.</dd>
             </div>
             <div>
               <dt>Objective</dt>
-              <dd>Two lines naming the role you want and what you'd bring. Rewrite it for each application, and skip filler like "to gain experience in a challenging environment."</dd>
+              <dd>Two lines: the role you want and what you bring. Tailor it to each job.</dd>
             </div>
             <div>
               <dt>Education</dt>
-              <dd>School, degree, years attended, and honors such as Dean's List or a scholarship. While you're studying, this sits near the top.</dd>
+              <dd>School, degree, years, and honors like Dean's List or scholarships.</dd>
             </div>
             <div>
               <dt>Projects</dt>
-              <dd>Capstone, thesis, class projects, or things you built on your own. Name the tools and the outcome: this section is your experience section.</dd>
+              <dd>Capstone, thesis, class, or personal projects, with the tools you used and the result. This is your experience.</dd>
             </div>
             <div>
               <dt>Organizations and leadership</dt>
-              <dd>Positions, committees, and events you helped run. Officers, rank-and-file members, and volunteers all count.</dd>
+              <dd>Roles, committees, and events. Officers, members, and volunteers all count.</dd>
             </div>
             <div>
               <dt>Work experience or OJT (optional)</dt>
-              <dd>Internships, part-time jobs, freelancing, the family business, tutoring. If you have none, leave the section out; that's normal at your stage.</dd>
+              <dd>Internships, part-time jobs, freelancing, tutoring. Leave it out if you have none.</dd>
             </div>
             <div>
               <dt>Skills</dt>
-              <dd>Split into <strong>technical</strong> (Excel, Python, Canva, AutoCAD) and <strong>soft</strong> (teamwork, time management). Echo the exact wording the job post uses.</dd>
+              <dd><strong>Technical</strong> (Excel, Python, Canva) and <strong>soft</strong> (teamwork, time management). Match the job post's wording.</dd>
             </div>
             <div>
               <dt>Certifications and awards</dt>
-              <dd>Online courses, seminar certificates, contest placings, and scholarships.</dd>
+              <dd>Online courses, seminar certificates, contest placements, and scholarships.</dd>
             </div>
           </dl>
         </section>
@@ -115,29 +125,36 @@
         <!-- 2. PH conventions -->
         <section id="ph-conventions" aria-labelledby="ph-title">
           <h2 id="ph-title">Philippine conventions</h2>
-          <p>A lot of older Filipino templates are really a biodata: a form asking your height, religion, and parents' names. A modern resume is shorter and pointed.</p>
-
-          <h3>Photo</h3>
-          <p>Plenty of local employers still like a formal 2×2 photo, so attach one when the post or the office asks. Leave it off for online applications routed through applicant tracking systems (ATS) or for international companies, since photos can trip the parser — the builder here leaves it out for that reason.</p>
-
-          <h3>Age, birthday, civil status, religion</h3>
-          <p>None of these are required. Under the <strong>Anti-Age Discrimination in Employment Act (RA 10911)</strong>, an employer cannot insist you declare your age or birth date during the application. Fill them in only when a form explicitly asks.</p>
-
-          <h3>Address</h3>
-          <p>City and province will do, as in <q>Batangas City, Batangas</q>. A resume that circulates doesn't need your house number.</p>
-
-          <h3>Length</h3>
-          <p><mark>Hold it to one page.</mark> That's the working expectation for fresh graduates and OJT applicants. Print on short (Letter) or A4 bond.</p>
-
-          <h3>Resume, CV, or biodata?</h3>
-          <p>The three words get used interchangeably here. A <strong>resume</strong> is the one-to-two page summary a job asks for. A <strong>CV</strong> runs longer and serves academic or research applications. A <strong>biodata</strong> is a personal-details form. When a post says "CV," a fresh grad can almost always send a one-page resume.</p>
+          <p>Many old Filipino templates are really a biodata. A modern resume is shorter and focused on the job.</p>
+          <dl class="section-list">
+            <div>
+              <dt>Photo</dt>
+              <dd>Add a formal 2×2 photo only when the employer asks. Leave it off for online and international applications, since photos can confuse applicant tracking systems (ATS).</dd>
+            </div>
+            <div>
+              <dt>Age, birthday, civil status, religion</dt>
+              <dd>Not needed. Under the <strong>Anti-Age Discrimination in Employment Act (RA 10911)</strong>, employers can't require your age or birth date when you apply.</dd>
+            </div>
+            <div>
+              <dt>Address</dt>
+              <dd>City and province are enough, for example <q>Batangas City, Batangas</q>.</dd>
+            </div>
+            <div>
+              <dt>Length</dt>
+              <dd><mark>One page.</mark> Print on short (Letter) or A4 bond paper.</dd>
+            </div>
+            <div>
+              <dt>Resume, CV, or biodata?</dt>
+              <dd>A <strong>resume</strong> is a one-page job summary, a <strong>CV</strong> is longer and academic, and a <strong>biodata</strong> is a personal-details form. If a post asks for a CV, a one-page resume is usually fine.</dd>
+            </div>
+          </dl>
 
           <div class="note">
             <p class="note-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-              PH tip: name the file properly
+              PH tip: name your file
             </p>
-            <p>Send it as <code>Lastname_Firstname_Resume.pdf</code>. HR inboxes fill with files all named "resume.pdf."</p>
+            <p>Save it as <code>Lastname_Firstname_Resume.pdf</code>, not "resume.pdf."</p>
           </div>
         </section>
 
@@ -151,12 +168,11 @@
                 Do
               </h3>
               <ul>
-                <li>Lead every bullet with an action verb: <em>built, led, organized</em>.</li>
-                <li>Attach numbers: team size, attendees, hours saved.</li>
-                <li>Borrow the exact skill words from the post.</li>
-                <li>Stick to a simple layout in standard fonts.</li>
-                <li>Proofread twice, then hand it to a friend.</li>
-                <li>Send it as PDF unless the office asks for Word.</li>
+                <li>Start bullets with action verbs: <em>built, led, organized</em>.</li>
+                <li>Add numbers: team size, attendees, time saved.</li>
+                <li>Use the job post's exact skill words.</li>
+                <li>Keep a simple layout and standard fonts.</li>
+                <li>Proofread, then ask a friend to check.</li>
               </ul>
             </div>
             <div class="dont-list">
@@ -165,12 +181,11 @@
                 Don't
               </h3>
               <ul>
-                <li>Use an address like <code>cutie_gamer99@…</code>.</li>
-                <li>List duties with no outcome ("in charge of…").</li>
-                <li>Tuck text inside tables, boxes, or images; ATS software may skip it.</li>
-                <li>Add salary figures or your reasons for leaving.</li>
-                <li>Include height, weight, or religion.</li>
-                <li>Stretch the truth. Expect the interviewer to pull on it.</li>
+                <li>Use an email like <code>cutie_gamer99@…</code>.</li>
+                <li>List duties without results ("in charge of…").</li>
+                <li>Put text in tables or images; ATS software may skip it.</li>
+                <li>Add your height, weight, or religion.</li>
+                <li>Exaggerate. Interviewers will ask about it.</li>
               </ul>
             </div>
           </div>
@@ -179,8 +194,8 @@
         <!-- 4. Bullets -->
         <section id="bullets" aria-labelledby="bullets-title">
           <h2 id="bullets-title">Weak vs strong bullets</h2>
-          <p>A strong bullet answers three things at once: What did you do? With what? And what changed because of it? Use the formula:</p>
-          <p class="formula" aria-label="Formula: Action verb, plus what you did, plus the tool, plus the result">
+          <p>A strong bullet says what you did, how, and what changed.</p>
+          <p class="formula" aria-label="Formula: action verb, plus what you did, plus the tool, plus the result">
             <span class="chip">Action verb</span> +
             <span class="chip chip-gold">what you did</span> +
             <span class="chip">tool used</span> +
@@ -188,49 +203,44 @@
           </p>
           <ul class="bullet-pairs">
             <li class="bullet-pair">
-              <p class="weak"><span class="pair-label">Weak</span>Did a website for our capstone.</p>
-              <p class="strong"><span class="pair-label">Strong</span>Built a resort booking site with HTML, CSS, and PHP, replacing the guesthouse's paper logbook with online reservations.</p>
+              <p class="weak"><span class="pair-label">Weak</span>Made a website for our capstone.</p>
+              <p class="strong"><span class="pair-label">Strong</span>Built a resort booking site with HTML, CSS, and PHP, replacing a paper logbook with online reservations.</p>
             </li>
             <li class="bullet-pair">
-              <p class="weak"><span class="pair-label">Weak</span>Part of the events committee.</p>
-              <p class="strong"><span class="pair-label">Strong</span>Ran registration for a 200-person career fair through Google Forms, cutting check-in to under a minute per guest.</p>
+              <p class="weak"><span class="pair-label">Weak</span>Member of the events committee.</p>
+              <p class="strong"><span class="pair-label">Strong</span>Ran registration for a 200-person career fair with Google Forms, cutting check-in to under a minute per guest.</p>
             </li>
             <li class="bullet-pair">
-              <p class="weak"><span class="pair-label">Weak</span>Handled the org page.</p>
-              <p class="strong"><span class="pair-label">Strong</span>Grew the org's Facebook following from 600 to 1,400 in one semester with weekly Canva posts and event recaps.</p>
-            </li>
-            <li class="bullet-pair">
-              <p class="weak"><span class="pair-label">Weak</span>Joined a hackathon once.</p>
-              <p class="strong"><span class="pair-label">Strong</span>Placed 2nd of 30 teams in a regional hackathon after building a flood-alert prototype on Arduino with SMS alerts inside 24 hours.</p>
+              <p class="weak"><span class="pair-label">Weak</span>Joined a hackathon.</p>
+              <p class="strong"><span class="pair-label">Strong</span>Placed 2nd of 30 teams in a regional hackathon with an Arduino flood-alert prototype built in 24 hours.</p>
             </li>
           </ul>
-          <p>Stuck mid-sentence? The <a href="builder.html#bullet-helper">bullet helper in the builder</a> assembles the wording for you.</p>
+          <p>Stuck? The <a href="builder.html#bullet-helper">bullet helper</a> writes the sentence for you.</p>
         </section>
 
         <!-- 5. No experience -->
         <section id="no-experience" aria-labelledby="noexp-title">
-          <h2 id="noexp-title">No experience yet? Spend what you have.</h2>
-          <p>Employers hiring OJT students and fresh grads aren't screening for a job history — they're checking that you can learn, work with people, and finish what you start. Here's where the evidence lives:</p>
+          <h2 id="noexp-title">No experience yet? Use what you have.</h2>
+          <p>Employers hiring students want proof that you can learn, work with others, and finish things. Look here:</p>
           <ul>
-            <li><strong>Capstones, theses, and class projects.</strong> Treat each like a job: your role, the tools, the outcome.</li>
-            <li><strong>Org work.</strong> Officer or member, you planned events, handled money, drew posters, or recruited people.</li>
-            <li><strong>Competitions.</strong> Hackathons, quiz bees, case competitions, sports, and debate all show skill and drive, winning optional.</li>
-            <li><strong>Volunteering and NSTP.</strong> Community projects demonstrate initiative and teamwork.</li>
-            <li><strong>Side work.</strong> Online selling, tutoring, freelance design, or shifts at the family business all belong.</li>
-            <li><strong>Online courses.</strong> Free certificates from reputable platforms show you learn on your own time.</li>
+            <li><strong>Projects:</strong> capstone, thesis, and class work. Name your role, tools, and result.</li>
+            <li><strong>Org work:</strong> events you planned, budgets you handled, people you recruited.</li>
+            <li><strong>Competitions:</strong> hackathons, quiz bees, debate, and sports, even without a win.</li>
+            <li><strong>Volunteering and NSTP:</strong> community work shows initiative.</li>
+            <li><strong>Side work and courses:</strong> tutoring, online selling, freelancing, and free certificates.</li>
           </ul>
           <div class="note note-info">
             <p class="note-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
               In the builder
             </p>
-            <p>Switch on <strong>No experience yet</strong> and the Experience section disappears while Projects and Organizations move to the top of the page.</p>
+            <p>Turn on <strong>No experience yet</strong> to hide the Experience section and put Projects and Organizations first.</p>
           </div>
 
           <div class="next-step">
             <div>
-              <h2>Ready to assemble it?</h2>
-              <p>The builder keeps every edit as you type.</p>
+              <h2>Ready to build it?</h2>
+              <p>The builder saves as you type.</p>
             </div>
             <a class="btn btn-primary" href="builder.html">Open the builder</a>
           </div>
@@ -240,11 +250,15 @@
     </div>
   </main>
 
+  <!-- Site footer (same on every page) -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name" data-site-name>Simula</p>
-        <p>A free, private guide from first resume to first offer.</p>
+        <a class="brand" href="index.html">
+          <img src="images/logo.svg" alt="" width="28" height="28">
+          <span data-site-name>Simula</span>
+        </a>
+        <p>Free resume and interview prep for Filipino students.</p>
       </div>
       <nav aria-label="Footer">
         <ul class="footer-links">
@@ -255,7 +269,7 @@
           <li><a href="about.html">About and Contact</a></li>
         </ul>
       </nav>
-      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any agency or company named on this site.</p>
     </div>
   </footer>
 
