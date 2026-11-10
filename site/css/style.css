@@ -1698,6 +1698,10 @@ code {
   margin-bottom: var(--space-5);
 }
 
+.progress-text .btn {
+  white-space: nowrap;
+}
+
 .progress-text {
   display: flex;
   justify-content: space-between;
