@@ -1,4 +1,5 @@
 // Saves a full-page screenshot of every page at both widths to docs/screenshots/.
+// Runs only when asked: `npm run screenshots` (sets SCREENSHOTS=1).
 const path = require("path");
 const { test } = require("@playwright/test");
 const { PAGES, openPage } = require("./helpers");
@@ -7,6 +8,7 @@ const OUT = path.resolve(__dirname, "../../docs/screenshots");
 
 for (const p of PAGES) {
   test(`screenshot ${p.file}`, async ({ page }, testInfo) => {
+    test.skip(!process.env.SCREENSHOTS, "Run `npm run screenshots` to refresh screenshots");
     const size = testInfo.project.name.startsWith("mobile") ? "mobile" : "desktop";
     await openPage(page, p.file);
     if (p.file === "builder.html") {
