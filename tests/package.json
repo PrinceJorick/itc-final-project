@@ -1,0 +1,12 @@
+{
+  "name": "ojt-to-offer-tests",
+  "private": true,
+  "description": "Dev-only Playwright tests for the static site in ../site. The website never loads anything from this folder.",
+  "scripts": {
+    "test": "playwright test",
+    "screenshots": "playwright test screenshots.spec.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}
