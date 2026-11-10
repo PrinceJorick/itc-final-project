@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="OJT to Offer logo">
+  <!-- Brown envelope with a resume sheet and a blue check -->
+  <rect x="9" y="4" width="22" height="24" rx="2" fill="#FFFFFF" stroke="#1C2333" stroke-width="2"/>
+  <path d="M14 11h12M14 15h8" stroke="#8C8576" stroke-width="2" stroke-linecap="round"/>
+  <path d="M4 18h32v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" fill="#C8955A" stroke="#1C2333" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M4 18l16 9 16-9" fill="none" stroke="#1C2333" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="31" cy="9" r="7" fill="#2445A8"/>
+  <path d="M27.5 9l2.3 2.3 4.2-4.6" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

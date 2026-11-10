@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interview Practice · OJT to Offer</title>
+  <meta name="description" content="Practice common Filipino job interview questions with tips and sample answers, the STAR method, attire advice, and online interview tips.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="" width="36" height="36">
+        <span data-site-name>OJT to Offer</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resume-guide.html">Resume Guide</a></li>
+          <li><a href="builder.html">Builder</a></li>
+          <li><a href="interview.html" aria-current="page">Interview</a></li>
+          <li><a href="checklist.html">Checklist</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-intro">
+      <div class="container page-intro-inner">
+        <div>
+          <h1>Practice your first interview</h1>
+          <p class="lead">Go through the questions Filipino employers ask most, see what a good answer sounds like, then write your own.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#practice">Start practicing</a>
+            <a class="btn btn-secondary" href="#star">Learn the STAR method</a>
+          </div>
+        </div>
+        <img src="images/interview.svg" alt="A laptop on a video call with a question and an answer in speech bubbles" width="320" height="220">
+      </div>
+    </section>
+
+    <!-- Practice tool: filters, flashcard, random question, question bank -->
+    <section id="practice" class="section" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="practice-title">Flashcard practice</h2>
+          <p class="lead">Read the question, answer it out loud, then reveal the tip and a sample answer.</p>
+        </div>
+
+        <div class="practice">
+          <fieldset class="filter-bar">
+            <legend>Question type</legend>
+            <div class="filter-options">
+              <label class="filter-chip"><input type="radio" name="category" value="all" checked> All</label>
+              <label class="filter-chip"><input type="radio" name="category" value="intro"> Intro</label>
+              <label class="filter-chip"><input type="radio" name="category" value="behavioral"> Behavioral</label>
+              <label class="filter-chip"><input type="radio" name="category" value="technical"> Technical</label>
+              <label class="filter-chip"><input type="radio" name="category" value="closing"> Closing</label>
+            </div>
+          </fieldset>
+
+          <div class="flashcard" id="flashcard" aria-live="polite">
+            <p class="flashcard-meta"><span class="chip" id="card-category">Intro</span> <span class="muted" id="card-count">Question 1 of 22</span></p>
+            <p class="flashcard-question" id="card-question">Tell me about yourself.</p>
+            <div class="flashcard-answer" id="card-answer" hidden>
+              <h3>Tip</h3>
+              <p id="card-tip"></p>
+              <h3>Sample answer</h3>
+              <p id="card-sample"></p>
+            </div>
+            <div class="btn-row flashcard-actions">
+              <button class="btn btn-primary" type="button" id="reveal-btn" aria-expanded="false" aria-controls="card-answer">Reveal tip and answer</button>
+              <button class="btn btn-secondary" type="button" id="prev-btn">Previous</button>
+              <button class="btn btn-secondary" type="button" id="next-btn">Next</button>
+              <button class="btn btn-quiet" type="button" id="random-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+                Random question
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <details class="question-bank">
+          <summary>See all questions in this category</summary>
+          <ol id="question-list"></ol>
+        </details>
+      </div>
+    </section>
+
+    <!-- STAR method with saved template -->
+    <section id="star" class="section section-band" aria-labelledby="star-title">
+      <div class="container split">
+        <div class="flow">
+          <h2 id="star-title">Answer with the STAR method</h2>
+          <p>For any question that starts with <q>Tell me about a time…</q>, tell a short story in four parts:</p>
+          <dl class="star-list">
+            <div><dt>S: Situation</dt><dd>Where were you? (class, org, OJT)</dd></div>
+            <div><dt>T: Task</dt><dd>What did you need to do?</dd></div>
+            <div><dt>A: Action</dt><dd>What did <em>you</em> do? This is the longest part.</dd></div>
+            <div><dt>R: Result</dt><dd>What happened? Use a number if you can.</dd></div>
+          </dl>
+          <p>Aim for one to two minutes. Prepare three or four stories you can reuse for different questions.</p>
+        </div>
+
+        <form class="card star-form" id="star-form" aria-labelledby="star-form-title">
+          <h3 id="star-form-title">Draft your STAR answer</h3>
+          <p class="hint">Saved on this device as you type.</p>
+          <div class="field">
+            <label for="star-question">Question you're answering</label>
+            <input type="text" id="star-question" name="question" placeholder="Tell me about a time you worked in a team.">
+          </div>
+          <div class="field">
+            <label for="star-s">Situation</label>
+            <textarea id="star-s" name="situation" rows="2" placeholder="In our Systems Analysis class…"></textarea>
+          </div>
+          <div class="field">
+            <label for="star-t">Task</label>
+            <textarea id="star-t" name="task" rows="2" placeholder="I was in charge of…"></textarea>
+          </div>
+          <div class="field">
+            <label for="star-a">Action</label>
+            <textarea id="star-a" name="action" rows="3" placeholder="I set up… I asked… I made…"></textarea>
+          </div>
+          <div class="field">
+            <label for="star-r">Result</label>
+            <textarea id="star-r" name="result" rows="2" placeholder="We finished two days early and…"></textarea>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-danger btn-small" type="button" id="star-clear">Clear my answer</button>
+            <span class="small muted" id="star-status" role="status"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Common Filipino interview questions -->
+    <section class="section" aria-labelledby="common-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="common-title">Questions you'll almost surely hear</h2>
+          <p class="lead">These come up in Filipino interviews for OJT, BPO, and entry-level jobs. Prepare them first.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3><q>Tell me about yourself.</q></h3>
+            <p>Present, past, future in one minute: what you study now, one achievement that fits the job, and why you're here.</p>
+          </div>
+          <div class="card">
+            <h3><q>Why should we hire you?</q></h3>
+            <p>Match two or three strengths to what the job post asks for, each with a quick example.</p>
+          </div>
+          <div class="card">
+            <h3><q>What is your expected salary?</q></h3>
+            <p>Research the range for the same role in your city on job sites before the interview. Give a range and say you're open to discussing it. For OJT, ask about allowance instead.</p>
+          </div>
+          <div class="card">
+            <h3><q>Are you willing to work night shift?</q></h3>
+            <p>Common in BPO. Answer honestly. If yes, show you've thought about your commute and sleep.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attire and what to bring -->
+    <section class="section section-band" aria-labelledby="attire-title">
+      <div class="container split">
+        <div class="flow">
+          <h2 id="attire-title">What to wear and bring</h2>
+          <p>Dress one step more formal than the job's daily wear. When in doubt, ask HR what the dress code is. That's a normal question.</p>
+          <h3>Safe choices</h3>
+          <ul class="article-list">
+            <li><strong>Corporate or office:</strong> collared shirt or blouse, slacks or a knee-length skirt, closed shoes. A blazer is a plus.</li>
+            <li><strong>BPO and tech:</strong> smart casual: polo or blouse, dark pants, clean closed shoes.</li>
+            <li><strong>Avoid:</strong> jeans with rips, shorts, slippers or sandals, loud prints, strong perfume.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Bring in your brown envelope</h3>
+          <ul class="check-list">
+            <li>3–5 printed copies of your resume</li>
+            <li>Two valid IDs (and photocopies)</li>
+            <li>A black ballpen for forms</li>
+            <li>2×2 and 1×1 ID photos</li>
+            <li>Any documents the employer asked for</li>
+            <li>The interviewer's name and the office address</li>
+          </ul>
+          <p class="small"><a href="checklist.html">See the full pre-employment checklist</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online interview tips -->
+    <section class="section" aria-labelledby="online-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="online-title">Online interview tips</h2>
+          <p class="lead">Many first interviews in the Philippines now happen over Zoom, Google Meet, or Teams. Treat the call like an office visit.</p>
+        </div>
+        <ol class="tip-steps">
+          <li>
+            <h3>The day before</h3>
+            <p>Test the app, camera, and mic with a friend. Update the app. Charge your laptop and keep mobile data ready as a backup in case of brownouts or Wi-Fi drops.</p>
+          </li>
+          <li>
+            <h3>Your setup</h3>
+            <p>Sit facing a window or lamp so your face is lit. Use a plain wall behind you. Put the camera at eye level, using books if you need to.</p>
+          </li>
+          <li>
+            <h3>Ten minutes before</h3>
+            <p>Close other apps and mute notifications. Tell your household you're in an interview. Keep your resume and notes open on the side.</p>
+          </li>
+          <li>
+            <h3>During the call</h3>
+            <p>Look at the camera when you speak, not at your own video. Pause a second before answering in case of lag. If the connection drops, rejoin right away and apologize briefly.</p>
+          </li>
+          <li>
+            <h3>After the call</h3>
+            <p>Send a short thank-you email within the day. Mention one thing you discussed and that you're still interested.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name" data-site-name>OJT to Offer</p>
+        <p>A free resume and interview guide for Filipino students.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="resume-guide.html">Resume Guide</a></li>
+          <li><a href="builder.html">Builder</a></li>
+          <li><a href="interview.html">Interview</a></li>
+          <li><a href="checklist.html">Checklist</a></li>
+          <li><a href="about.html">About and Contact</a></li>
+        </ul>
+      </nav>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
