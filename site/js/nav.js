@@ -2,6 +2,9 @@
    nav.js: shared by every page.
    - Marks the page as "JavaScript on" so the mobile menu can collapse
    - Fills in the site name from SITE_NAME (data.js)
+   - Light/dark theme: applies a saved choice before the page is drawn and
+     runs the sun/moon toggle in the header (no saved choice = follow the
+     device setting)
    - Runs the mobile menu: the button's icon morphs from lines to a cross,
      the panel slides down under the header, the page behind it locks,
      and the links rise in one after another
@@ -10,6 +13,78 @@
 
 /* Add the "js" class right away so CSS can hide the mobile menu without a flash */
 document.documentElement.classList.add("js");
+
+/* THEME ------------------------------------------------------------------
+   The choice is saved as "light" or "dark" under THEME_KEY. Without a saved
+   choice, no data-theme is set and CSS follows prefers-color-scheme. */
+var THEME_KEY = "simula-theme";
+var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+function savedTheme() {
+  try {
+    var value = localStorage.getItem(THEME_KEY);
+    return value === "dark" || value === "light" ? value : null;
+  } catch (error) {
+    return null; /* storage blocked: follow the device */
+  }
+}
+
+/* The theme the page is showing right now */
+function currentTheme() {
+  return savedTheme() || (systemDark.matches ? "dark" : "light");
+}
+
+/* Apply a saved choice immediately (this line runs before the body exists) */
+if (savedTheme()) {
+  document.documentElement.setAttribute("data-theme", savedTheme());
+}
+
+/* Keep the toggle's pressed state and label in step with the theme */
+function syncThemeToggle() {
+  var toggle = document.querySelector(".theme-toggle");
+  if (!toggle) {
+    return;
+  }
+  var isDark = currentTheme() === "dark";
+  toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+  toggle.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function setupThemeToggle() {
+  var toggle = document.querySelector(".theme-toggle");
+  if (!toggle) {
+    return;
+  }
+  toggle.addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    var root = document.documentElement;
+    /* Fade colors for a moment so the switch feels smooth, not abrupt */
+    root.classList.add("theme-changing");
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (error) {
+      /* Not saved, but the switch still works on this page */
+    }
+    syncThemeToggle();
+    setTimeout(function () {
+      root.classList.remove("theme-changing");
+    }, 320);
+  });
+
+  /* If the device switches themes and nothing is saved, follow it */
+  var onSystemChange = function () {
+    if (!savedTheme()) {
+      syncThemeToggle();
+    }
+  };
+  if (systemDark.addEventListener) {
+    systemDark.addEventListener("change", onSystemChange);
+  } else if (systemDark.addListener) {
+    systemDark.addListener(onSystemChange); /* older browsers */
+  }
+  syncThemeToggle();
+}
 
 /* Put the site name everywhere it appears */
 function applySiteName() {
@@ -88,5 +163,6 @@ function setupMenu() {
 
 document.addEventListener("DOMContentLoaded", function () {
   applySiteName();
+  setupThemeToggle();
   setupMenu();
 });
