@@ -2,6 +2,25 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-11-10
+### Added
+- Light and dark mode with a sun/moon toggle in the header. The choice is saved per device; with no choice the site follows the device setting. Colors fade on switch, and the switch is instant with reduced motion.
+- Simula brand assets from the logo artifact: primary mark, simplified favicon, and new guide, interview, and checklist illustrations on the page intros.
+- Optional email + password sign-in page (Supabase), inert until configured.
+- Visitor-written interview cards (add, edit, delete), saved on the device.
+- Tests for the theme toggle, WCAG AA contrast in dark mode, the single current-page highlight, and a black-and-white resume preview.
+
+### Changed
+- Renamed the site to **Simula** ("beginning").
+- Redesigned every page: minimal layout, IBM Plex Sans and Mono, rounder corners, calmer cards, and polished hover, press, reveal, and menu animations.
+- Rewrote the copy on every page to be shorter and clearer (about 26% fewer words) without dropping any topic.
+
+### Fixed
+- Header: the current page showed two lines (an underline plus a bar), and clicked links kept a focus ring. It now shows one soft pill, and focus rings appear only for keyboard users.
+- Resume live preview is black and white again in both templates (the Modern template had turned green).
+- Edit and Delete buttons no longer show on built-in interview cards (the `hidden` attribute now always wins).
+- Grammar and awkward phrasing across pages.
+
 ## [1.0.0] - 2026-11-10
 ### Added
 - Team handoff notes: storyboard, wireframe descriptions, theme details, 5-minute demo script for 4 speakers, and HTML/CSS Q&A notes (`docs/DOCS-NOTES.md`).
@@ -49,6 +68,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Saved build prompt and planning summary (`docs/inputs/`).
 - `.gitignore`.
 
+[1.1.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.1.0
 [1.0.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.0.0
 [0.5.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.5.0
 [0.4.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.4.0

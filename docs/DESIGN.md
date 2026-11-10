@@ -1,90 +1,82 @@
-# Design System: OJT to Offer
+# Design System: Simula
 
-## Concept: "the brown envelope"
+## Concept
 
-Every Filipino job applicant knows the long brown envelope: the kraft folder that holds your resume, NBI clearance, and PSA birth certificate on the way to an interview. The site borrows that world: **bond-paper white** pages, **ballpoint-ink blue** for action, **kraft brown** for warmth and structure, and **highlighter yellow** for the one thing you must not miss.
+*Simula* is Filipino for "beginning." The brand comes from the Simula mark: a starting point and a meter that begins to fill, "your first entry, on the record." The site carries that idea through a clean, minimal, ledger-like look: white paper, one deep green for action, ink for text, hairline rules, and rounded corners.
 
-It should feel like a well-organized classmate's notes: clean, modern, and trustworthy, not a bank's website and not a kids' app. No purple-blue "AI gradients", no glassmorphism, no stock photos.
+It should feel calm, professional, and trustworthy, with nothing childish and no "AI gradient" decoration. Every page works in **light and dark mode**.
 
-Per-surface mode: Home is **Persuade** (convince a student to start), the guides are **Read** (easy to scan and study), and the builder, flashcards, and checklist are **Operate** (fast, predictable controls).
+Per-surface mode: Home is **Persuade** (help a student decide to start), the guides are **Read** (easy to scan), and the builder, flashcards, and checklist are **Operate** (fast, predictable controls).
 
 ## Color palette
 
-All values are CSS custom properties in `site/css/style.css` (`:root`). Contrast is measured with the WCAG 2.1 formula.
+All colors are CSS custom properties in `site/css/style.css` (section 1). Dark values replace them when the visitor picks dark mode (`html[data-theme="dark"]`) or when their device is set to dark and they haven't picked a theme. Contrast is measured with the WCAG 2.1 formula; the Playwright tests check every page in both modes.
 
-| Token | Hex | Used for | Purpose | Contrast |
-|-------|-----|----------|---------|----------|
-| `--color-ink` | `#1C2333` | Body text, headings, footer background | Near-black with a blue cast, like ballpoint ink; softer than pure black | 14.8:1 on paper |
-| `--color-ink-muted` | `#545B6B` | Secondary text, captions, helper text | Quieter text that still passes AA | 6.4:1 on paper |
-| `--color-paper` | `#FBF8F3` | Page background | Warm bond-paper white; easier on the eyes than pure white | — |
-| `--color-surface` | `#FFFFFF` | Cards, forms, the resume sheet | A "clean sheet" that lifts off the paper background | — |
-| `--color-primary` | `#2445A8` | Buttons, links, focus ring, active nav | Ballpoint blue: action and trust | 8.4:1 with white text |
-| `--color-primary-hover` | `#1B3585` | Button/link hover | Darker on hover so the change is visible | 11.1:1 with white |
-| `--color-primary-tint` | `#E8EDFA` | Selected chips, active filter, info notes | Soft blue for "selected" states | Primary text 7.2:1 |
-| `--color-kraft` | `#C8955A` | Envelope illustration, decorative rules | The brown envelope; warmth and local identity (decorative only) | Ink text 5.9:1 |
-| `--color-kraft-tint` | `#F3E6D3` | Section bands, callouts, "PH tip" boxes | Light kraft panel for local tips | Muted text 5.5:1 |
-| `--color-kraft-deep` | `#7A4E22` | Small labels on kraft, "PH tip" headings | Readable brown text | 5.8:1 on kraft tint |
-| `--color-highlight` | `#FFE27A` | `<mark>`, "free under RA 11261" badge | Highlighter pen: draws the eye to the one key fact | Ink text 12.3:1 |
-| `--color-success` | `#1C6E45` | Checked items, matched skills, progress bar | "Done" green, like a teacher's check | 5.9:1 on paper |
-| `--color-success-tint` | `#E3F2E9` | Matched-skill chips, success messages | Calm confirmation background | 5.4:1 |
-| `--color-danger` | `#B42318` | Errors, "missing" skills, reset button | Clear warning red | 6.2:1 on paper |
-| `--color-line` | `#E4DCCF` | Card borders, dividers | Soft warm hairline | — |
-| `--color-line-strong` | `#8C8576` | Form field borders | Visible input edges (3.5:1, passes the 3:1 UI-component rule) | 3.5:1 |
+| Token | Light | Dark | Used for | Purpose |
+|-------|-------|------|----------|---------|
+| `--color-bg` | `#FFFFFF` | `#0F1311` | Page background | Clean paper; a deep green-black at night |
+| `--color-band` | `#F6F6F2` | `#131815` | Alternating section bands, tool panels | Separates sections without heavy lines |
+| `--color-surface` | `#FFFFFF` | `#171C19` | Cards, inputs | Lifts content slightly off the page |
+| `--color-ink` | `#161A17` | `#E8EBE6` | Body text, headings | Soft black/white; easier on the eyes than pure black |
+| `--color-ink-muted` | `#5B615C` | `#A3AAA4` | Secondary text, hints | Quieter text that still passes AA (6.2:1 / 7.6:1) |
+| `--color-primary` | `#1D5B4A` | `#74C7A6` | Buttons, links, active nav, focus | Ledger green from the logo; lightened in dark mode to stay readable (7.9:1 / 9.7:1) |
+| `--color-primary-tint` | `#E9F1ED` | `#1A2E27` | Current page pill, chips, info notes | Soft "selected" state |
+| `--color-gold` / `--color-gold-tint` | `#7A5D1A` / `#F6EFDC` | `#E6C77F` / `#2E2716` | "Free under RA 11261" badge, PH tips | Reserved for the one fact students shouldn't miss |
+| `--color-danger` | `#A83226` | `#F2958A` | Errors, "missing" skills, destructive buttons | Clear warning (6.5:1 on white) |
+| `--color-line` / `--color-line-strong` | `#E4E3DB` / `#8B908A` | `#29302C` / `#6B746D` | Card borders / input borders | Hairlines; input borders pass the 3:1 UI rule |
 
-**Dark mode:** not included. The prompt makes it optional, and the main use scenes (classroom demo on a projector, printing a resume) favor light paper. Keeping one theme also keeps the CSS easy to explain in Q&A.
+The **resume preview is always black on white**, in both templates and both themes, because it is a printed document. A test checks that every color on the sheet is a neutral gray.
 
 ## Typography
 
-Two Google Fonts, loaded with `<link>` and `display=swap`, each with a system fallback so the site still looks right offline.
+Two Google Fonts (the brand typefaces from the Simula mark), with system fallbacks so the site still looks right offline.
 
-| Role | Font | Fallback stack | Purpose |
-|------|------|----------------|---------|
-| Headings | **Bricolage Grotesque** (600, 700) | `"Segoe UI", system-ui, sans-serif` | A friendly grotesque with a bit of personality: modern and confident without looking corporate |
-| Body, forms, UI | **Atkinson Hyperlegible** (400, 700) | `system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif` | Designed by the Braille Institute for maximum legibility; clear letter shapes (I/l/1, 0/O) for long guides and forms |
-| Resume preview | System fonts only: Classic = `Georgia, "Times New Roman", serif`; Modern = `Arial, Helvetica, sans-serif` | — | ATS parsers and printers handle standard fonts best; the resume looks the same everywhere |
+| Role | Font | Purpose |
+|------|------|---------|
+| Everything | **IBM Plex Sans** (400, 500, 600) | Neutral, professional, very readable; the logo's wordmark face |
+| Numbers and small labels | **IBM Plex Mono** (400, 500) | Counts, step numbers, table headers, "Weak/Strong" labels; tabular figures line up |
+| Resume preview | System fonts: Classic = Georgia; Modern = Arial | ATS software and printers handle standard fonts best |
 
-Type scale (fluid with `clamp()`): body 1.0625rem (17px), line-height 1.6, measure about 68ch. Headings: h1 `clamp(2.1rem, 5vw, 3.4rem)`, h2 `clamp(1.6rem, 3.5vw, 2.3rem)`, h3 1.375rem (22px, a 1.29× step over body text). Headings use `text-wrap: balance`.
+Scale: body 16px / 1.65 line height; h3 20px; h2 `clamp(1.5rem, 3vw, 2rem)`; h1 `clamp(2.125rem, 5vw, 3.25rem)` (home hero up to 4rem). Headings use tight negative tracking and `text-wrap: balance`.
 
-## Spacing, radius, shadow
+## Spacing, corners, shadows
 
 | Token | Value | Purpose |
 |-------|-------|---------|
-| `--space-1` … `--space-9` | 4, 8, 12, 16, 24, 32, 48, 64, 96 px | One 4px-based scale for every gap and padding; tight inside groups, generous between sections |
-| `--radius-sm` | 6px | Inputs, chips |
-| `--radius-md` | 10px | Buttons, cards |
-| `--radius-lg` | 16px | Large panels, hero illustration frame |
-| `--shadow-sm` | `0 1px 2px rgb(28 35 51 / .06), 0 1px 1px rgb(28 35 51 / .04)` | Resting cards: barely lifted paper |
-| `--shadow-md` | `0 6px 16px -4px rgb(28 35 51 / .12), 0 2px 4px rgb(28 35 51 / .06)` | Hover and the resume sheet: paper lifted off the desk |
+| `--space-1` … `--space-9` | 4, 8, 12, 16, 24, 32, 48, 64, 96 px | One 4px scale for every gap; tight inside groups, generous between sections |
+| `--radius-sm` / `md` / `lg` / `xl` | 8 / 12 / 18 / 24 px | Small controls / buttons and inputs / cards / hero cards and flashcard |
+| `--radius-pill` | 999px | Nav links, chips, filter pills, header icon buttons |
+| `--shadow-sm` / `md` / `lg` | soft, offset, low opacity | Resting cards / hover / the hero card and flashcard |
 
-Shadows always have a vertical offset and soft blur (like paper on a desk), never a colored glow.
-
-## Buttons and links
+## Buttons, links, navigation
 
 | Element | Style | Purpose |
 |---------|-------|---------|
-| Primary button (`.btn-primary`) | Ink-blue fill, white text, 10px radius, min-height 44px | The one main action per area (Start building, Download PDF) |
-| Secondary button (`.btn-secondary`) | White fill, ink-blue 1.5px border and text | Supporting actions (Load sample, Add entry) |
-| Quiet button (`.btn-quiet`) | No border, ink-blue text, underline on hover | Low-priority actions (Remove, Reveal) |
-| Danger button (`.btn-danger`) | White fill, red border and text | Destructive actions (Clear all), always confirmed |
-| Links | Ink blue, underlined, 0.18em underline offset | Always underlined in body text so links never rely on color alone |
+| Primary button | Green fill, white text (dark text in dark mode), 12px corners, 44px tall | One main action per area |
+| Secondary button | Surface fill, hairline border | Supporting actions |
+| Quiet button | Green text only, tint on hover | Low-priority actions (Random, Edit) |
+| Danger button | Red outline | Destructive actions, always confirmed |
+| Links | Green, thin underline that strengthens on hover | Links never rely on color alone |
+| Header | Sticky, frosted glass, logo left, pill-shaped nav links, round theme switch | The current page gets **one** soft green pill: no underline, no extra bar, and no focus ring after a mouse click |
 
-## Hover, focus, and motion
+## Motion and micro-interactions
 
-- **Hover:** buttons darken and lift 1px with `--shadow-md`; cards lift 2px. Duration 160ms, `cubic-bezier(.2,.8,.2,1)` (fast ease-out).
-- **Focus:** a 3px ink-blue outline with 2px offset on every focusable element (`:focus-visible`). Never removed.
-- **Signature motion:** on the home page, the resume sheet slides up out of the brown envelope once on load. It is the only entrance animation on the site.
-- **Feedback motion:** checklist progress bar fills smoothly; flashcard answers fade in.
-- **Reduced motion:** `@media (prefers-reduced-motion: reduce)` turns off all transitions and the envelope animation; content shows in its final state.
+- Buttons lift 1px on hover and settle (scale 0.98) when pressed; arrow icons nudge forward.
+- Cards and journey steps lift 2px on hover; register rows highlight their title.
+- Sections fade up as they scroll into view; the home "What's inside" counts up and its meters fill.
+- The theme switch rotates between sun and moon, and colors fade for 300ms when the theme changes.
+- The mobile menu's two lines turn into a cross, the panel slides down, and links rise in one after another.
+- Revealed answers, new entries, and success messages rise in gently.
+- **Reduced motion:** with `prefers-reduced-motion`, all of this is instant.
+
+Focus: a 2px green outline on buttons and links, and a 3px soft green ring on text fields, shown only for keyboard users (`:focus-visible`).
 
 ## Icons and images
 
-- **Icons:** original inline SVGs drawn on a 24px grid with a 1.75px rounded stroke (Lucide-like style, but authored for this site). Decorative icons have `aria-hidden="true"`; icon-only buttons have an `aria-label`. No emoji as icons.
-- **Illustrations:** original SVGs in `site/images/` (brown envelope with resume, interview chat bubbles, document checklist, team avatars as initials). No external images, so nothing needs a photo credit. All SVGs are hand-written and small (under 5 KB each).
-
-## Browser details
-
-Text selection uses the highlighter yellow; the caret and checkboxes use ink blue (`accent-color`, `caret-color`); scrollbars are tinted to match. Numbers in progress and match percentages use `font-variant-numeric: tabular-nums`.
+- **Logo and favicon:** the Simula mark from the brand artifact (`site/images/logo.svg`; simplified `favicon.svg` for small sizes).
+- **Illustrations:** `guide.svg`, `interview.svg`, `checklist.svg` from the same artifact, shown in rounded frames on the page intros. The frames stay light in dark mode so the drawings keep their paper colors.
+- **Icons:** inline SVG line icons (1.75px stroke). Decorative icons are `aria-hidden`; icon-only buttons have labels.
 
 ## Overall mood
 
-Organized, warm, and encouraging: "you already have more to put on a resume than you think." Local without being kitschy: the envelope, bond paper, and highlighter are things every Filipino student actually uses, not flags or jeepney clip art.
+Minimal, calm, and professional, like a well-kept record of your first steps. Local without being kitschy.
