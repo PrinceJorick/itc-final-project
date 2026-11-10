@@ -5,7 +5,7 @@
 
 /* The site name lives here, in one place. Change it and every page updates
    (nav.js copies it into the page title and every [data-site-name] element). */
-var SITE_NAME = "OJT to Offer";
+var SITE_NAME = "Simula";
 
 
 /* --------------------------------------------------------------------------
