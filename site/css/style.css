@@ -40,7 +40,7 @@
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
   --text-lg: 1.1875rem;
-  --text-h3: 1.25rem;
+  --text-h3: 1.375rem;
   --text-h2: clamp(1.6rem, 3.5vw, 2.3rem);
   --text-h1: clamp(2.1rem, 5vw, 3.4rem);
 
@@ -1126,8 +1126,9 @@ tbody th {
   border-radius: var(--radius-md);
 }
 
-.toc h2 {
-  font-size: var(--text-base);
+.toc-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
   margin-bottom: var(--space-2);
 }
 
