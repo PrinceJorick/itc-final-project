@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-label="A resume page with key lines marked in yellow highlighter and a blue pen">
+  <!-- Desk shadow -->
+  <ellipse cx="160" cy="206" rx="120" ry="8" fill="#E4DCCF"/>
+  <!-- Resume sheet -->
+  <rect x="70" y="14" width="150" height="186" rx="6" fill="#FFFFFF" stroke="#1C2333" stroke-width="2.5"/>
+  <circle cx="96" cy="42" r="12" fill="#F3E6D3" stroke="#1C2333" stroke-width="2"/>
+  <path d="M116 36h70M116 48h44" stroke="#1C2333" stroke-width="4" stroke-linecap="round"/>
+  <!-- Highlighted lines -->
+  <rect x="84" y="70" width="110" height="12" rx="2" fill="#FFE27A"/>
+  <path d="M88 76h100" stroke="#1C2333" stroke-width="3" stroke-linecap="round"/>
+  <path d="M88 96h116M88 110h96" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
+  <rect x="84" y="128" width="88" height="12" rx="2" fill="#FFE27A"/>
+  <path d="M88 134h78" stroke="#1C2333" stroke-width="3" stroke-linecap="round"/>
+  <path d="M88 154h116M88 168h70M88 182h90" stroke="#8C8576" stroke-width="3" stroke-linecap="round"/>
+  <!-- Ballpoint pen -->
+  <g transform="rotate(35 250 120)">
+    <rect x="240" y="40" width="16" height="120" rx="4" fill="#2445A8" stroke="#1C2333" stroke-width="2.5"/>
+    <path d="M240 160l8 22 8-22z" fill="#F3E6D3" stroke="#1C2333" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="236" y="56" width="5" height="40" rx="2" fill="#1C2333"/>
+  </g>
+</svg>

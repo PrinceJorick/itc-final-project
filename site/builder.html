@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume Builder · OJT to Offer</title>
+  <meta name="description" content="Build a one-page, ATS-friendly resume with live preview, two templates, a bullet helper, and a job-fit checker. Free, no sign-up, saved on your device.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body class="builder-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.svg" alt="" width="36" height="36">
+        <span data-site-name>OJT to Offer</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="resume-guide.html">Resume Guide</a></li>
+          <li><a href="builder.html" aria-current="page">Builder</a></li>
+          <li><a href="interview.html">Interview</a></li>
+          <li><a href="checklist.html">Checklist</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="builder-intro">
+      <div class="container">
+        <h1>Resume builder</h1>
+        <p class="lead">Fill in what you have. Your resume updates on the right as you type, and it's saved on this device automatically.</p>
+      </div>
+    </section>
+
+    <!-- Toolbar: template, no-experience mode, and main actions -->
+    <div class="builder-toolbar">
+      <div class="container toolbar-inner">
+        <fieldset class="template-switch">
+          <legend>Template</legend>
+          <label class="filter-chip"><input type="radio" name="template" value="classic" checked> Classic</label>
+          <label class="filter-chip"><input type="radio" name="template" value="modern"> Modern</label>
+        </fieldset>
+
+        <label class="switch">
+          <input type="checkbox" id="no-experience" role="switch">
+          <span class="switch-track" aria-hidden="true"></span>
+          <span>No experience yet</span>
+        </label>
+
+        <div class="btn-row toolbar-actions">
+          <button class="btn btn-secondary btn-small" type="button" id="load-sample">Load sample</button>
+          <button class="btn btn-danger btn-small" type="button" id="clear-all">Clear all</button>
+          <button class="btn btn-primary btn-small" type="button" id="download-pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Download PDF
+          </button>
+        </div>
+        <p class="save-status small" id="save-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="container builder-layout">
+
+      <!-- LEFT: the form -->
+      <form class="builder-form" id="resume-form" novalidate>
+
+        <fieldset class="form-section">
+          <legend>Personal details</legend>
+          <div class="field-grid">
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Juan dela Cruz" data-personal>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="juan.delacruz@email.com" data-personal>
+            </div>
+            <div class="field">
+              <label for="phone">Mobile number</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="0917 123 4567" data-personal>
+            </div>
+            <div class="field">
+              <label for="city">City and province</label>
+              <input type="text" id="city" name="city" autocomplete="address-level2" placeholder="Batangas City, Batangas" data-personal>
+            </div>
+            <div class="field">
+              <label for="linkedin">LinkedIn <span class="hint">(optional)</span></label>
+              <input type="text" id="linkedin" name="linkedin" placeholder="linkedin.com/in/yourname" data-personal>
+            </div>
+            <div class="field">
+              <label for="portfolio">Portfolio or GitHub <span class="hint">(optional)</span></label>
+              <input type="text" id="portfolio" name="portfolio" placeholder="yourname.github.io" data-personal>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Objective</legend>
+          <div class="field">
+            <label for="objective">One or two sentences: the role you want and what you bring</label>
+            <textarea id="objective" name="objective" rows="3" placeholder="Third-year IT student seeking an OJT in technical support where I can use my troubleshooting skills."></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Education</legend>
+          <div class="entry-list" id="education-list"></div>
+          <button class="btn btn-secondary btn-small add-btn" type="button" data-add="education">+ Add education</button>
+        </fieldset>
+
+        <fieldset class="form-section" id="projects-section">
+          <legend>Projects</legend>
+          <p class="hint">Capstone, thesis, class, or personal projects. One bullet per line.</p>
+          <div class="entry-list" id="projects-list"></div>
+          <button class="btn btn-secondary btn-small add-btn" type="button" data-add="projects">+ Add project</button>
+        </fieldset>
+
+        <fieldset class="form-section" id="organizations-section">
+          <legend>Organizations and leadership</legend>
+          <p class="hint">Org roles, committees, and events. One bullet per line.</p>
+          <div class="entry-list" id="organizations-list"></div>
+          <button class="btn btn-secondary btn-small add-btn" type="button" data-add="organizations">+ Add organization</button>
+        </fieldset>
+
+        <fieldset class="form-section" id="experience-section">
+          <legend>Work experience or OJT</legend>
+          <p class="hint">Internships, part-time jobs, freelance work. One bullet per line.</p>
+          <div class="entry-list" id="experience-list"></div>
+          <button class="btn btn-secondary btn-small add-btn" type="button" data-add="experience">+ Add experience</button>
+        </fieldset>
+        <p class="note note-info no-exp-note" id="no-exp-note" hidden>
+          <strong>No experience yet is on.</strong> The Experience section is hidden, and Projects and Organizations appear first on your resume.
+        </p>
+
+        <fieldset class="form-section">
+          <legend>Skills</legend>
+          <div class="field">
+            <label for="skills-technical">Technical skills</label>
+            <input type="text" id="skills-technical" placeholder="Microsoft Excel, Python, Canva" aria-describedby="skills-hint">
+          </div>
+          <div class="field">
+            <label for="skills-soft">Soft skills</label>
+            <input type="text" id="skills-soft" placeholder="Teamwork, Time management" aria-describedby="skills-hint">
+          </div>
+          <p class="hint" id="skills-hint">Separate skills with commas.</p>
+        </fieldset>
+
+        <fieldset class="form-section">
+          <legend>Certifications and awards</legend>
+          <div class="entry-list" id="certifications-list"></div>
+          <button class="btn btn-secondary btn-small add-btn" type="button" data-add="certifications">+ Add certification</button>
+        </fieldset>
+
+        <!-- Bullet helper: rule-based sentence builder -->
+        <section class="tool-panel" id="bullet-helper" aria-labelledby="bh-title">
+          <h2 id="bh-title">Bullet helper</h2>
+          <p class="hint">Pick a verb and fill in the blanks. We'll write the bullet, then you can add it to a project or org.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="bh-verb">Action verb</label>
+              <select id="bh-verb"></select>
+            </div>
+            <div class="field">
+              <label for="bh-what">What you built or did</label>
+              <input type="text" id="bh-what" placeholder="an attendance tracker for our org">
+            </div>
+            <div class="field">
+              <label for="bh-tool">Tool or method used</label>
+              <input type="text" id="bh-tool" placeholder="Google Sheets">
+            </div>
+            <div class="field">
+              <label for="bh-result">Result</label>
+              <input type="text" id="bh-result" placeholder="sign-ins taking half the time">
+            </div>
+          </div>
+          <div class="bh-output">
+            <p class="label" id="bh-output-label">Your bullet</p>
+            <p class="bh-sentence" id="bh-sentence" aria-labelledby="bh-output-label" aria-live="polite">Fill in the blanks above to see your bullet.</p>
+          </div>
+          <div class="field">
+            <label for="bh-target">Add it to</label>
+            <select id="bh-target"></select>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary btn-small" type="button" id="bh-insert">Insert bullet</button>
+            <span class="small" id="bh-status" role="status"></span>
+          </div>
+        </section>
+
+        <!-- Job-fit checker: compare a posting with your skills -->
+        <section class="tool-panel" id="job-fit" aria-labelledby="jf-title">
+          <h2 id="jf-title">Job-fit checker</h2>
+          <p class="hint">Paste a job or OJT posting. We'll find the skills it mentions and check which ones are on your resume. Nothing is sent anywhere.</p>
+          <div class="field">
+            <label for="jf-posting">Job posting</label>
+            <textarea id="jf-posting" rows="6" placeholder="Paste the job description here…"></textarea>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary btn-small" type="button" id="jf-check">Check my fit</button>
+            <button class="btn btn-quiet btn-small" type="button" id="jf-sample">Use a sample posting</button>
+          </div>
+          <div class="jf-results" id="jf-results" aria-live="polite" hidden>
+            <p class="jf-score"><span id="jf-percent">0%</span> match</p>
+            <div class="jf-meter" aria-hidden="true"><div class="jf-meter-fill" id="jf-meter-fill"></div></div>
+            <h3>Skills you already show <span class="muted" id="jf-matched-count"></span></h3>
+            <ul class="chip-list" id="jf-matched"></ul>
+            <h3>Skills the post wants that your resume doesn't show <span class="muted" id="jf-missing-count"></span></h3>
+            <ul class="chip-list" id="jf-missing"></ul>
+            <h3>Tips</h3>
+            <ul class="jf-tips" id="jf-tips"></ul>
+          </div>
+        </section>
+      </form>
+
+      <!-- RIGHT: live preview of the resume (this is what prints) -->
+      <aside class="preview-pane" aria-labelledby="preview-title">
+        <div class="preview-head">
+          <h2 id="preview-title">Live preview</h2>
+          <p class="small muted">Prints on one A4 or Letter page.</p>
+        </div>
+        <div class="preview-scroll">
+          <article class="resume resume-classic" id="resume-preview" aria-label="Resume preview"></article>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name" data-site-name>OJT to Offer</p>
+        <p>A free resume and interview guide for Filipino students.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="resume-guide.html">Resume Guide</a></li>
+          <li><a href="builder.html">Builder</a></li>
+          <li><a href="interview.html">Interview</a></li>
+          <li><a href="checklist.html">Checklist</a></li>
+          <li><a href="about.html">About and Contact</a></li>
+        </ul>
+      </nav>
+      <p class="footer-fine">CC 100 Final Project · CS 1103 Group 4 · Batangas State University – Alangilan. Not affiliated with any government agency or company named on this site.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
