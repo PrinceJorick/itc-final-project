@@ -68,6 +68,7 @@ site/                 ← the website (this is what gets submitted)
   js/data.js          ← all content data + SITE_NAME
   js/nav.js           ← shared header/menu behavior, theme switch, illustration swap
   js/motion.js        ← scroll reveals (sections rise in after the first screen)
+  js/scroll.js        ← eased wheel scrolling (reduce motion turns it off)
   js/home.js          ← the hero's before/after bullet demo
   js/backup.js        ← download, restore, or delete saved data
   js/builder.js  js/interview.js  js/checklist.js  js/contact.js
