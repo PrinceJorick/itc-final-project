@@ -7,7 +7,9 @@
 CC 100 Introduction to Computing Final Project · CS 1103 Group 4 · Batangas State University – Alangilan, College of Informatics and Computing Sciences · 1st Semester AY 2026–2027
 Category 12: Employment and Career Services → Resume and Interview Guide
 
-![Home page on desktop](docs/screenshots/index-desktop.png)
+![Home page on desktop, light mode](docs/screenshots/index-desktop-light.png)
+
+![Home page on desktop, dark mode](docs/screenshots/index-desktop-dark.png)
 
 ## The problem and our answer
 
@@ -55,7 +57,9 @@ The whole site works with no account: drafts, checklists, and custom cards live 
 | **About** | Mission, team, sources, and a demo contact form with validation (nothing is sent) |
 | **Sign in** | Optional email + password accounts (Supabase) with a Create account tab; inert until configured |
 
-Accessibility: skip link, keyboard-friendly navigation, visible focus everywhere, labels on every input, WCAG AA contrast, and reduced-motion support (all reveals and counters settle instantly).
+Accessibility: skip link, keyboard-friendly navigation, visible focus everywhere, labels on every input, WCAG AA contrast in light and dark mode, and reduced-motion support.
+
+Look and themes: a monochrome design (ink on white, flipped for dark mode) with rounded shapes and IBM Plex Sans and Mono. The site follows the device's light or dark setting; the round button in the header switches it by hand and remembers the choice. The logo and the three illustrations switch with the theme. The resume preview always stays black on white, because it prints.
 
 ## Project structure
 
@@ -66,12 +70,12 @@ site/                 ← the website (this is what gets submitted)
   css/style.css       ← the one shared stylesheet
   css/print.css       ← resume-only print layout
   js/data.js          ← all content data + SITE_NAME
-  js/nav.js           ← shared header/menu behavior
-  js/motion.js        ← scroll reveals and the register counters
+  js/nav.js           ← shared header/menu behavior, theme switch, illustration swap
+  js/motion.js        ← fills the home page's "What's inside" meters
   js/auth-config.js   ← empty Supabase placeholder (accounts off)
   js/auth.js          ← optional sign-in; inert while unconfigured
   js/builder.js  js/interview.js  js/checklist.js  js/contact.js
-  images/             ← original SVGs (logo and favicon)
+  images/             ← original SVGs: favicon, plus light/ and dark/ sets of the logo and illustrations
 docs/                 ← research, design system, team notes, screenshots, inputs
 tests/                ← Playwright tests (dev only; the site never uses this folder)
 SOURCES.md  CHANGELOG.md  PRODUCT.md
@@ -79,21 +83,21 @@ SOURCES.md  CHANGELOG.md  PRODUCT.md
 
 ## Testing
 
-Playwright runs every page and feature at 375px and 1280px against the site opened from the file system.
+Playwright runs every page and feature at 375px and 1280px against the site opened from the file system. `theme.spec.js` also checks every page in light and dark mode (matching illustrations, the manual toggle, the favicon, and black-on-white print).
 
 ```bash
 cd tests
 npm install
 npx playwright install chromium
-npm test                 # 174 passing; 16 skipped (14 opt-in screenshots + 2 viewport-only checks)
-npm run screenshots      # refreshes docs/screenshots/
+npm test                 # 232 passing; 30 skipped (28 opt-in screenshots + 2 viewport-only checks)
+npm run screenshots      # refreshes docs/screenshots/ (every page, desktop and mobile, light and dark)
 ```
 
 ## Tech and skills used
 
 - **Stack:** HTML5, one CSS file (custom properties, Flexbox, Grid, media queries), vanilla JavaScript, `localStorage`. No frameworks, build tools, or backend. Google Fonts is the only external request the site makes as submitted; optional Supabase accounts add a CDN script only when configured by hand.
 - **Design and build skills:** ui-ux-pro-max (design system generation), impeccable (product context, design direction, craft checks, contrast hook, finish review), web research for competitors, title checks, and PH government facts; Playwright for testing and screenshots.
-- **Visual direction:** minimal Simula brand: white paper, ledger-green actions, IBM Plex Sans and Mono, rounded corners, light and dark mode with a header toggle. Full detail in [docs/DESIGN.md](docs/DESIGN.md).
+- **Visual direction (v1.2.0, mono):** seven monochrome color tokens that flip for dark mode, ink pill buttons, 16px cards and 24-32px panels, IBM Plex Sans and Mono, original rounded mono illustrations, and a dot-and-pill mark that inverts with the theme. Full detail in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Documentation for the team
 
@@ -107,7 +111,7 @@ npm run screenshots      # refreshes docs/screenshots/
 
 - Content sources: see [SOURCES.md](SOURCES.md) and the About page.
 - Fonts: IBM Plex Sans and IBM Plex Mono (Google Fonts, SIL Open Font License).
-- Logo, favicon, illustrations, and icons: original work for this project (Simula brand artifact). No stock images.
+- Logo, favicon, illustrations, and icons: original assets made by the team for this project, created with Claude (mono set). No stock images.
 - Team: Prince Jorick Fajutagana, Alloysia Mae, Elise Guerra, Sherwin Dollente Jr.
 
 Not affiliated with any government agency or company named on this site. Fees and procedures change, so always confirm with the agency.
