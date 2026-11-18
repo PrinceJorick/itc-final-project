@@ -139,11 +139,12 @@ There are no accounts (the optional Supabase sign-in was removed in v1.3.0). Eve
    - Arial in `style.css` is used on purpose for the Modern resume template (ATS and print reliability).
    - `low-contrast` on `builder.html` is a false positive: the only white element in dark mode is the resume sheet (black on white by design), and the Playwright contrast test passes on the rendered page.
 3. **Some government facts are not confirmed from the primary source.** Most agency sites (PSA, SSS, Pag-IBIG, Official Gazette) block automated access. RA 11261 and RA 10911 were checked against the law texts. Other fees and steps are marked in `SOURCES.md`, and the site says "check with the agency" where unverified. Examples: the NBI total (₱130 plus a payment-channel fee), the PSA ₱155 fee (taken from the PSA Citizen's Charter), and whether the barangay certification is valid for one year.
-4. **Vercel Authentication is off** for the `simula` project so the site is public. It was turned off on the owner's explicit instruction.
-5. **The favicon** is the full logo. A simplified version was used earlier and then replaced.
-6. **Repository history note:** the favicon commit (`df046ce`) also contains the deletion of the GitHub Pages workflow. The commit message does not say so. History was not rewritten.
-7. **Old domain removed:** `simula-mu.vercel.app` was retired. `simula.vercel.app` belongs to another account.
-8. **Tag placement:** v1.0.0 points to an earlier commit than the README fix. Later fixes are on `main` after the tag.
+4. **Deploys (fixed 2026-11-18):** `simula-itc.vercel.app` had been pinned to one old deployment by a manual `vercel alias set`, so pushes to `main` built new production deployments that never went live (v1.2.0 was affected). A fresh production deploy released the pin; the domain, which is attached to the `simula` project, now moves to each new production deployment automatically. Do not use `vercel alias set` on it again.
+5. **Vercel Authentication is off** for the `simula` project so the site is public. It was turned off on the owner's explicit instruction.
+6. **The favicon** is the full logo. A simplified version was used earlier and then replaced.
+7. **Repository history note:** the favicon commit (`df046ce`) also contains the deletion of the GitHub Pages workflow. The commit message does not say so. History was not rewritten.
+8. **Second domain:** `simula-mu.vercel.app` is still attached to the project and also moves with each deploy; `simula-itc.vercel.app` is the official URL. `simula.vercel.app` belongs to another account.
+9. **Tag placement:** v1.0.0 points to an earlier commit than the README fix. Later fixes are on `main` after the tag.
 
 ## 9. Design decisions a grader may ask about
 
