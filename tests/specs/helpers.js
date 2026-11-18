@@ -11,8 +11,7 @@ const PAGES = [
   { file: "builder.html", title: /Resume Builder/ },
   { file: "interview.html", title: /Interview Practice/ },
   { file: "checklist.html", title: /Pre-Employment Checklist/ },
-  { file: "about.html", title: /About and Contact/ },
-  { file: "login.html", title: /Sign in/ }
+  { file: "about.html", title: /About and Contact/ }
 ];
 
 function pageUrl(file) {

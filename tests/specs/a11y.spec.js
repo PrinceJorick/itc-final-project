@@ -113,8 +113,8 @@ for (const p of PAGES) {
 
 test("animations respect prefers-reduced-motion", async ({ page }) => {
   await openPage(page, "index.html");
-  // The register meter fills through a width transition; under reduced motion it must be instant
-  const duration = await page.locator(".reg-meter i").first()
+  // The hero demo's underlines draw in through a transition; under reduced motion it must be instant
+  const duration = await page.locator("#bullet-demo .part").first()
     .evaluate((el) => getComputedStyle(el).transitionDuration);
   expect(parseFloat(duration)).toBeLessThan(0.01);
   // Scroll-reveal sections must settle fully visible instead of animating in
