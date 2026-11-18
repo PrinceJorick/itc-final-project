@@ -108,6 +108,6 @@ npm run screenshots      # refreshes docs/screenshots/ (every page, desktop and 
 - Content sources: see [SOURCES.md](SOURCES.md) and the About page.
 - Fonts: IBM Plex Sans and IBM Plex Mono (Google Fonts, SIL Open Font License).
 - Logo, favicon, illustrations, and icons: original assets made by the team for this project, created with Claude (mono set). No stock images.
-- Team: Prince Jorick Fajutagana, Alloysia Mae, Elise Guerra, Sherwin Dollente Jr.
+- Team: Prince Jorick Fajutagana, Alloysia Mae Lugue, Elise Guerra, Sherwin Dollente Jr.
 
 Not affiliated with any government agency or company named on this site. Fees and procedures change, so always confirm with the agency.
