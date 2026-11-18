@@ -11,40 +11,33 @@
 
 /* 1. DESIGN TOKENS ---------------------------------------------------------
    Every color, font, and size is a custom property, so the whole theme
-   lives here. Brand colors come from the Simula mark: ledger green on
-   white paper, with ink for text and bone for quiet fills. */
+   lives here. The brand is monochrome: ink on white in light mode, and the
+   same roles flipped in dark mode. Hierarchy comes from contrast, weight,
+   size and spacing, never from extra colors. */
 :root {
-  /* Surfaces */
-  --color-bg: #FFFFFF;          /* page */
-  --color-band: #F6F6F2;        /* alternating section bands */
-  --color-surface: #FFFFFF;     /* cards, inputs */
-  --color-raised: #FBFBF8;      /* fields inside cards, toolbars */
-  --color-bone: #E7E6DD;        /* illustration frames, quiet fills */
+  /* Seven color tokens (light). Contrast ratios are against --bg. */
+  --bg: #FFFFFF;          /* page background */
+  --surface: #F4F4F5;     /* soft fills: sections, inputs, chips */
+  --line: #E4E4E7;        /* 1px borders, dividers, meter tracks */
+  --muted: #A1A1AA;       /* decorative only (icons, placeholder bars), never text */
+  --text-muted: #52525B;  /* secondary text, 7.7:1 */
+  --ink: #0A0A0A;         /* text, headings, primary buttons, meter fills, 19.8:1 */
+  --on-ink: #FFFFFF;      /* text and icons placed on --ink */
 
-  /* Text */
-  --color-ink: #161A17;
-  --color-ink-muted: #5B615C;   /* 6.2:1 on white */
+  /* Checklist tick, drawn in --on-ink. An image can't read CSS variables,
+     so each theme block carries its own copy. */
+  --check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.75 2.75L12 5.5' fill='none' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
-  /* Lines */
-  --color-line: #E4E3DB;
-  --color-line-strong: #8B908A; /* input borders, 3.3:1 on white */
+  /* The one exception: form errors (always paired with an icon or words) */
+  --error: #B91C1C;       /* 6.5:1 on white */
 
-  /* Brand green: action, links, focus */
-  --color-primary: #1D5B4A;     /* 7.9:1 on white */
-  --color-primary-hover: #174B3D;
-  --color-primary-tint: #E9F1ED;
-  --color-on-primary: #FFFFFF;
+  /* Paper: the resume preview is a printed page, so it never changes theme */
+  --paper: #FFFFFF;
+  --paper-ink: #0A0A0A;
+  --paper-text-muted: #404040; /* neutral gray, so the page stays pure black and white */
 
-  /* Status */
-  --color-success: #1D5B4A;
-  --color-success-tint: #E9F1ED;
-  --color-danger: #A83226;      /* 6.5:1 on white */
-  --color-danger-tint: #FBEDEA;
-  --color-gold: #7A5D1A;        /* RA 11261 badge text */
-  --color-gold-tint: #F6EFDC;
-
-  /* Header glass */
-  --color-header: rgb(255 255 255 / 0.82);
+  /* Header glass: the page color, slightly see-through */
+  --header-bg: color-mix(in srgb, var(--bg) 86%, transparent);
 
   /* Fonts: Google Fonts first, then system fonts for offline use */
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -70,83 +63,58 @@
   --space-8: 4rem;
   --space-9: 6rem;
 
-  /* Rounded corners */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
-  --radius-pill: 999px;
+  /* Rounded corners: one scale used everywhere */
+  --radius-sm: 8px;      /* chips, checkboxes */
+  --radius-md: 12px;     /* inputs, small cards */
+  --radius-lg: 16px;     /* cards */
+  --radius-xl: 24px;     /* sections, large panels, flashcards */
+  --radius-2xl: 32px;    /* hero and illustration panels */
+  --radius-pill: 999px;  /* buttons, pills, tags, meters */
 
-  /* Shadows: soft and offset, like paper on a desk */
-  --shadow-sm: 0 1px 2px rgb(22 26 23 / 0.05);
-  --shadow-md: 0 6px 20px -8px rgb(22 26 23 / 0.16), 0 2px 6px rgb(22 26 23 / 0.04);
-  --shadow-lg: 0 18px 40px -16px rgb(22 26 23 / 0.22), 0 4px 10px rgb(22 26 23 / 0.05);
+  /* One very soft shadow, only for things that float (menus) */
+  --shadow-float: 0 12px 32px -12px rgb(0 0 0 / 0.18);
 
-  /* Motion */
+  /* Motion: short and calm */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 180ms;
 
   --max-width: 72rem;
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 /* Dark theme: used when the visitor picks it, or when their device is dark
-   and they haven't picked anything. Greens are lightened to stay readable. */
-:root[data-theme="dark"] {
-  --color-bg: #0F1311;
-  --color-band: #131815;
-  --color-surface: #171C19;
-  --color-raised: #1C221F;
-  --color-bone: #DAD9D0;
-  --color-ink: #E8EBE6;
-  --color-ink-muted: #A3AAA4;   /* 7.6:1 on the page */
-  --color-line: #29302C;
-  --color-line-strong: #6B746D; /* 3.4:1 on cards */
-  --color-primary: #74C7A6;     /* 9.7:1 on the page */
-  --color-primary-hover: #93D6BB;
-  --color-primary-tint: #1A2E27;
-  --color-on-primary: #0B1612;
-  --color-success: #74C7A6;
-  --color-success-tint: #1A2E27;
-  --color-danger: #F2958A;
-  --color-danger-tint: #33201D;
-  --color-gold: #E6C77F;
-  --color-gold-tint: #2E2716;
-  --color-header: rgb(15 19 17 / 0.8);
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 8px 24px -10px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 20px 44px -18px rgb(0 0 0 / 0.7), 0 4px 10px rgb(0 0 0 / 0.3);
-  color-scheme: dark;
-}
-
+   and they haven't picked anything. Same roles, flipped values. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-bg: #0F1311;
-    --color-band: #131815;
-    --color-surface: #171C19;
-    --color-raised: #1C221F;
-    --color-bone: #DAD9D0;
-    --color-ink: #E8EBE6;
-    --color-ink-muted: #A3AAA4;
-    --color-line: #29302C;
-    --color-line-strong: #6B746D;
-    --color-primary: #74C7A6;
-    --color-primary-hover: #93D6BB;
-    --color-primary-tint: #1A2E27;
-    --color-on-primary: #0B1612;
-    --color-success: #74C7A6;
-    --color-success-tint: #1A2E27;
-    --color-danger: #F2958A;
-    --color-danger-tint: #33201D;
-    --color-gold: #E6C77F;
-    --color-gold-tint: #2E2716;
-    --color-header: rgb(15 19 17 / 0.8);
-    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-md: 0 8px 24px -10px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.3);
-    --shadow-lg: 0 20px 44px -18px rgb(0 0 0 / 0.7), 0 4px 10px rgb(0 0 0 / 0.3);
-    color-scheme: dark;
+    --bg: #0A0A0A;
+    --surface: #18181B;
+    --line: #27272A;
+    --muted: #52525B;
+    --text-muted: #A1A1AA;  /* 7.7:1 on --bg */
+    --ink: #FAFAFA;
+    --on-ink: #0A0A0A;
+    --error: #F87171;       /* 7.2:1 on --bg */
+    --check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.75 2.75L12 5.5' fill='none' stroke='%230A0A0A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    --shadow-float: 0 12px 32px -12px rgb(0 0 0 / 0.7);
   }
 }
+
+:root[data-theme="dark"] {
+  --bg: #0A0A0A;
+  --surface: #18181B;
+  --line: #27272A;
+  --muted: #52525B;
+  --text-muted: #A1A1AA;
+  --ink: #FAFAFA;
+  --on-ink: #0A0A0A;
+  --error: #F87171;
+  --check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.75 2.75L12 5.5' fill='none' stroke='%230A0A0A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --shadow-float: 0 12px 32px -12px rgb(0 0 0 / 0.7);
+}
+
+/* A visitor's manual choice also sets the browser's own controls (scrollbars) */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 
 /* 2. BASE AND RESET --------------------------------------------------------
@@ -165,18 +133,18 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem; /* anchored headings land below the sticky header */
-  accent-color: var(--color-primary);
-  caret-color: var(--color-primary);
-  scrollbar-color: var(--color-line-strong) var(--color-bg);
+  accent-color: var(--ink);
+  caret-color: var(--ink);
+  scrollbar-color: var(--muted) var(--bg);
 }
 
 body {
   min-height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-ink);
+  background-color: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -186,7 +154,7 @@ body {
 .theme-changing *,
 .theme-changing *::before,
 .theme-changing *::after {
-  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease !important;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, fill 180ms ease, stroke 180ms ease !important;
 }
 
 img,
@@ -209,8 +177,8 @@ button {
 }
 
 ::selection {
-  background-color: var(--color-primary-tint);
-  color: var(--color-ink);
+  background-color: var(--ink);
+  color: var(--on-ink);
 }
 
 /* Keyboard focus: one clear ring, only for keyboard users (never on click) */
@@ -219,9 +187,8 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 /* The hidden attribute always wins, even over display rules on .btn etc. */
@@ -248,8 +215,8 @@ button {
   left: var(--space-3);
   z-index: 100;
   padding: var(--space-2) var(--space-4);
-  background-color: var(--color-ink);
-  color: var(--color-bg);
+  background-color: var(--ink);
+  color: var(--on-ink);
   border-radius: var(--radius-pill);
   font-weight: 600;
   text-decoration: none;
@@ -260,7 +227,7 @@ button {
 .skip-link:focus,
 .skip-link:hover {
   transform: translateY(0);
-  color: var(--color-bg);
+  color: var(--on-ink);
 }
 
 
@@ -294,7 +261,7 @@ dd {
 
 .lead {
   font-size: var(--text-lg);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
@@ -304,16 +271,26 @@ small,
 }
 
 .muted {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .h3 {
   font-size: var(--text-h3);
 }
 
+/* Eyebrow: a small mono label above or beside content */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
 mark {
-  background-color: var(--color-gold-tint);
-  color: var(--color-gold);
+  background-color: var(--ink);
+  color: var(--on-ink);
   padding: 0.05em 0.35em;
   border-radius: 6px;
   font-weight: 600;
@@ -326,8 +303,8 @@ strong {
 code {
   font-family: var(--font-mono);
   font-size: 0.875em;
-  background-color: var(--color-band);
-  border: 1px solid var(--color-line);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
   padding: 0.05em 0.4em;
   border-radius: 6px;
   overflow-wrap: anywhere;
@@ -355,7 +332,7 @@ code {
 }
 
 .section-band {
-  background-color: var(--color-band);
+  background-color: var(--surface);
 }
 
 .section-head {
@@ -393,9 +370,11 @@ code {
 
 
 /* 5. BUTTONS AND LINKS -----------------------------------------------------
-   Every button is at least 44px tall. Hover lifts, press settles. */
+   Links are ink with a soft underline. Buttons are pills at least 44px tall:
+   primary = ink fill, secondary = outline. Hover only changes fill or
+   opacity; a press settles slightly. */
 a {
-  color: var(--color-primary);
+  color: var(--ink);
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
@@ -404,7 +383,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-hover);
+  color: var(--ink);
   text-decoration-color: currentColor;
 }
 
@@ -416,8 +395,8 @@ a:hover {
   min-height: 44px;
   padding: 0.625rem 1.25rem;
   border: 1px solid transparent;
-  border-radius: var(--radius-md);
-  font-weight: 500;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
   font-size: var(--text-base);
   line-height: 1.2;
   text-decoration: none;
@@ -426,85 +405,74 @@ a:hover {
   transition: background-color var(--duration) var(--ease-out),
               border-color var(--duration) var(--ease-out),
               color var(--duration) var(--ease-out),
-              box-shadow var(--duration) var(--ease-out),
+              opacity var(--duration) var(--ease-out),
               transform var(--duration) var(--ease-out);
 }
 
 .btn:hover {
-  transform: translateY(-1px);
   text-decoration: none;
 }
 
 .btn:active {
-  transform: translateY(0) scale(0.98);
-  transition-duration: 60ms;
+  transform: scale(0.98);
 }
 
 .btn svg {
   width: 1.1em;
   height: 1.1em;
   flex-shrink: 0;
-  transition: transform var(--duration) var(--ease-out);
-}
-
-/* Arrow icons nudge forward on hover */
-.btn:hover svg:only-of-type:last-child {
-  transform: translateX(2px);
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-on-primary);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--ink);
+  color: var(--on-ink);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-hover);
-  color: var(--color-on-primary);
-  box-shadow: var(--shadow-md);
+  color: var(--on-ink);
+  opacity: 0.86;
 }
 
 .btn-secondary {
-  background-color: var(--color-surface);
-  border-color: var(--color-line);
-  color: var(--color-ink);
-  box-shadow: var(--shadow-sm);
+  background-color: transparent;
+  border-color: var(--line);
+  color: var(--ink);
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-line-strong);
-  color: var(--color-ink);
+  background-color: var(--surface);
+  color: var(--ink);
 }
 
 .btn-quiet {
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--ink);
   padding-left: var(--space-3);
   padding-right: var(--space-3);
 }
 
 .btn-quiet:hover {
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  background-color: var(--surface);
+  color: var(--ink);
 }
 
+/* Clear and Delete: an outline pill like .btn-secondary. They always ask
+   before deleting, so they don't need a warning color. */
 .btn-danger {
   background-color: transparent;
-  border-color: color-mix(in srgb, var(--color-danger) 45%, transparent);
-  color: var(--color-danger);
+  border-color: var(--line);
+  color: var(--ink);
 }
 
 .btn-danger:hover {
-  background-color: var(--color-danger-tint);
-  border-color: var(--color-danger);
-  color: var(--color-danger);
+  background-color: var(--surface);
+  color: var(--ink);
 }
 
 .btn-small {
-  min-height: 38px;
-  padding: 0.4rem 0.9rem;
+  min-height: 40px;
+  padding: 0.4rem 1rem;
   font-size: var(--text-sm);
-  border-radius: var(--radius-sm);
 }
 
 .btn-row {
@@ -516,13 +484,13 @@ a:hover {
 
 
 /* 6. CARDS, NOTES, CHIPS ---------------------------------------------------
-   Cards are quiet: a hairline border, rounded corners, a whisper of shadow. */
+   Cards are quiet: a 1px line border and 16px corners, no shadow. Soft
+   panels (notes, sections) use the --surface fill instead of a border. */
 .card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow: var(--shadow-sm);
 }
 
 .card > * + * {
@@ -538,10 +506,10 @@ a:hover {
   margin-top: var(--space-1);
 }
 
-/* Notes: tinted panels for tips */
+/* Notes: soft gray panels for tips */
 .note {
-  background-color: var(--color-gold-tint);
-  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
   padding: var(--space-4) var(--space-5);
 }
 
@@ -553,7 +521,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--color-gold);
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -564,11 +532,11 @@ a:hover {
 }
 
 .note-info {
-  background-color: var(--color-primary-tint);
+  background-color: var(--surface);
 }
 
 .note-info .note-title {
-  color: var(--color-primary);
+  color: var(--ink);
 }
 
 /* Chips: small rounded labels */
@@ -578,26 +546,28 @@ a:hover {
   gap: var(--space-1);
   padding: 0.15rem 0.65rem;
   border-radius: var(--radius-pill);
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  background-color: var(--surface);
+  color: var(--ink);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.6;
 }
 
+/* Found: a solid ink pill. Missing: an outline pill with muted text. */
 .chip-success {
-  background-color: var(--color-success-tint);
-  color: var(--color-success);
+  background-color: var(--ink);
+  color: var(--on-ink);
 }
 
 .chip-danger {
-  background-color: var(--color-danger-tint);
-  color: var(--color-danger);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+  color: var(--text-muted);
 }
 
 .chip-gold {
-  background-color: var(--color-gold-tint);
-  color: var(--color-gold);
+  background-color: var(--surface);
+  color: var(--ink);
 }
 
 .chip-list {
@@ -613,14 +583,15 @@ a:hover {
   display: inline-block;
   padding: 0.1rem 0.6rem;
   border-radius: var(--radius-pill);
-  background-color: var(--color-gold-tint);
-  color: var(--color-gold);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--ink); /* an ink outline that doesn't change the size */
+  color: var(--ink);
   font-size: var(--text-xs);
   font-weight: 600;
   white-space: nowrap;
 }
 
-/* Green check list, checks drawn with CSS borders */
+/* Check list: ink ticks drawn with CSS borders */
 .check-list {
   padding: 0;
   list-style: none;
@@ -646,8 +617,8 @@ a:hover {
   top: 0.4rem;
   width: 0.4rem;
   height: 0.75rem;
-  border-right: 2px solid var(--color-success);
-  border-bottom: 2px solid var(--color-success);
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
   transform: rotate(40deg);
 }
 
@@ -659,28 +630,12 @@ a:hover {
   margin-top: var(--space-2);
 }
 
-/* Illustration frames: the drawings keep their paper colors in both themes */
+/* Illustrations: each SVG draws its own rounded 32px panel, and there is a
+   light and a dark file (see the <picture> tags), so no frame is needed */
 .illus {
   justify-self: center;
   width: 100%;
   max-width: 22rem;
-  padding: var(--space-4);
-  background-color: #FFFFFF;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-}
-
-:root[data-theme="dark"] .illus {
-  background-color: var(--color-bone);
-  border-color: transparent;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .illus {
-    background-color: var(--color-bone);
-    border-color: transparent;
-  }
 }
 
 .illus img {
@@ -702,12 +657,12 @@ a:hover {
 
 label,
 .label {
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-sm);
 }
 
 .hint {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   font-size: var(--text-sm);
   font-weight: 400;
 }
@@ -723,8 +678,8 @@ select {
   width: 100%;
   min-height: 44px;
   padding: 0.6rem 0.85rem;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line-strong);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius-md);
   transition: border-color var(--duration) var(--ease-out); /* the focus ring appears instantly */
 }
@@ -732,8 +687,8 @@ select {
 /* Drop-down menu items follow the theme too */
 option,
 optgroup {
-  background-color: var(--color-surface);
-  color: var(--color-ink);
+  background-color: var(--bg);
+  color: var(--ink);
 }
 
 textarea {
@@ -744,33 +699,54 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--color-ink-muted);
-  opacity: 0.85;
+  color: var(--text-muted);
+  opacity: 1;
 }
 
 input:hover,
 textarea:hover,
 select:hover {
-  border-color: var(--color-ink-muted);
+  border-color: var(--muted);
 }
 
-/* Focus ring for fields: a soft green halo instead of a hard outline */
+/* Fields inside a gray panel use the page color so they still stand out */
+.entry :is(input, textarea, select),
+.tool-panel :is(input, textarea, select) {
+  background-color: var(--bg);
+}
+
+/* Focus on fields: the border turns ink, plus the shared 2px ring */
 input:not([type="checkbox"]):not([type="radio"]):focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
+  border-color: var(--ink);
 }
 
 [aria-invalid="true"] {
-  border-color: var(--color-danger);
+  border-color: var(--error);
 }
 
+/* Errors: the one non-gray color, always with a warning icon and words */
 .error-text {
-  color: var(--color-danger);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--error);
   font-size: var(--text-sm);
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.error-text::before {
+  content: "!";
+  display: inline-grid;
+  place-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  line-height: 1;
 }
 
 .error-text:empty {
@@ -784,12 +760,32 @@ select:focus-visible {
   cursor: pointer;
 }
 
+/* Custom checkbox: a rounded 8px box; checked = ink fill with a tick.
+   It is still a real <input>, so keyboard and screen readers work. */
 .check-row input[type="checkbox"] {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-top: 0.2rem;
+  -webkit-appearance: none;
+  appearance: none;
+  display: grid;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0.1rem 0 0;
   flex-shrink: 0;
+  background-color: var(--bg);
+  border: 1.5px solid var(--text-muted);
+  border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: background-color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
+}
+
+.check-row input[type="checkbox"]:hover {
+  border-color: var(--ink);
+}
+
+.check-row input[type="checkbox"]:checked {
+  background-color: var(--ink);
+  background-image: var(--check-mark);
+  background-size: 100% 100%;
+  border-color: var(--ink);
 }
 
 .success-message {
@@ -798,10 +794,9 @@ select:focus-visible {
   align-items: flex-start;
   padding: var(--space-4);
   border-radius: var(--radius-md);
-  background-color: var(--color-success-tint);
-  color: var(--color-success);
-  font-weight: 500;
-  animation: rise-in 280ms var(--ease-out);
+  background-color: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .success-message[hidden] {
@@ -814,16 +809,17 @@ select:focus-visible {
 
 
 /* 8. HEADER, NAVIGATION, THEME SWITCH --------------------------------------
-   A sticky glass bar. One way to show the current page: a soft pill
-   behind its link. Links show a focus ring only for the keyboard. */
+   A sticky glass bar: logo lockup, page links, the Build resume pill and
+   the theme switch. The current page is ink with a small dot under it;
+   other links are muted. Focus rings show only for the keyboard. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: var(--color-header);
+  background-color: var(--header-bg);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
-  backdrop-filter: saturate(160%) blur(14px);
-  border-bottom: 1px solid var(--color-line);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
@@ -838,25 +834,39 @@ select:focus-visible {
   align-items: center;
   gap: 0.6rem;
   margin-right: auto;
-  color: var(--color-ink);
-  font-weight: 600;
-  font-size: 1.2rem;
-  letter-spacing: -0.03em;
+  color: var(--ink);
   text-decoration: none;
   border-radius: var(--radius-sm);
 }
 
 .brand:hover {
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
-.brand img {
-  border-radius: 8px;
-  transition: transform 300ms var(--ease-out);
+/* The mark is inline SVG painted with var(--ink) and var(--bg), so it
+   inverts with the theme. It is never recolored or animated. */
+.brand-mark {
+  flex-shrink: 0;
 }
 
-.brand:hover img {
-  transform: rotate(-6deg) scale(1.05);
+/* Wordmark: lowercase "simula", Plex Sans SemiBold, tight tracking */
+.wordmark {
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-transform: lowercase;
+}
+
+/* Header call to action: shown once there is room for it */
+.nav-cta {
+  display: none;
+}
+
+@media (min-width: 30rem) {
+  .nav-cta {
+    display: inline-flex;
+  }
 }
 
 /* Right side: theme switch and (on phones) the menu button */
@@ -877,17 +887,16 @@ select:focus-visible {
   height: 40px;
   padding: 0 0.6rem;
   background-color: transparent;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  color: var(--color-ink);
+  color: var(--ink);
   cursor: pointer;
   transition: background-color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
 }
 
 .theme-toggle:hover,
 .nav-toggle:hover {
-  background-color: var(--color-band);
-  border-color: var(--color-line-strong);
+  background-color: var(--surface);
 }
 
 .theme-toggle:active,
@@ -907,7 +916,7 @@ select:focus-visible {
   position: absolute;
   width: 1.15rem;
   height: 1.15rem;
-  transition: transform 360ms var(--ease-out), opacity 240ms var(--ease-out);
+  transition: transform var(--duration) var(--ease-out), opacity var(--duration) var(--ease-out);
 }
 
 .theme-toggle .icon-sun {
@@ -930,7 +939,7 @@ select:focus-visible {
   display: none; /* shown only when JavaScript is on (see .js rules below) */
   padding-left: 0.85rem;
   padding-right: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-sm);
 }
 
@@ -947,7 +956,7 @@ select:focus-visible {
   height: 1.5px;
   border-radius: 2px;
   background-color: currentColor;
-  transition: transform 260ms var(--ease-out), top 260ms var(--ease-out);
+  transition: transform var(--duration) var(--ease-out), top var(--duration) var(--ease-out);
 }
 
 .nav-toggle-box span:first-child { top: 0; }
@@ -973,35 +982,48 @@ select:focus-visible {
 }
 
 .site-nav a {
+  position: relative;
   display: block;
   padding: 0.45rem 0.8rem;
   border-radius: var(--radius-pill);
-  color: var(--color-ink-muted);
-  font-weight: 500;
+  color: var(--text-muted);
+  font-weight: 400;
   font-size: 0.9375rem;
   text-decoration: none;
   transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out);
 }
 
 .site-nav a:hover {
-  background-color: var(--color-band);
-  color: var(--color-ink);
+  background-color: var(--surface);
+  color: var(--ink);
 }
 
-/* Current page: one soft pill, no underline and no extra bar */
+/* Current page: ink text and one small ink dot under it (no underline) */
 .site-nav a[aria-current="page"] {
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.site-nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.1rem;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background-color: var(--ink);
 }
 
 /* "Sign in" sits apart from the page links */
 .nav-auth a {
-  border: 1px solid var(--color-line);
-  color: var(--color-ink);
+  border: 1px solid var(--line);
+  color: var(--ink);
 }
 
 .nav-auth a:hover {
-  border-color: var(--color-line-strong);
+  border-color: var(--line);
 }
 
 /* Signed-in state written by auth.js */
@@ -1017,24 +1039,25 @@ select:focus-visible {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .auth-signout {
   padding: 0.35rem 0.75rem;
   background: none;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  color: var(--color-ink);
+  color: var(--ink);
   font-size: var(--text-sm);
   cursor: pointer;
 }
 
 .auth-signout:hover {
-  border-color: var(--color-line-strong);
+  background-color: var(--surface);
 }
 
-/* Phones and tablets with JavaScript on: the links live in a drop-down panel */
+/* Phones and tablets with JavaScript on: the links live in a rounded panel
+   that floats under the header (the only element with a shadow) */
 @media (max-width: 63.99rem) {
   .js .nav-toggle {
     display: inline-flex;
@@ -1042,24 +1065,25 @@ select:focus-visible {
 
   .js .site-nav {
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding: var(--space-3) var(--space-5) var(--space-5);
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-line);
-    box-shadow: var(--shadow-lg);
+    top: calc(100% + var(--space-2));
+    left: var(--space-4);
+    right: var(--space-4);
+    padding: var(--space-3);
+    background-color: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-float);
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-8px);
-    transition: opacity 220ms var(--ease-out), transform 260ms var(--ease-out), visibility 0s linear 260ms;
+    transform: translateY(-4px);
+    transition: opacity var(--duration) var(--ease-out), transform var(--duration) var(--ease-out), visibility 0s linear var(--duration);
   }
 
   .js .site-nav.is-open {
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 220ms var(--ease-out), transform 260ms var(--ease-out), visibility 0s;
+    transition: opacity var(--duration) var(--ease-out), transform var(--duration) var(--ease-out), visibility 0s;
   }
 
   .js .site-nav ul {
@@ -1073,29 +1097,23 @@ select:focus-visible {
     font-size: var(--text-base);
   }
 
-  /* Links rise in one after another when the panel opens */
-  .js .site-nav li {
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out);
+  /* In the panel the current page gets a soft fill; the dot moves left */
+  .js .site-nav a[aria-current="page"] {
+    background-color: var(--surface);
   }
 
-  .js .site-nav.is-open li {
-    opacity: 1;
-    transform: none;
+  .js .site-nav a[aria-current="page"]::after {
+    left: auto;
+    right: 1rem;
+    bottom: auto;
+    top: 50%;
+    margin: -2px 0 0;
   }
-
-  .js .site-nav.is-open li:nth-child(2) { transition-delay: 25ms; }
-  .js .site-nav.is-open li:nth-child(3) { transition-delay: 50ms; }
-  .js .site-nav.is-open li:nth-child(4) { transition-delay: 75ms; }
-  .js .site-nav.is-open li:nth-child(5) { transition-delay: 100ms; }
-  .js .site-nav.is-open li:nth-child(6) { transition-delay: 125ms; }
-  .js .site-nav.is-open li:nth-child(7) { transition-delay: 150ms; }
 
   .js .nav-auth {
     margin-top: var(--space-2);
     padding-top: var(--space-3);
-    border-top: 1px solid var(--color-line);
+    border-top: 1px solid var(--line);
   }
 
   .js .nav-auth a {
@@ -1128,10 +1146,10 @@ html:not(.js) .theme-toggle {
 /* 9. FOOTER ----------------------------------------------------------------
    Quiet footer with a top rule. */
 .site-footer {
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
   padding-top: var(--space-7);
   padding-bottom: var(--space-6);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   font-size: var(--text-sm);
 }
 
@@ -1157,17 +1175,17 @@ html:not(.js) .theme-toggle {
 }
 
 .footer-links a {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   text-decoration: none;
 }
 
 .footer-links a:hover {
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .footer-fine {
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
   font-size: var(--text-xs);
 }
 
@@ -1214,7 +1232,7 @@ html:not(.js) .theme-toggle {
 }
 
 .hero-note {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   font-size: var(--text-sm);
 }
 
@@ -1232,18 +1250,19 @@ html:not(.js) .theme-toggle {
 
 /* "What's inside" card: rows with a count and a thin meter */
 .hero-register {
-  padding: var(--space-5);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  background-color: var(--surface);
+  border-radius: var(--radius-2xl);
 }
 
+/* "What's inside": styled like the shared .eyebrow label */
 .register-title {
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-ink-muted);
-  letter-spacing: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
   margin-bottom: var(--space-2);
 }
 
@@ -1259,14 +1278,14 @@ html:not(.js) .theme-toggle {
   align-items: center;
   gap: var(--space-2) var(--space-4);
   padding: var(--space-4) 0;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
 }
 
 .reg-main {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  color: var(--color-ink);
+  color: var(--ink);
   text-decoration: none;
 }
 
@@ -1279,7 +1298,7 @@ html:not(.js) .theme-toggle {
 }
 
 .reg-main:hover {
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .reg-name {
@@ -1288,11 +1307,12 @@ html:not(.js) .theme-toggle {
 }
 
 .register-row:hover .reg-name {
-  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .reg-detail {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   font-size: var(--text-sm);
 }
 
@@ -1300,7 +1320,7 @@ html:not(.js) .theme-toggle {
   font-family: var(--font-mono);
   font-size: 1.5rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1308,7 +1328,7 @@ html:not(.js) .theme-toggle {
   grid-column: 1 / -1;
   height: 4px;
   border-radius: var(--radius-pill);
-  background-color: var(--color-band);
+  background-color: var(--line);
   overflow: hidden;
 }
 
@@ -1317,15 +1337,15 @@ html:not(.js) .theme-toggle {
   height: 100%;
   width: 0;
   border-radius: inherit;
-  background-color: var(--color-primary);
-  transition: width 900ms var(--ease-out);
+  background-color: var(--ink);
+  transition: width var(--duration) var(--ease-out);
 }
 
 /* Inner-page intro: title and lead, with an illustration on wide screens */
 .page-intro {
   padding-top: var(--space-7);
   padding-bottom: var(--space-7);
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--line);
 }
 
 .page-intro .lead {
@@ -1389,8 +1409,8 @@ html:not(.js) .theme-toggle {
 }
 
 .compare-col-empty {
-  border: 1px dashed var(--color-line-strong);
-  color: var(--color-ink-muted);
+  border: 1px dashed var(--muted);
+  color: var(--text-muted);
 }
 
 .compare-col-empty li {
@@ -1399,13 +1419,11 @@ html:not(.js) .theme-toggle {
 }
 
 .compare-col-full {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
-  box-shadow: var(--shadow-md);
+  background-color: var(--surface);
 }
 
 .compare-col-full li::marker {
-  color: var(--color-primary);
+  color: var(--ink);
 }
 
 @media (min-width: 36rem) {
@@ -1414,7 +1432,7 @@ html:not(.js) .theme-toggle {
   }
 }
 
-/* Audience: three short blocks with a green top rule */
+/* Audience: three short blocks with an ink top rule */
 .audience-list {
   display: grid;
   gap: var(--space-5);
@@ -1424,7 +1442,7 @@ html:not(.js) .theme-toggle {
 
 .audience-list li {
   padding-top: var(--space-4);
-  border-top: 2px solid var(--color-primary);
+  border-top: 2px solid var(--ink);
 }
 
 .audience-list h3 {
@@ -1432,7 +1450,7 @@ html:not(.js) .theme-toggle {
 }
 
 .audience-list p {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 @media (min-width: 48rem) {
@@ -1453,16 +1471,14 @@ html:not(.js) .theme-toggle {
 .journey-step {
   position: relative;
   padding: var(--space-5);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  transition: border-color var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
+  transition: background-color var(--duration) var(--ease-out);
 }
 
 .journey-step:hover {
-  border-color: var(--color-line-strong);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  background-color: var(--surface);
 }
 
 .journey-step > * + * {
@@ -1476,13 +1492,13 @@ html:not(.js) .theme-toggle {
 }
 
 .journey-step p {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 /* The step's link covers the whole card */
 .journey-step a {
   display: inline-block;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -1499,16 +1515,17 @@ html:not(.js) .theme-toggle {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  background-color: var(--ink);
+  color: var(--on-ink);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 .journey-extra {
   margin-top: var(--space-6);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 @media (min-width: 56rem) {
@@ -1521,8 +1538,8 @@ html:not(.js) .theme-toggle {
 .table-wrap {
   overflow-x: auto;
   padding: var(--space-1);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
 }
 
@@ -1537,16 +1554,16 @@ td {
   padding: var(--space-3) var(--space-4);
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--line);
 }
 
 thead th {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
 }
 
 tbody tr:last-child th,
@@ -1555,7 +1572,7 @@ tbody tr:last-child td {
 }
 
 tbody th {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 tbody tr {
@@ -1563,19 +1580,19 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background-color: var(--color-raised);
+  background-color: var(--surface);
 }
 
 .compare-table td:nth-child(2) {
-  background-color: color-mix(in srgb, var(--color-primary-tint) 55%, transparent);
+  background-color: var(--surface);
 }
 
 .yes {
   display: inline-flex;
   align-items: flex-start;
   gap: var(--space-2);
-  color: var(--color-success);
-  font-weight: 500;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .yes svg {
@@ -1601,7 +1618,7 @@ tbody tr:hover {
 
 .cta-inner p {
   margin-inline: auto;
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .cta-inner .btn {
@@ -1618,9 +1635,8 @@ tbody tr:hover {
 
 .toc {
   align-self: start;
-  padding: var(--space-4) var(--space-5);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  padding: var(--space-5);
+  background-color: var(--surface);
   border-radius: var(--radius-lg);
 }
 
@@ -1639,18 +1655,19 @@ tbody tr:hover {
 }
 
 .toc a {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   text-decoration: none;
 }
 
 .toc a:hover {
-  color: var(--color-primary);
+  color: var(--ink);
+  text-decoration: underline;
 }
 
 .article > section + section {
   margin-top: var(--space-8);
   padding-top: var(--space-7);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
 }
 
 .article h2 {
@@ -1697,11 +1714,11 @@ tbody tr:hover {
   gap: var(--space-1);
   padding-top: var(--space-4);
   padding-bottom: var(--space-4);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
 }
 
 .section-list > div:last-child {
-  border-bottom: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--line);
 }
 
 .section-list dt {
@@ -1709,7 +1726,7 @@ tbody tr:hover {
 }
 
 .section-list dd {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 @media (min-width: 40rem) {
@@ -1729,8 +1746,8 @@ tbody tr:hover {
 .do-dont > div {
   padding: var(--space-5);
   border-radius: var(--radius-lg);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
 }
 
 .do-dont h3 {
@@ -1746,8 +1763,8 @@ tbody tr:hover {
   height: 1.25rem;
 }
 
-.do-list h3 { color: var(--color-success); }
-.dont-list h3 { color: var(--color-danger); }
+.do-list h3 { color: var(--ink); }
+.dont-list h3 { color: var(--ink); } /* the X icon and the word "Don't" carry the meaning */
 
 @media (min-width: 48rem) {
   .do-dont {
@@ -1774,10 +1791,10 @@ tbody tr:hover {
 
 .bullet-pair {
   display: grid;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background-color: var(--color-surface);
+  background-color: var(--bg);
 }
 
 .bullet-pair p {
@@ -1786,12 +1803,12 @@ tbody tr:hover {
 }
 
 .bullet-pair .weak {
-  background-color: var(--color-raised);
-  color: var(--color-ink-muted);
+  background-color: var(--surface);
+  color: var(--text-muted);
 }
 
 .bullet-pair .strong {
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--line);
 }
 
 .pair-label {
@@ -1800,12 +1817,12 @@ tbody tr:hover {
   font-size: var(--text-xs);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   margin-bottom: var(--space-1);
 }
 
-.weak .pair-label { color: var(--color-danger); }
-.strong .pair-label { color: var(--color-success); }
+.weak .pair-label { color: var(--text-muted); }
+.strong .pair-label { color: var(--ink); }
 
 @media (min-width: 48rem) {
   .bullet-pair {
@@ -1814,7 +1831,7 @@ tbody tr:hover {
 
   .bullet-pair .strong {
     border-top: 0;
-    border-left: 1px solid var(--color-line);
+    border-left: 1px solid var(--line);
   }
 }
 
@@ -1824,7 +1841,7 @@ tbody tr:hover {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .formula .chip {
@@ -1839,7 +1856,7 @@ tbody tr:hover {
   align-items: center;
   margin-top: var(--space-7);
   padding: var(--space-6);
-  background-color: var(--color-band);
+  background-color: var(--surface);
   border-radius: var(--radius-xl);
 }
 
@@ -1850,7 +1867,7 @@ tbody tr:hover {
 
 .next-step p {
   margin-top: var(--space-1);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 @media (min-width: 48rem) {
@@ -1872,8 +1889,8 @@ tbody tr:hover {
   gap: var(--space-4);
   align-items: center;
   padding: var(--space-4);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
 }
 
@@ -1888,15 +1905,15 @@ tbody tr:hover {
   height: 3rem;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  background-color: var(--surface);
+  color: var(--ink);
   font-family: var(--font-mono);
   font-weight: 500;
   font-size: var(--text-sm);
 }
 
 .team-role {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   font-size: var(--text-sm);
 }
 
@@ -1957,8 +1974,8 @@ tbody tr:hover {
   grid-template-columns: 1fr 1fr;
   gap: 4px;
   padding: 4px;
-  background-color: var(--color-band);
-  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  border-radius: var(--radius-pill);
 }
 
 .auth-tab {
@@ -1966,18 +1983,17 @@ tbody tr:hover {
   padding: 0.4rem 0.75rem;
   background: none;
   border: 0;
-  border-radius: var(--radius-sm);
-  color: var(--color-ink-muted);
-  font-weight: 500;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-weight: 600;
   font-size: var(--text-sm);
   cursor: pointer;
-  transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
+  transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out);
 }
 
 .auth-tab[aria-pressed="true"] {
-  background-color: var(--color-surface);
-  color: var(--color-ink);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--bg);
+  color: var(--ink);
 }
 
 .auth-status:empty {
@@ -1985,11 +2001,11 @@ tbody tr:hover {
 }
 
 .auth-status.is-error {
-  color: var(--color-danger);
+  color: var(--error);
 }
 
 .auth-status.is-success {
-  color: var(--color-success);
+  color: var(--ink);
 }
 
 .auth-privacy {
@@ -2009,7 +2025,7 @@ tbody tr:hover {
 
 .filter-bar legend,
 .template-switch legend {
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-sm);
   margin-bottom: var(--space-2);
 }
@@ -2026,10 +2042,10 @@ tbody tr:hover {
   align-items: center;
   min-height: 36px;
   padding: 0.3rem 0.9rem;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  background-color: var(--color-surface);
-  font-weight: 500;
+  background-color: var(--bg);
+  font-weight: 600;
   font-size: var(--text-sm);
   cursor: pointer;
   transition: background-color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out), transform var(--duration) var(--ease-out);
@@ -2045,7 +2061,7 @@ tbody tr:hover {
 }
 
 .filter-chip:hover {
-  border-color: var(--color-line-strong);
+  background-color: var(--surface);
 }
 
 .filter-chip:active {
@@ -2053,14 +2069,14 @@ tbody tr:hover {
 }
 
 .filter-chip:has(input:checked) {
-  background-color: var(--color-ink);
-  border-color: var(--color-ink);
-  color: var(--color-bg);
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
 }
 
 .filter-chip:has(input:focus-visible) {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
 /* Flashcards */
@@ -2078,11 +2094,10 @@ tbody tr:hover {
 }
 
 .flashcard {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   padding: var(--space-6) var(--space-5);
-  box-shadow: var(--shadow-lg);
 }
 
 @media (min-width: 48rem) {
@@ -2109,20 +2124,24 @@ tbody tr:hover {
   text-wrap: balance;
 }
 
+/* The revealed answer flips to ink, like the answer bubble in interview.svg */
 .flashcard-answer {
   margin-top: var(--space-5);
-  padding-top: var(--space-5);
-  border-top: 1px dashed var(--color-line-strong);
-  animation: rise-in 280ms var(--ease-out);
+  padding: var(--space-5);
+  background-color: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--radius-lg);
 }
 
+/* Labels inside the ink panel: --on-ink, slightly faded (still over 9:1) */
 .flashcard-answer h3 {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-ink-muted);
+  letter-spacing: 0.12em;
+  color: var(--on-ink);
+  opacity: 0.75;
 }
 
 .flashcard-answer h3 + p {
@@ -2142,17 +2161,13 @@ tbody tr:hover {
   justify-items: start;
   gap: var(--space-3);
   padding: var(--space-6);
-  border: 1px dashed var(--color-line-strong);
+  border: 1px dashed var(--muted);
   border-radius: var(--radius-xl);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .flashcard-empty[hidden] {
   display: none;
-}
-
-.card-editor {
-  animation: rise-in 280ms var(--ease-out);
 }
 
 .card-editor .field + .field {
@@ -2165,15 +2180,14 @@ tbody tr:hover {
 
 .question-bank {
   padding: var(--space-4) var(--space-5);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--surface);
   border-radius: var(--radius-lg);
 }
 
 .question-bank summary {
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  color: var(--color-primary);
+  color: var(--ink);
   border-radius: var(--radius-sm);
 }
 
@@ -2190,14 +2204,15 @@ tbody tr:hover {
   padding: var(--space-1) 0;
   background: none;
   border: 0;
-  color: var(--color-ink);
+  color: var(--ink);
   text-align: left;
   cursor: pointer;
   transition: color var(--duration) var(--ease-out);
 }
 
 .question-bank button:hover {
-  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 /* STAR list and form */
@@ -2211,18 +2226,17 @@ tbody tr:hover {
   grid-template-columns: 6.5rem 1fr;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--surface);
   border-radius: var(--radius-md);
 }
 
 .star-list dt {
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--ink);
 }
 
 .star-list dd {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .star-form .field + .field {
@@ -2258,8 +2272,8 @@ tbody tr:hover {
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background-color: var(--color-primary-tint);
-  color: var(--color-primary);
+  background-color: var(--ink);
+  color: var(--on-ink);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -2271,7 +2285,7 @@ tbody tr:hover {
 }
 
 .tip-steps p {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 @media (min-width: 56rem) {
@@ -2309,8 +2323,8 @@ tbody tr:hover {
 
 .progress-box {
   padding: var(--space-4) var(--space-5);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-4);
 }
@@ -2329,18 +2343,18 @@ tbody tr:hover {
 }
 
 .progress-track {
-  height: 8px;
+  height: 6px;
   border-radius: var(--radius-pill);
-  background-color: var(--color-band);
+  background-color: var(--line);
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
   width: 0;
-  background-color: var(--color-success);
+  background-color: var(--ink);
   border-radius: inherit;
-  transition: width 500ms var(--ease-out);
+  transition: width var(--duration) var(--ease-out);
 }
 
 .checklist {
@@ -2351,25 +2365,27 @@ tbody tr:hover {
 }
 
 .checklist-item {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-line);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   transition: border-color var(--duration) var(--ease-out), background-color var(--duration) var(--ease-out);
 }
 
 .checklist-item:hover {
-  border-color: var(--color-line-strong);
+  border-color: var(--muted);
 }
 
+/* Done items sink into a soft gray fill */
+
 .checklist-item.is-done {
-  background-color: var(--color-success-tint);
+  background-color: var(--surface);
   border-color: transparent;
 }
 
 .checklist-item.is-done .item-name {
   text-decoration: line-through;
-  text-decoration-color: color-mix(in srgb, var(--color-success) 60%, transparent);
+  text-decoration-color: color-mix(in srgb, var(--ink) 60%, transparent);
   text-decoration-thickness: 1.5px;
 }
 
@@ -2390,7 +2406,7 @@ tbody tr:hover {
   margin-top: var(--space-1);
   margin-left: 2rem;
   font-size: var(--text-sm);
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .item-details {
@@ -2400,8 +2416,8 @@ tbody tr:hover {
 
 .item-details summary {
   display: inline-block;
-  font-weight: 500;
-  color: var(--color-primary);
+  font-weight: 600;
+  color: var(--ink);
   cursor: pointer;
   font-size: var(--text-sm);
   border-radius: var(--radius-sm);
@@ -2419,10 +2435,6 @@ tbody tr:hover {
   content: " −";
 }
 
-.item-details[open] > :not(summary) {
-  animation: rise-in 240ms var(--ease-out);
-}
-
 .item-details dl {
   display: grid;
   gap: var(--space-2);
@@ -2435,7 +2447,7 @@ tbody tr:hover {
 }
 
 .item-details dd {
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
 }
 
 .item-details .label {
@@ -2470,7 +2482,7 @@ tbody tr:hover {
   align-items: center;
   gap: var(--space-3);
   min-height: 44px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-sm);
   cursor: pointer;
 }
@@ -2490,8 +2502,8 @@ tbody tr:hover {
   height: 1.5rem;
   flex-shrink: 0;
   border-radius: var(--radius-pill);
-  background-color: var(--color-line-strong);
-  transition: background-color 220ms var(--ease-out);
+  background-color: var(--text-muted);
+  transition: background-color var(--duration) var(--ease-out);
 }
 
 .switch-track::after {
@@ -2502,13 +2514,12 @@ tbody tr:hover {
   width: calc(1.5rem - 6px);
   height: calc(1.5rem - 6px);
   border-radius: 50%;
-  background-color: #FFFFFF;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
-  transition: transform 260ms var(--ease-out);
+  background-color: var(--bg);
+  transition: transform var(--duration) var(--ease-out);
 }
 
 .switch input:checked + .switch-track {
-  background-color: var(--color-primary);
+  background-color: var(--ink);
 }
 
 .switch input:checked + .switch-track::after {
@@ -2516,7 +2527,7 @@ tbody tr:hover {
 }
 
 .switch input:focus-visible + .switch-track {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -2534,11 +2545,11 @@ tbody tr:hover {
   position: sticky;
   top: 4rem;
   z-index: 40;
-  background-color: var(--color-header);
+  background-color: var(--header-bg);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
-  backdrop-filter: saturate(160%) blur(14px);
-  border-top: 1px solid var(--color-line);
-  border-bottom: 1px solid var(--color-line);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   padding: var(--space-2) var(--space-1);
 }
 
@@ -2565,7 +2576,9 @@ tbody tr:hover {
 }
 
 .save-status {
-  color: var(--color-success);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: 500;
   min-height: 1.5em;
 }
@@ -2599,9 +2612,9 @@ tbody tr:hover {
 }
 
 .form-section {
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background-color: var(--bg);
   padding: var(--space-5);
 }
 
@@ -2646,10 +2659,9 @@ tbody tr:hover {
 /* One entry inside a repeatable section (a project, an org, etc.) */
 .entry {
   padding: var(--space-4);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  background-color: var(--color-raised);
-  animation: rise-in 240ms var(--ease-out);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface);
 }
 
 .entry + .entry {
@@ -2667,9 +2679,9 @@ tbody tr:hover {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
-  color: var(--color-ink-muted);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
 }
 
 .entry .field-grid + .field,
@@ -2689,8 +2701,7 @@ tbody tr:hover {
 .tool-panel {
   margin-top: var(--space-6);
   padding: var(--space-5);
-  background-color: var(--color-band);
-  border: 1px solid var(--color-line);
+  background-color: var(--surface);
   border-radius: var(--radius-xl);
 }
 
@@ -2708,9 +2719,9 @@ tbody tr:hover {
 
 .bh-output {
   padding: var(--space-4);
-  background-color: var(--color-surface);
+  background-color: var(--bg);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--line);
 }
 
 .bh-sentence {
@@ -2719,11 +2730,7 @@ tbody tr:hover {
 }
 
 .bh-sentence.is-empty {
-  color: var(--color-ink-muted);
-}
-
-.jf-results {
-  animation: rise-in 280ms var(--ease-out);
+  color: var(--text-muted);
 }
 
 .jf-results > * + * {
@@ -2736,7 +2743,7 @@ tbody tr:hover {
 }
 
 .jf-score {
-  font-weight: 500;
+  font-weight: 600;
   font-size: var(--text-lg);
   font-variant-numeric: tabular-nums;
 }
@@ -2744,13 +2751,13 @@ tbody tr:hover {
 .jf-score span {
   font-family: var(--font-mono);
   font-size: 2.5rem;
-  color: var(--color-primary);
+  color: var(--ink);
 }
 
 .jf-meter {
-  height: 8px;
+  height: 6px;
   border-radius: var(--radius-pill);
-  background-color: var(--color-surface);
+  background-color: var(--line);
   overflow: hidden;
 }
 
@@ -2758,8 +2765,8 @@ tbody tr:hover {
   height: 100%;
   width: 0;
   border-radius: inherit;
-  background-color: var(--color-primary);
-  transition: width 500ms var(--ease-out);
+  background-color: var(--ink);
+  transition: width var(--duration) var(--ease-out);
 }
 
 .jf-tips {
@@ -2786,21 +2793,20 @@ tbody tr:hover {
 /* The "desk" the resume sheet sits on */
 .preview-scroll {
   padding: var(--space-4);
-  background-color: var(--color-band);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-lg);
+  background-color: var(--surface);
+  border-radius: var(--radius-xl);
 }
 
 
 /* 12. RESUME SHEET ---------------------------------------------------------
    The live preview is a printed page: black text on white paper in every
-   theme, with standard system fonts so ATS software and printers read it
-   well. Print layout is in print.css. */
+   theme (the --paper tokens never change), with standard system fonts so
+   ATS software and printers read it well. Print layout is in print.css. */
 .resume {
-  background-color: #FFFFFF;
-  color: #111111;
+  background-color: var(--paper);
+  color: var(--paper-ink);
   padding: 2rem 1.75rem;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.12);
+  border: 1px solid var(--line);
   border-radius: 4px;
   font-size: 0.8125rem;
   line-height: 1.45;
@@ -2829,7 +2835,7 @@ tbody tr:hover {
 
 .resume-contact {
   margin-top: 0.25rem;
-  color: #333333;
+  color: var(--paper-text-muted);
 }
 
 .resume-section {
@@ -2843,7 +2849,7 @@ tbody tr:hover {
   letter-spacing: 0.06em;
   padding-bottom: 0.2rem;
   margin-bottom: 0.4rem;
-  border-bottom: 1px solid #111111;
+  border-bottom: 1px solid var(--paper-ink);
 }
 
 .resume-item + .resume-item {
@@ -2875,7 +2881,7 @@ tbody tr:hover {
 }
 
 .resume-empty {
-  color: #666666;
+  color: var(--paper-text-muted);
   font-style: italic;
 }
 
@@ -2895,7 +2901,7 @@ tbody tr:hover {
 
 .resume-modern .resume-header {
   padding-bottom: 0.6rem;
-  border-bottom: 3px solid #111111;
+  border-bottom: 3px solid var(--paper-ink);
 }
 
 .resume-modern .resume-section h2 {
@@ -2905,27 +2911,9 @@ tbody tr:hover {
 
 
 /* 13. MOTION ---------------------------------------------------------------
-   Sections fade up as they scroll in (motion.js adds .is-revealed). Small
-   panels rise in when they appear. Everything turns off for visitors who
-   ask their device to reduce motion. */
-@keyframes rise-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.js .reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out);
-}
-
-.js .reveal.is-revealed {
-  opacity: 1;
-  transform: none;
-}
-
-.js .reveal .reveal-delay-1 { transition-delay: 80ms; }
-.js .reveal .reveal-delay-2 { transition-delay: 160ms; }
+   Motion is kept small: 150-200ms fades on hover, focus and theme change
+   (the --duration token). There are no decorative animations. Everything
+   turns off for visitors who ask their device to reduce motion. */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -2937,11 +2925,6 @@ tbody tr:hover {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .js .reveal {
-    opacity: 1;
-    transform: none;
   }
 
   /* The theme switch is instant too */

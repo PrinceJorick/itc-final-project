@@ -3,10 +3,26 @@
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+
+## [1.2.0] - 2026-11-18
 ### Changed
+- Redesigned the look in monochrome: seven color tokens (`--bg`, `--surface`, `--line`, `--muted`, `--text-muted`, `--ink`, `--on-ink`) that flip between light and dark mode, replacing the green "Trusted Ledger" palette. One error color remains, for form errors only, always with a "!" icon and words.
+- New mono brand assets: the dot-and-pill mark (inline SVG in the header and footer, so it inverts with the theme), lowercase "simula" wordmark, a favicon that follows the system theme, and light and dark versions of the guide, interview and checklist illustrations (`site/images/light/`, `site/images/dark/`).
+- Illustrations use `<picture>`; the theme switch also swaps them when the theme is picked by hand.
+- Rounded shape language: pill buttons, tags and meters; 16px cards; 24px panels and flashcards; 32px hero card. Depth comes from soft gray fills instead of shadows.
+- Header: "Build resume" pill; the current page is ink text with a small dot; the mobile menu is a rounded floating panel.
+- Custom rounded checkboxes on the checklist; the revealed flashcard answer is an inverted ink panel; job-fit chips are solid (found) or outlined (missing); the RA 11261 badge is an ink outline pill.
+- Motion limited to 180ms hover, focus and theme fades. Scroll reveals and the home page count-up were removed.
+- Plex Sans now loads 400 and 600 only.
+- Docs (`DESIGN.md`, `DOCS-NOTES.md` theme table, README, SOURCES credits) and screenshots (every page, desktop and mobile, light and dark).
 - Live site moved to https://simula-itc.vercel.app (Vercel Authentication turned off so it is public).
-- Favicon now matches the full Simula logo.
 - Removed the GitHub Pages deployment (workflow deleted and Pages disabled). The site is served from Vercel only.
+
+### Added
+- `tests/specs/theme.spec.js`: every page in light and dark mode (no console errors, no sideways scroll, matching illustrations, theme-colored mark), the manual toggle swapping illustrations, the favicon, and black-on-white print in both themes.
+
+### Removed
+- The old green logo and illustration SVGs.
 
 ## [1.1.0] - 2026-11-10
 ### Added
@@ -74,6 +90,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Saved build prompt and planning summary (`docs/inputs/`).
 - `.gitignore`.
 
+[1.2.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.2.0
 [1.1.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.1.0
 [1.0.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.0.0
 [0.5.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v0.5.0

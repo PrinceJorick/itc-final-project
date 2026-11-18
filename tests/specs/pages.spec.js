@@ -27,7 +27,9 @@ for (const p of PAGES) {
         loaded: img.complete && img.naturalWidth > 0,
         hasAlt: img.hasAttribute("alt")
       })));
-      expect(images.length).toBeGreaterThan(0);
+      // The logo is inline SVG now, so some pages have no <img>; every page
+      // must still show the mark
+      await expect(page.locator(".site-header .brand-mark")).toHaveCount(1);
       for (const img of images) {
         expect(img.loaded, `image ${img.src} loads`).toBe(true);
         expect(img.hasAlt, `image ${img.src} has alt`).toBe(true);

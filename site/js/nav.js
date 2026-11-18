@@ -4,7 +4,7 @@
    - Fills in the site name from SITE_NAME (data.js)
    - Light/dark theme: applies a saved choice before the page is drawn and
      runs the sun/moon toggle in the header (no saved choice = follow the
-     device setting)
+     device setting). Also keeps the light/dark illustrations in step.
    - Runs the mobile menu: the button's icon morphs from lines to a cross,
      the panel slides down under the header, the page behind it locks,
      and the links rise in one after another
@@ -39,6 +39,25 @@ if (savedTheme()) {
   document.documentElement.setAttribute("data-theme", savedTheme());
 }
 
+/* Illustrations use <picture> with a dark <source>. Its media query only
+   follows the device, so when a theme is picked by hand we point the query
+   at "all" (always use the dark file) or "not all" (never use it). */
+var DEVICE_DARK_QUERY = "(prefers-color-scheme: dark)";
+
+function syncIllustrations() {
+  var sources = document.querySelectorAll("picture source[data-theme-source]");
+  var saved = savedTheme();
+  var media = DEVICE_DARK_QUERY;
+  if (saved === "dark") {
+    media = "all";
+  } else if (saved === "light") {
+    media = "not all";
+  }
+  for (var i = 0; i < sources.length; i++) {
+    sources[i].setAttribute("media", media);
+  }
+}
+
 /* Keep the toggle's pressed state and label in step with the theme */
 function syncThemeToggle() {
   var toggle = document.querySelector(".theme-toggle");
@@ -67,6 +86,7 @@ function setupThemeToggle() {
       /* Not saved, but the switch still works on this page */
     }
     syncThemeToggle();
+    syncIllustrations();
     setTimeout(function () {
       root.classList.remove("theme-changing");
     }, 320);
@@ -163,6 +183,7 @@ function setupMenu() {
 
 document.addEventListener("DOMContentLoaded", function () {
   applySiteName();
+  syncIllustrations();
   setupThemeToggle();
   setupMenu();
 });
