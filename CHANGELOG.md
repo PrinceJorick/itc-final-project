@@ -4,6 +4,35 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-18
+### Added
+- Home: a "School work, rewritten" demo replaces the "What's inside" card. A weak line becomes a strong bullet and its four parts (verb, what, tool, result) underline in order; "Show another" cycles three examples.
+- Scroll reveals: only the hero or page intro shows at first; later sections rise in as they scroll into view (not on the builder). Anchors reveal everything above them.
+- Loading placeholders where JavaScript builds content (builder preview, checklist) and busy states on Check my fit, Download PDF, and Restore.
+- Micro-interactions: checkbox tick pop, copy-to-clipboard confirmation, a blink when the draft saves, a glow on a new entry or inserted bullet, flashcards that slide in from the direction you moved, an unfolding answer panel.
+- Privacy and your data (About): what is stored and where, a link to the Data Privacy Act (RA 10173), and Download my data / Restore / Delete everything (`js/backup.js`). The builder shows "Saved only in this browser" with Download backup and Restore.
+- Resume guide: cover letter outline with an example, and where to apply (job sites, PESO, job fairs, school, company sites).
+- Interview: "Are you willing to relocate?" (23 built-in questions), "Questions to plan for" (salary, night shift, relocation, why hire you), technical interview prep, and thank-you and follow-up email templates with Copy buttons.
+- Checklist: "Who qualifies" for RA 11261 (first job search, barangay certification, residency, once only) and a "Verify with your barangay or PESO" note.
+- "See preview" pill on phones and tablets in the builder.
+- `tests/specs/features-v13.spec.js` for the new features.
+
+### Changed
+- Every page is shorter: tighter intros and leads; the Home audience section was removed.
+- The comparison table names the tools behind each claim and links to the full list of 12 on the About page; on phones it becomes stacked cards.
+- Home's RA 11261 line now states who qualifies and what's needed.
+- About lists a role only for the developer (Prince Jorick Fajutagana); `docs/TEAM-ROLES.md` matches.
+- Checklist illustration: the envelope was redrawn with real proportions (light and dark, website and the Simula Logo artifact).
+- Docs, demo script, storyboard, wireframes, and the impeccable surface brief updated.
+
+### Removed
+- The optional sign-in (`login.html`, `js/auth.js`, `js/auth-config.js`) and the "Sign in" link.
+
+### Fixed
+- Mobile and tablet menu: links now span the panel (they were capped at the text width), the page behind is frosted and locked, and long menus scroll on short screens.
+- About: the "Demo form" note was invisible on its gray band.
+- Home: the dashed "Templates ask for" box no longer stretches to an empty height.
+
 ## [1.2.0] - 2026-11-18
 ### Changed
 - Redesigned the look in monochrome: seven color tokens (`--bg`, `--surface`, `--line`, `--muted`, `--text-muted`, `--ink`, `--on-ink`) that flip between light and dark mode, replacing the green "Trusted Ledger" palette. One error color remains, for form errors only, always with a "!" icon and words.
@@ -90,6 +119,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Saved build prompt and planning summary (`docs/inputs/`).
 - `.gitignore`.
 
+[1.3.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.3.0
 [1.2.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.2.0
 [1.1.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.1.0
 [1.0.0]: https://github.com/PrinceJorick/itc-final-project/releases/tag/v1.0.0

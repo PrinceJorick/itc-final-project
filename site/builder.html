@@ -14,10 +14,9 @@
   <link rel="stylesheet" href="css/print.css" media="print">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/builder.js" defer></script>
+  <script src="js/backup.js" defer></script>
 </head>
 <body class="builder-page">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -41,7 +40,6 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -60,10 +58,21 @@
 
   <main id="main">
 
-    <section class="builder-intro reveal">
-      <div class="container">
-        <h1>Resume builder</h1>
-        <p class="lead">Fill in what you have. Your resume updates as you type and saves on this device.</p>
+    <section class="builder-intro">
+      <div class="container builder-intro-inner">
+        <div>
+          <h1>Resume builder</h1>
+          <p class="lead">Fill in what you have. The preview updates as you type.</p>
+        </div>
+        <!-- Saved only in this browser: offer a backup file (backup.js) -->
+        <div class="data-note">
+          <p class="small"><strong>Saved only in this browser.</strong> Clearing your browser data deletes it.</p>
+          <div class="btn-row">
+            <button class="btn btn-secondary btn-small" type="button" data-backup="download">Download backup</button>
+            <button class="btn btn-quiet btn-small" type="button" data-backup="restore">Restore</button>
+          </div>
+          <p class="small muted" data-backup-status role="status"></p>
+        </div>
       </div>
     </section>
 
@@ -247,6 +256,12 @@
         </section>
       </form>
 
+      <!-- On phones and tablets the preview sits below the form; this pill jumps to it -->
+      <a class="preview-jump" href="#preview-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.75"/></svg>
+        See preview
+      </a>
+
       <!-- RIGHT: live preview of the resume (this is what prints) -->
       <aside class="preview-pane" aria-labelledby="preview-title">
         <div class="preview-head">
@@ -254,7 +269,18 @@
           <p class="small muted">Prints on one A4 or Letter page.</p>
         </div>
         <div class="preview-scroll">
-          <article class="resume resume-classic" id="resume-preview" aria-label="Resume preview"></article>
+          <article class="resume resume-classic" id="resume-preview" aria-label="Resume preview">
+            <!-- Loading placeholder: builder.js replaces it with your resume -->
+            <div class="skeleton" aria-hidden="true">
+              <span class="skeleton-line is-title"></span>
+              <span class="skeleton-line is-mid"></span>
+              <span class="skeleton-line is-short"></span>
+              <span class="skeleton-line is-wide"></span>
+              <span class="skeleton-line is-wide"></span>
+              <span class="skeleton-line is-mid"></span>
+            </div>
+            <noscript><p class="resume-empty">Turn on JavaScript to use the builder.</p></noscript>
+          </article>
         </div>
       </aside>
     </div>

@@ -506,7 +506,11 @@ a:hover {
   margin-top: var(--space-1);
 }
 
-/* Notes: soft gray panels for tips */
+/* Notes: soft gray panels for tips (white when they sit on a gray band) */
+.section-band .note {
+  background-color: var(--bg);
+}
+
 .note {
   background-color: var(--surface);
   border-radius: var(--radius-lg);
@@ -781,6 +785,11 @@ select:focus-visible {
   border-color: var(--ink);
 }
 
+/* Ticking a box gives it a small "pop" (not on page load) */
+.check-row input[type="checkbox"].just-changed:checked {
+  animation: pop 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .check-row input[type="checkbox"]:checked {
   background-color: var(--ink);
   background-image: var(--check-mark);
@@ -972,7 +981,11 @@ select:focus-visible {
   transform: rotate(-45deg);
 }
 
-/* Navigation links */
+/* Navigation links (list items are never capped at the 66ch text width) */
+.site-nav li {
+  max-width: none;
+}
+
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -1016,46 +1029,6 @@ select:focus-visible {
   background-color: var(--ink);
 }
 
-/* "Sign in" sits apart from the page links */
-.nav-auth a {
-  border: 1px solid var(--line);
-  color: var(--ink);
-}
-
-.nav-auth a:hover {
-  border-color: var(--line);
-}
-
-/* Signed-in state written by auth.js */
-.auth-user {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-}
-
-.auth-user-email {
-  max-width: 14rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--text-muted);
-}
-
-.auth-signout {
-  padding: 0.35rem 0.75rem;
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  color: var(--ink);
-  font-size: var(--text-sm);
-  cursor: pointer;
-}
-
-.auth-signout:hover {
-  background-color: var(--surface);
-}
-
 /* Phones and tablets with JavaScript on: the links live in a rounded panel
    that floats under the header (the only element with a shadow) */
 @media (max-width: 63.99rem) {
@@ -1073,6 +1046,9 @@ select:focus-visible {
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-float);
+    max-height: calc(100dvh - 6rem); /* short phones in landscape can scroll the list */
+    overflow-y: auto;
+    overscroll-behavior: contain;
     visibility: hidden;
     opacity: 0;
     transform: translateY(-4px);
@@ -1110,19 +1086,21 @@ select:focus-visible {
     margin: -2px 0 0;
   }
 
-  .js .nav-auth {
-    margin-top: var(--space-2);
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--line);
-  }
-
-  .js .nav-auth a {
-    border: 0;
-  }
-
-  /* While the panel is open the page behind it can't scroll */
+  /* While the panel is open the page behind it can't scroll, and it is
+     frosted over so the menu clearly sits on top (a tap on it closes) */
   body.menu-open {
     overflow: hidden;
+  }
+
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 45; /* under the header (50), over the page */
+    background-color: color-mix(in srgb, var(--bg) 55%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    animation: fade-in var(--duration) var(--ease-out);
   }
 }
 
@@ -1248,97 +1226,157 @@ html:not(.js) .theme-toggle {
   }
 }
 
-/* "What's inside" card: rows with a count and a thin meter */
-.hero-register {
-  padding: var(--space-6);
+/* "School work, rewritten": the hero demo (home.js plays it).
+   A soft 32px panel holding a before line, an arrow, and the strong
+   bullet whose four parts light up in order, matching the legend. */
+.bullet-demo {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-5);
   background-color: var(--surface);
   border-radius: var(--radius-2xl);
 }
 
-/* "What's inside": styled like the shared .eyebrow label */
-.register-title {
+@media (min-width: 30rem) {
+  .bullet-demo {
+    padding: var(--space-6);
+  }
+}
+
+.demo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.demo-title {
+  font-size: var(--text-base);
+  letter-spacing: -0.01em;
+}
+
+.demo-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.demo-before,
+.demo-after {
+  display: grid;
+  gap: var(--space-1);
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+/* Small mono labels: "Before" and "After" */
+.demo-tag {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-muted);
-  margin-bottom: var(--space-2);
 }
 
-.register-rows {
+#demo-weak {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--muted);
+}
+
+.demo-after {
+  padding: var(--space-4);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+#demo-strong {
+  font-size: var(--text-lg);
+  line-height: 1.55;
+}
+
+.demo-arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--muted);
+  margin-left: var(--space-4);
+}
+
+/* Each part of the bullet gets an underline that draws in when it lights
+   up. The underline is a background image, so it can grow from the left. */
+.part {
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 1px;
+}
+
+.bullet-demo.is-ready .part {
+  background-size: 0% 2px;
+  transition: background-size 420ms cubic-bezier(0.16, 1, 0.3, 1), background-color var(--duration) var(--ease-out);
+}
+
+.bullet-demo.is-ready .part.is-lit {
+  background-size: 100% 2px;
+}
+
+/* Legend: four small pills; the lit one fills with ink */
+.demo-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
   padding: 0;
   list-style: none;
 }
 
-.register-row {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--space-2) var(--space-4);
-  padding: var(--space-4) 0;
-  border-top: 1px solid var(--line);
-}
-
-.reg-main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-/* The whole row is clickable through the link */
-.reg-main::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
-}
-
-.reg-main:hover {
-  color: var(--ink);
-}
-
-.reg-name {
+.demo-legend li {
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
   font-weight: 600;
-  transition: color var(--duration) var(--ease-out);
-}
-
-.register-row:hover .reg-name {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
-.reg-detail {
   color: var(--text-muted);
+  cursor: default;
+  transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out), border-color var(--duration) var(--ease-out);
+}
+
+.demo-legend li.is-lit {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Hovering a legend item dims the other parts of the bullet */
+.bullet-demo[data-spotlight] .part {
+  transition: opacity var(--duration) var(--ease-out);
+  opacity: 0.35;
+}
+
+.bullet-demo[data-spotlight="verb"] .part[data-part="verb"],
+.bullet-demo[data-spotlight="what"] .part[data-part="what"],
+.bullet-demo[data-spotlight="tool"] .part[data-part="tool"],
+.bullet-demo[data-spotlight="result"] .part[data-part="result"] {
+  opacity: 1;
+}
+
+.demo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.demo-link {
+  font-weight: 600;
   font-size: var(--text-sm);
 }
 
-.reg-count {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-
-.reg-meter {
-  grid-column: 1 / -1;
-  height: 4px;
-  border-radius: var(--radius-pill);
-  background-color: var(--line);
-  overflow: hidden;
-}
-
-.reg-meter i {
-  display: block;
-  height: 100%;
-  width: 0;
-  border-radius: inherit;
-  background-color: var(--ink);
-  transition: width var(--duration) var(--ease-out);
+/* While "Show another" swaps the example, the text fades out and back */
+.bullet-demo.is-swapping .demo-before,
+.bullet-demo.is-swapping .demo-after {
+  opacity: 0;
 }
 
 /* Inner-page intro: title and lead, with an illustration on wide screens */
@@ -1388,6 +1426,7 @@ html:not(.js) .theme-toggle {
 .compare-lists {
   display: grid;
   gap: var(--space-4);
+  align-items: start;
 }
 
 .compare-col {
@@ -1429,34 +1468,6 @@ html:not(.js) .theme-toggle {
 @media (min-width: 36rem) {
   .compare-lists {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Audience: three short blocks with an ink top rule */
-.audience-list {
-  display: grid;
-  gap: var(--space-5);
-  padding: 0;
-  list-style: none;
-}
-
-.audience-list li {
-  padding-top: var(--space-4);
-  border-top: 2px solid var(--ink);
-}
-
-.audience-list h3 {
-  margin-bottom: var(--space-1);
-}
-
-.audience-list p {
-  color: var(--text-muted);
-}
-
-@media (min-width: 48rem) {
-  .audience-list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
   }
 }
 
@@ -1585,6 +1596,60 @@ tbody tr:hover {
 
 .compare-table td:nth-child(2) {
   background-color: var(--surface);
+}
+
+/* Phones: each comparison row becomes a small stacked card, and each
+   cell shows its column name from data-label */
+@media (max-width: 39.99rem) {
+  .compare-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .compare-table,
+  .compare-table tbody,
+  .compare-table tr,
+  .compare-table th,
+  .compare-table td {
+    display: block;
+  }
+
+  .compare-table tr {
+    padding: var(--space-3) var(--space-2);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .compare-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: var(--space-1) var(--space-2);
+    border: 0;
+  }
+
+  .compare-table tbody th {
+    font-weight: 600;
+    font-size: var(--text-base);
+  }
+
+  .compare-table td:nth-child(2) {
+    background-color: transparent;
+  }
+
+  .compare-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
 }
 
 .yes {
@@ -1835,6 +1900,36 @@ tbody tr:hover {
   }
 }
 
+/* Cover letter: three numbered parts and a folded example */
+.letter-steps li::marker {
+  font-family: var(--font-mono);
+}
+
+.letter-sample {
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+}
+
+.letter-sample summary {
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.letter-sample[open] summary {
+  margin-bottom: var(--space-3);
+}
+
+.letter-sample p + p {
+  margin-top: var(--space-3);
+}
+
+.letter-sample[open] > p {
+  animation: fade-in 240ms var(--ease-out);
+}
+
 /* Formula chips */
 .formula {
   display: flex;
@@ -1923,6 +2018,36 @@ tbody tr:hover {
   }
 }
 
+/* About: "What Simula saves" list with the data buttons */
+.data-card .btn-row {
+  gap: var(--space-2);
+}
+
+.data-list {
+  display: grid;
+}
+
+.data-list > div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.data-list dt {
+  font-weight: 600;
+}
+
+.data-list dd {
+  color: var(--text-muted);
+}
+
+.data-card [data-backup-status]:empty {
+  display: none;
+}
+
 .source-card h3 {
   font-size: var(--text-base);
 }
@@ -1943,73 +2068,6 @@ tbody tr:hover {
 
 .contact-form .success-message {
   margin-top: var(--space-4);
-}
-
-/* Sign-in page */
-.auth-layout {
-  display: grid;
-  justify-items: center;
-}
-
-.auth-card {
-  width: 100%;
-  max-width: 26rem;
-  padding: var(--space-6);
-}
-
-.auth-card > * + * {
-  margin-top: var(--space-4);
-}
-
-.auth-card .field + .field {
-  margin-top: var(--space-4);
-}
-
-.auth-card .btn {
-  width: 100%;
-}
-
-.auth-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  padding: 4px;
-  background-color: var(--surface);
-  border-radius: var(--radius-pill);
-}
-
-.auth-tab {
-  min-height: 38px;
-  padding: 0.4rem 0.75rem;
-  background: none;
-  border: 0;
-  border-radius: var(--radius-pill);
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: var(--text-sm);
-  cursor: pointer;
-  transition: background-color var(--duration) var(--ease-out), color var(--duration) var(--ease-out);
-}
-
-.auth-tab[aria-pressed="true"] {
-  background-color: var(--bg);
-  color: var(--ink);
-}
-
-.auth-status:empty {
-  display: none;
-}
-
-.auth-status.is-error {
-  color: var(--error);
-}
-
-.auth-status.is-success {
-  color: var(--ink);
-}
-
-.auth-privacy {
-  text-align: center;
 }
 
 
@@ -2115,6 +2173,18 @@ tbody tr:hover {
   font-variant-numeric: tabular-nums;
 }
 
+/* A new question slides in from the side it came from (interview.js) */
+@keyframes from-next {
+  from { opacity: 0; transform: translateX(16px); }
+}
+
+@keyframes from-prev {
+  from { opacity: 0; transform: translateX(-16px); }
+}
+
+.flashcard-question.from-next { animation: from-next 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+.flashcard-question.from-prev { animation: from-prev 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+
 .flashcard-question {
   margin-top: var(--space-4);
   font-weight: 600;
@@ -2131,6 +2201,13 @@ tbody tr:hover {
   background-color: var(--ink);
   color: var(--on-ink);
   border-radius: var(--radius-lg);
+  transform-origin: top center;
+  animation: unfold 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The ink answer panel unfolds downward when revealed */
+@keyframes unfold {
+  from { opacity: 0; transform: translateY(-6px) scaleY(0.96); }
 }
 
 /* Labels inside the ink panel: --on-ink, slightly faded (still over 9:1) */
@@ -2288,11 +2365,82 @@ tbody tr:hover {
   color: var(--text-muted);
 }
 
-@media (min-width: 56rem) {
-  .tip-steps {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
-  }
+/* Online and technical prep: two columns of numbered tips */
+.prep-grid {
+  gap: var(--space-6);
+}
+
+.prep-grid h3 {
+  margin-bottom: var(--space-4);
+}
+
+.prep-grid .tip-steps {
+  gap: var(--space-4);
+}
+
+.prep-grid .tip-steps p {
+  color: var(--ink);
+}
+
+.prep-grid .tip-steps strong {
+  font-weight: 600;
+}
+
+/* Follow-up email templates with a Copy button */
+.template-card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.template-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.template-head h3 {
+  font-size: var(--text-base);
+}
+
+.template-text {
+  margin: 0;
+  padding: var(--space-4);
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Copy button: the copy icon swaps for a check mark once copied */
+.copy-btn .icon-done {
+  display: none;
+}
+
+.copy-btn.is-copied {
+  background-color: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+.copy-btn.is-copied .icon-copy {
+  display: none;
+}
+
+.copy-btn.is-copied .icon-done {
+  display: block;
+  animation: pop 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#copy-status {
+  margin-top: var(--space-3);
 }
 
 /* Checklist page */
@@ -2471,6 +2619,36 @@ tbody tr:hover {
   align-items: start;
 }
 
+/* RA 11261 "who qualifies": four short conditions in a row */
+.qualify {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.qualify-item {
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--ink);
+}
+
+.qualify-item h3 {
+  font-size: var(--text-base);
+  margin-bottom: var(--space-1);
+}
+
+.qualify-item p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 40rem) {
+  .qualify { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 64rem) {
+  .qualify { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+}
+
 .ra-note {
   margin-top: var(--space-5);
 }
@@ -2541,6 +2719,39 @@ tbody tr:hover {
   margin-top: var(--space-2);
 }
 
+.builder-intro-inner {
+  display: grid;
+  gap: var(--space-4);
+  align-items: end;
+}
+
+/* "Saved only in this browser" note with the backup buttons */
+.data-note {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+}
+
+.data-note .btn-row {
+  gap: var(--space-2);
+}
+
+.data-note [data-backup-status]:empty {
+  display: none;
+}
+
+@media (min-width: 56rem) {
+  .builder-intro-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .data-note {
+    max-width: 24rem;
+  }
+}
+
 .builder-toolbar {
   position: sticky;
   top: 4rem;
@@ -2573,6 +2784,19 @@ tbody tr:hover {
 
 .toolbar-actions {
   gap: var(--space-2);
+}
+
+/* A small dot blinks once each time the draft saves */
+.save-status.just-saved::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background-color: var(--ink);
+  vertical-align: middle;
+  animation: pop 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .save-status {
@@ -2733,6 +2957,12 @@ tbody tr:hover {
   color: var(--text-muted);
 }
 
+/* While "Checking…" runs, old results fade back */
+.jf-results.is-loading {
+  opacity: 0.4;
+  transition: opacity var(--duration) var(--ease-out);
+}
+
 .jf-results > * + * {
   margin-top: var(--space-3);
 }
@@ -2775,6 +3005,56 @@ tbody tr:hover {
 
 .jf-tips li + li {
   margin-top: var(--space-2);
+}
+
+/* "See preview" pill: floats at the bottom on phones and tablets, where
+   the preview is below the form; hidden once the two sit side by side */
+.preview-jump {
+  position: fixed;
+  right: var(--space-4);
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0 1.1rem;
+  background-color: var(--ink);
+  color: var(--on-ink);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-float);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: opacity var(--duration) var(--ease-out);
+}
+
+.preview-jump.is-hidden {
+  opacity: 0;
+  visibility: hidden; /* also out of the Tab order while hidden */
+  transition: opacity var(--duration) var(--ease-out), visibility 0s linear var(--duration);
+}
+
+.preview-jump:hover {
+  color: var(--on-ink);
+  opacity: 0.86;
+}
+
+.preview-jump svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+@media (min-width: 64rem) {
+  .preview-jump {
+    display: none;
+  }
+}
+
+@media print {
+  .preview-jump {
+    display: none;
+  }
 }
 
 .preview-head {
@@ -2911,9 +3191,110 @@ tbody tr:hover {
 
 
 /* 13. MOTION ---------------------------------------------------------------
-   Motion is kept small: 150-200ms fades on hover, focus and theme change
-   (the --duration token). There are no decorative animations. Everything
-   turns off for visitors who ask their device to reduce motion. */
+   Routine feedback is a 180ms fade (the --duration token). Three kinds of
+   motion carry meaning on top of that:
+   - Scroll reveals: after the first screen, sections rise in as they come
+     into view (motion.js adds .is-revealed). Hidden only when JS is on.
+   - Loading placeholders (.skeleton) where JavaScript builds the content.
+   - Small confirmations: a checkbox tick, a copied template, a saved draft.
+   With "reduce motion" on, movement stops but state changes still show. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.js .reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Inside a stagger group, children arrive one after another (motion.js
+   numbers them with --stagger; the delay is capped so lists never drag) */
+.js .reveal .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger, 0) * 70ms + 120ms);
+}
+
+.js .reveal.is-revealed .reveal-stagger > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Loading placeholder: soft gray bars with a slow shimmer. Shown only
+   until JavaScript has built the real content, then removed. */
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+.skeleton {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.skeleton-line {
+  display: block;
+  height: 0.75rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--line);
+  background-image: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--bg) 60%, transparent) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.skeleton-line.is-wide { width: 90%; }
+.skeleton-line.is-mid { width: 65%; }
+.skeleton-line.is-short { width: 40%; }
+.skeleton-line.is-title { height: 1.5rem; width: 55%; }
+
+/* Without JavaScript nothing would replace a placeholder, so hide them */
+html:not(.js) .skeleton {
+  display: none;
+}
+
+/* Spinner inside a button that is working (job-fit check, PDF, restore) */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn.is-busy {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn.is-busy::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+/* A short "pop" when something is confirmed (checkbox ticked, text copied) */
+@keyframes pop {
+  0% { transform: scale(0.85); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* A freshly added or inserted entry glows once, so the eye finds it */
+@keyframes settle {
+  from { box-shadow: 0 0 0 3px var(--ink); }
+  to { box-shadow: 0 0 0 3px transparent; }
+}
+
+.is-new {
+  animation: settle 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -2925,6 +3306,12 @@ tbody tr:hover {
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .js .reveal,
+  .js .reveal .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
   }
 
   /* The theme switch is instant too */

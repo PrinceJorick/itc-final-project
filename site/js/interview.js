@@ -5,6 +5,7 @@
       localStorage and gathered under the "Yours" filter
    3. Question bank list (click a question to open it as a flashcard)
    4. STAR answer template saved to localStorage
+   5. Copy buttons on the follow-up email templates
    Built-in questions come from interviewQuestions in data.js.
    ========================================================================== */
 
@@ -81,6 +82,9 @@ function setRevealed(isRevealed) {
   button.textContent = isRevealed ? "Hide tip and answer" : "Reveal tip and answer";
 }
 
+/* Which way the last move went: 1 = next/random, -1 = previous */
+var cardDirection = 1;
+
 /* Show the question at currentIndex (answer starts hidden) */
 function showCard() {
   var q = currentList[currentIndex];
@@ -90,7 +94,12 @@ function showCard() {
   var isYours = customCards.some(function (card) { return card.id === q.id; });
   document.getElementById("card-category").textContent = isYours ? CATEGORY_NAMES.yours : CATEGORY_NAMES[q.category];
   document.getElementById("card-count").textContent = "Question " + (currentIndex + 1) + " of " + currentList.length;
-  document.getElementById("card-question").textContent = q.question;
+  var questionEl = document.getElementById("card-question");
+  questionEl.textContent = q.question;
+  /* Slide the new question in from the side it came from (CSS animation) */
+  questionEl.classList.remove("from-next", "from-prev");
+  void questionEl.offsetWidth;
+  questionEl.classList.add(cardDirection < 0 ? "from-prev" : "from-next");
   document.getElementById("card-tip").textContent = q.tip || "No tip on this card.";
   document.getElementById("card-sample").textContent = q.sampleAnswer || "No sample answer on this card.";
   document.getElementById("edit-card-btn").hidden = !isYours;
@@ -345,9 +354,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var isOpen = this.getAttribute("aria-expanded") === "true";
     setRevealed(!isOpen);
   });
-  document.getElementById("prev-btn").addEventListener("click", function () { nextCard(-1); });
-  document.getElementById("next-btn").addEventListener("click", function () { nextCard(1); });
-  document.getElementById("random-btn").addEventListener("click", randomCard);
+  document.getElementById("prev-btn").addEventListener("click", function () { cardDirection = -1; nextCard(-1); });
+  document.getElementById("next-btn").addEventListener("click", function () { cardDirection = 1; nextCard(1); });
+  document.getElementById("random-btn").addEventListener("click", function () { cardDirection = 1; randomCard(); });
 
   /* Your own cards */
   document.getElementById("add-card-btn").addEventListener("click", function () { openEditor(null); });
@@ -372,4 +381,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadStar();
   chooseCategory("all");
+  setupCopyButtons();
 });
+
+/* 5. COPY TEMPLATES ------------------------------------------------------
+   Each Copy button copies the text of the <pre> named in data-copy. The
+   button turns into a check mark and says "Copied" for two seconds. */
+function setupCopyButtons() {
+  var buttons = document.querySelectorAll(".copy-btn[data-copy]");
+  var status = document.getElementById("copy-status");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function () {
+      var button = this;
+      var text = document.getElementById(button.getAttribute("data-copy")).textContent;
+      copyText(text).then(function () {
+        button.classList.add("is-copied");
+        button.querySelector(".copy-label").textContent = "Copied";
+        if (status) {
+          status.textContent = "Copied. Paste it into your email and fill in the [brackets].";
+        }
+        clearTimeout(button.copyTimer);
+        button.copyTimer = setTimeout(function () {
+          button.classList.remove("is-copied");
+          button.querySelector(".copy-label").textContent = "Copy";
+        }, 2000);
+      }, function () {
+        if (status) {
+          status.textContent = "Couldn't copy. Select the text and copy it yourself.";
+        }
+      });
+    });
+  }
+}
+
+/* Copy with the Clipboard API, or with a hidden text box where that API
+   isn't allowed (for example when the page is opened from file://) */
+function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    /* If the browser says no (some do for file:// pages), try the old way */
+    return navigator.clipboard.writeText(text).catch(function () {
+      return copyWithTextBox(text);
+    });
+  }
+  return copyWithTextBox(text);
+}
+
+function copyWithTextBox(text) {
+  return new Promise(function (resolve, reject) {
+    var box = document.createElement("textarea");
+    box.value = text;
+    box.setAttribute("readonly", "");
+    box.style.position = "fixed";
+    box.style.opacity = "0";
+    document.body.appendChild(box);
+    box.select();
+    var ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (error) {
+      ok = false;
+    }
+    box.remove();
+    if (ok) {
+      resolve();
+    } else {
+      reject();
+    }
+  });
+}

@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
+  <script src="js/home.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -39,7 +38,6 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -57,12 +55,12 @@
   </header>
 
   <main id="main">
-    <!-- Hero: the promise on the left, what's inside on the right -->
+    <!-- Hero: the promise on the left, a live before/after bullet on the right -->
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
           <h1>Turn school work into your first job offer.</h1>
-          <p class="lead">Build a one-page resume from your projects and org work, practice the questions Filipino employers ask, and track every pre-employment document.</p>
+          <p class="lead">Build a one-page resume from your projects and org work, practice the questions Filipino employers ask, and get your documents ready.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="builder.html">
               Build my resume
@@ -70,39 +68,37 @@
             </a>
             <a class="btn btn-secondary" href="resume-guide.html">Read the guide</a>
           </div>
-          <p class="hero-note">Free · No sign-up needed · Saved on your device</p>
+          <p class="hero-note">Free · No account · Saved only on your device</p>
         </div>
 
-        <!-- What's inside: each row links to a page; motion.js counts up the numbers -->
-        <aside class="hero-register" aria-labelledby="register-title">
-          <p class="register-title" id="register-title">What's inside</p>
-          <ul class="register-rows">
-            <li class="register-row">
-              <a class="reg-main" href="resume-guide.html">
-                <span class="reg-name">Resume guide</span>
-                <span class="reg-detail">Every section, plus PH conventions</span>
-              </a>
-              <span class="reg-count" data-count="8">8</span>
-              <span class="reg-meter" aria-hidden="true"><i data-fill="36"></i></span>
-            </li>
-            <li class="register-row">
-              <a class="reg-main" href="interview.html">
-                <span class="reg-name">Interview deck</span>
-                <span class="reg-detail">Questions with tips and sample answers</span>
-              </a>
-              <span class="reg-count" data-count="22">22</span>
-              <span class="reg-meter" aria-hidden="true"><i data-fill="100"></i></span>
-            </li>
-            <li class="register-row">
-              <a class="reg-main" href="checklist.html">
-                <span class="reg-name">Document checklist</span>
-                <span class="reg-detail">Requirements, many free under RA 11261</span>
-              </a>
-              <span class="reg-count" data-count="13">13</span>
-              <span class="reg-meter" aria-hidden="true"><i data-fill="59"></i></span>
-            </li>
+        <!-- Before/after demo: a weak school-work line becomes a resume bullet.
+             home.js plays the parts in order and cycles examples; without
+             JavaScript the first example is shown complete. -->
+        <figure class="bullet-demo" id="bullet-demo" aria-labelledby="demo-title">
+          <figcaption class="demo-head">
+            <h2 class="demo-title" id="demo-title">School work, rewritten</h2>
+            <span class="demo-count" id="demo-count" aria-hidden="true">1 / 3</span>
+          </figcaption>
+          <div class="demo-before">
+            <span class="demo-tag">Before</span>
+            <p id="demo-weak">Made a website for our capstone.</p>
+          </div>
+          <svg class="demo-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          <div class="demo-after">
+            <span class="demo-tag">After</span>
+            <p id="demo-strong" aria-live="polite"><span class="part" data-part="verb">Built</span> <span class="part" data-part="what">a resort booking site</span> with <span class="part" data-part="tool">HTML, CSS, and PHP</span>, <span class="part" data-part="result">replacing a paper logbook with online reservations</span>.</p>
+          </div>
+          <ul class="demo-legend" aria-label="What makes it strong">
+            <li data-part="verb">Action verb</li>
+            <li data-part="what">What you did</li>
+            <li data-part="tool">Tool</li>
+            <li data-part="result">Result</li>
           </ul>
-        </aside>
+          <div class="demo-actions">
+            <button class="btn btn-secondary btn-small" type="button" id="demo-next">Show another</button>
+            <a class="demo-link" href="builder.html#bullet-helper">Write yours</a>
+          </div>
+        </figure>
       </div>
     </section>
 
@@ -110,10 +106,10 @@
     <section class="section reveal" aria-labelledby="problem-title">
       <div class="container split">
         <div class="flow">
-          <h2 id="problem-title">Most resume templates assume you've had a job.</h2>
-          <p>Global builders lead with work experience, skip Philippine hiring realities, and often charge for the PDF. Simula starts from what students already have.</p>
+          <h2 id="problem-title">Most templates assume you've had a job.</h2>
+          <p class="muted">Simula starts from what students already have.</p>
         </div>
-        <div class="compare-lists">
+        <div class="compare-lists reveal-stagger">
           <div class="compare-col compare-col-empty">
             <h3>Templates ask for</h3>
             <ul>
@@ -135,117 +131,88 @@
       </div>
     </section>
 
-    <!-- Who it's for -->
-    <section class="section section-band reveal" aria-labelledby="audience-title">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="audience-title">Made for Filipino students starting out</h2>
-        </div>
-        <ul class="audience-list">
-          <li>
-            <h3>OJT applicants</h3>
-            <p>Get a clean one-pager ready before your placement deadline.</p>
-          </li>
-          <li>
-            <h3>Fresh graduates</h3>
-            <p>Prepare your resume, answers, and documents in one place.</p>
-          </li>
-          <li>
-            <h3>First and second years</h3>
-            <p>See what employers want early, then build toward it.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
     <!-- Three-step journey: Guide, Build, Practice -->
-    <section class="section reveal" aria-labelledby="journey-title">
+    <section class="section section-band reveal" aria-labelledby="journey-title">
       <div class="container">
         <div class="section-head">
           <h2 id="journey-title">Three steps to your first offer</h2>
-          <p class="lead">Go in order, or jump to what you need today.</p>
         </div>
-        <ol class="journey">
+        <ol class="journey reveal-stagger">
           <li class="journey-step">
             <h3><span class="step-num">1</span> Guide</h3>
-            <p>Learn what goes on a fresh-grad resume and how to write strong bullets.</p>
+            <p>What goes on a fresh-grad resume, and how to write strong bullets.</p>
             <a href="resume-guide.html">Read the guide</a>
           </li>
-          <li class="journey-step reveal-delay-1">
+          <li class="journey-step">
             <h3><span class="step-num">2</span> Build</h3>
-            <p>Fill in a form, watch your resume take shape, and save it as a PDF.</p>
+            <p>Fill in a form, watch the resume take shape, save it as a PDF.</p>
             <a href="builder.html">Open the builder</a>
           </li>
-          <li class="journey-step reveal-delay-2">
+          <li class="journey-step">
             <h3><span class="step-num">3</span> Practice</h3>
-            <p>Rehearse common questions with tips, sample answers, and the STAR method.</p>
+            <p>Rehearse real questions with tips, sample answers, and STAR.</p>
             <a href="interview.html">Start practicing</a>
           </li>
         </ol>
-        <p class="journey-extra">Got the offer? <a href="checklist.html">Prepare your documents</a>. Several are free once under RA 11261.</p>
+        <p class="journey-extra">Got the offer? First-time jobseekers can get clearances, a PSA birth certificate, and more <strong>free, once</strong>, with a barangay certification under RA 11261. <a href="checklist.html#ra11261">See who qualifies</a></p>
       </div>
     </section>
 
-    <!-- Why us: comparison with generic resume tools -->
-    <section class="section section-band reveal" aria-labelledby="why-title">
+    <!-- Comparison with named tools (details and links in docs/COMPETITORS.md and on the About page) -->
+    <section class="section reveal" aria-labelledby="why-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="why-title">Why not a global resume builder?</h2>
-          <p class="lead">They're made for experienced applicants. Simula is made for your first application in the Philippines.</p>
+          <h2 id="why-title">How it compares</h2>
+          <p class="lead">What we found in 12 popular tools, in November 2026.</p>
         </div>
         <div class="table-wrap">
           <table class="compare-table">
-            <caption class="visually-hidden">Simula compared with typical global resume builders</caption>
+            <caption class="visually-hidden">Simula compared with named resume and interview tools</caption>
             <thead>
               <tr>
                 <th scope="col">What you need</th>
                 <th scope="col"><span data-site-name>Simula</span></th>
-                <th scope="col">Typical global tools</th>
+                <th scope="col">In other tools</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Works with no work experience</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Projects-first mode</span></td>
-                <td>Experience comes first</td>
+                <th scope="row">Start with no experience</th>
+                <td data-label="Simula"><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Projects-first mode</span></td>
+                <td data-label="In other tools">Teal and Jobscan assume a resume you're tailoring</td>
               </tr>
               <tr>
-                <th scope="row">Philippine resume conventions</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Explained</span></td>
-                <td>Rarely covered</td>
+                <th scope="row">Free PDF download</th>
+                <td data-label="Simula"><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Always</span></td>
+                <td data-label="In other tools">Paid for unlimited downloads on Resume.io; reported paid on Enhancv</td>
               </tr>
               <tr>
                 <th scope="row">Interview practice</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Built in</span></td>
-                <td>Separate product</td>
+                <td data-label="Simula"><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Built in</span></td>
+                <td data-label="In other tools">A separate product (Big Interview, Google Interview Warmup)</td>
               </tr>
               <tr>
-                <th scope="row">Pre-employment documents and RA 11261</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saved checklist</span></td>
-                <td>Not covered</td>
-              </tr>
-              <tr>
-                <th scope="row">PDF download</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Always free</span></td>
-                <td>Often paid or watermarked</td>
+                <th scope="row">PH documents and RA 11261</th>
+                <td data-label="Simula"><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saved checklist</span></td>
+                <td data-label="In other tools">Not covered by the tools we reviewed</td>
               </tr>
               <tr>
                 <th scope="row">Account</th>
-                <td><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Optional</span></td>
-                <td>Required</td>
+                <td data-label="Simula"><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>None</span></td>
+                <td data-label="In other tools">Needed on LinkedIn and Kalibrr</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="small muted table-source">Based on our review of 12 tools in November 2026. Sources are on the <a href="about.html#sources">About page</a>.</p>
+        <p class="small muted table-source">All 12 tools and our sources are listed on the <a href="about.html#sources">About page</a>. Tools change, so check their current plans.</p>
       </div>
     </section>
 
     <!-- Closing call to action -->
-    <section class="section cta-band reveal" aria-labelledby="cta-title">
+    <section class="section section-band cta-band reveal" aria-labelledby="cta-title">
       <div class="container cta-inner">
         <h2 id="cta-title">Your first resume, in about 20 minutes.</h2>
-        <p>Load the sample to see how it works, then make it yours.</p>
+        <p>Load the sample, then make it yours.</p>
         <a class="btn btn-primary" href="builder.html">Start building</a>
       </div>
     </section>

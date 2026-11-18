@@ -139,6 +139,10 @@ function saveDraft() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
     status.textContent = "Saved on this device";
+    /* Restart the small "saved" blink (CSS animates .just-saved) */
+    status.classList.remove("just-saved");
+    void status.offsetWidth;
+    status.classList.add("just-saved");
   } catch (error) {
     status.textContent = "Couldn't save. Your browser may be blocking storage.";
   }
@@ -338,6 +342,11 @@ function addEntry(section) {
   updateBulletTargets();
   renderPreview();
   saveDraft();
+  /* The new entry glows once so the eye finds it */
+  var list = document.getElementById(section + "-list");
+  if (list && list.lastElementChild) {
+    list.lastElementChild.classList.add("is-new");
+  }
 }
 
 
@@ -559,6 +568,7 @@ function setupToolbar() {
   /* Download PDF: the browser's print dialog with print.css (Save as PDF).
      The page title becomes the suggested file name. */
   document.getElementById("download-pdf").addEventListener("click", function () {
+    var button = this;
     var originalTitle = document.title;
     var name = draft.personal.fullName.trim();
     if (name) {
@@ -566,8 +576,15 @@ function setupToolbar() {
       var last = parts.pop();
       document.title = last + "_" + parts.join("_") + "_Resume";
     }
-    window.print();
-    document.title = originalTitle;
+    /* Loading state while the fonts finish, so the PDF never prints with
+       fallback fonts; then open the print dialog */
+    button.classList.add("is-busy");
+    var fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    fontsReady.then(function () {
+      window.print();
+      document.title = originalTitle;
+      button.classList.remove("is-busy");
+    });
   });
 }
 
@@ -669,7 +686,12 @@ function insertBullet() {
   var index = Number(parts[1]);
 
   draft[section][index].bullets.push(sentence);
-  document.getElementById(section + "-" + index + "-bullets").value = draft[section][index].bullets.join("\n");
+  var box = document.getElementById(section + "-" + index + "-bullets");
+  box.value = draft[section][index].bullets.join("\n");
+  /* Flash the box that received the bullet */
+  box.classList.remove("is-new");
+  void box.offsetWidth;
+  box.classList.add("is-new");
   renderPreview();
   saveDraft();
 
@@ -810,11 +832,32 @@ function checkJobFit() {
   });
 }
 
+/* Show a short "Checking…" state, then the results. Matching is instant,
+   but a brief pause makes it clear the results are new. With reduced
+   motion the results appear right away. */
+function runJobFit() {
+  var button = document.getElementById("jf-check");
+  var results = document.getElementById("jf-results");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    checkJobFit();
+    return;
+  }
+  button.classList.add("is-busy");
+  button.setAttribute("aria-busy", "true");
+  results.classList.add("is-loading");
+  setTimeout(function () {
+    checkJobFit();
+    button.classList.remove("is-busy");
+    button.removeAttribute("aria-busy");
+    results.classList.remove("is-loading");
+  }, 450);
+}
+
 function setupJobFit() {
-  document.getElementById("jf-check").addEventListener("click", checkJobFit);
+  document.getElementById("jf-check").addEventListener("click", runJobFit);
   document.getElementById("jf-sample").addEventListener("click", function () {
     document.getElementById("jf-posting").value = SAMPLE_POSTING;
-    checkJobFit();
+    runJobFit();
   });
 }
 
@@ -836,4 +879,18 @@ document.addEventListener("DOMContentLoaded", function () {
   setupJobFit();
   fillForm();
   renderPreview();
+  setupPreviewJump();
 });
+
+/* The "See preview" pill (phones and tablets) fades away while the
+   preview itself is on screen, so it never covers the resume */
+function setupPreviewJump() {
+  var jump = document.querySelector(".preview-jump");
+  var pane = document.querySelector(".preview-pane");
+  if (!jump || !pane || !("IntersectionObserver" in window)) {
+    return;
+  }
+  new IntersectionObserver(function (entries) {
+    jump.classList.toggle("is-hidden", entries[0].isIntersecting);
+  }, { threshold: 0.05 }).observe(pane);
+}

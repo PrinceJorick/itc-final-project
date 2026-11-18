@@ -13,8 +13,6 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
 </head>
 <body>
@@ -39,7 +37,6 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -62,8 +59,8 @@
       <div class="container page-intro-inner">
         <div>
           <h1>Write a resume with no work experience</h1>
-          <p class="lead">What to include, what Philippine employers expect, and how to make school work count.</p>
-          <p class="small muted">About a 5-minute read.</p>
+          <p class="lead">What to include, what PH employers expect, and how to make school work count.</p>
+          <p class="small muted">About a 6-minute read.</p>
         </div>
         <figure class="illus">
           <picture>
@@ -85,6 +82,8 @@
           <li><a href="#dos-donts">Dos and don'ts</a></li>
           <li><a href="#bullets">Weak vs strong bullets</a></li>
           <li><a href="#no-experience">No experience yet?</a></li>
+          <li><a href="#cover-letter">Cover letter</a></li>
+          <li><a href="#where-to-apply">Where to apply</a></li>
         </ol>
       </nav>
 
@@ -131,9 +130,9 @@
         </section>
 
         <!-- 2. PH conventions -->
-        <section id="ph-conventions" aria-labelledby="ph-title">
+        <section id="ph-conventions" class="reveal" aria-labelledby="ph-title">
           <h2 id="ph-title">Philippine conventions</h2>
-          <p>Many old Filipino templates are really a biodata. A modern resume is shorter and focused on the job.</p>
+          <p>Old Filipino templates are often a biodata. A modern resume is shorter and about the job.</p>
           <dl class="section-list">
             <div>
               <dt>Photo</dt>
@@ -167,7 +166,7 @@
         </section>
 
         <!-- 3. Dos and don'ts -->
-        <section id="dos-donts" aria-labelledby="dd-title">
+        <section id="dos-donts" class="reveal" aria-labelledby="dd-title">
           <h2 id="dd-title">Dos and don'ts</h2>
           <div class="do-dont">
             <div class="do-list">
@@ -200,7 +199,7 @@
         </section>
 
         <!-- 4. Bullets -->
-        <section id="bullets" aria-labelledby="bullets-title">
+        <section id="bullets" class="reveal" aria-labelledby="bullets-title">
           <h2 id="bullets-title">Weak vs strong bullets</h2>
           <p>A strong bullet says what you did, how, and what changed.</p>
           <p class="formula" aria-label="Formula: action verb, plus what you did, plus the tool, plus the result">
@@ -227,9 +226,9 @@
         </section>
 
         <!-- 5. No experience -->
-        <section id="no-experience" aria-labelledby="noexp-title">
+        <section id="no-experience" class="reveal" aria-labelledby="noexp-title">
           <h2 id="noexp-title">No experience yet? Use what you have.</h2>
-          <p>Employers hiring students want proof that you can learn, work with others, and finish things. Look here:</p>
+          <p>Employers want proof you can learn, work with others, and finish things:</p>
           <ul>
             <li><strong>Projects:</strong> capstone, thesis, and class work. Name your role, tools, and result.</li>
             <li><strong>Org work:</strong> events you planned, budgets you handled, people you recruited.</li>
@@ -245,6 +244,52 @@
             <p>Turn on <strong>No experience yet</strong> to hide the Experience section and put Projects and Organizations first.</p>
           </div>
 
+        </section>
+
+        <!-- 6. Cover letter -->
+        <section id="cover-letter" class="reveal" aria-labelledby="cover-title">
+          <h2 id="cover-title">Cover letter</h2>
+          <p>Many PH posts ask for an "application letter." Keep it to three short paragraphs and send it as the email body or a PDF.</p>
+          <ol class="letter-steps">
+            <li><strong>Why you're writing:</strong> the exact role and where you saw it.</li>
+            <li><strong>Why you fit:</strong> one project or org result that matches the post.</li>
+            <li><strong>Next step:</strong> say you're available for an interview and give your number.</li>
+          </ol>
+          <details class="letter-sample">
+            <summary>See a short example</summary>
+            <p>Dear Ms. Santos,</p>
+            <p>I'm applying for the IT Support OJT post I saw on JobStreet. I'm a third-year BS Computer Science student at Batangas State University.</p>
+            <p>For our canteen, my team of four built an inventory tracker in Google Sheets that cut weekly stock counts from two hours to thirty minutes. I'd bring the same care to your help desk.</p>
+            <p>I'm available for an interview any weekday afternoon at 0917 123 4567. Thank you for your time.</p>
+            <p>Sincerely,<br>Maria Clara Santos</p>
+          </details>
+        </section>
+
+        <!-- 7. Where to apply -->
+        <section id="where-to-apply" class="reveal" aria-labelledby="apply-title">
+          <h2 id="apply-title">Where to apply</h2>
+          <dl class="section-list">
+            <div>
+              <dt>Job sites</dt>
+              <dd>JobStreet, Kalibrr, and LinkedIn. Filter by "internship" or "fresh graduate," and save searches for your city.</dd>
+            </div>
+            <div>
+              <dt>PESO</dt>
+              <dd>Your city or municipal Public Employment Service Office lists local openings and runs job fairs. It can also help with RA 11261.</dd>
+            </div>
+            <div>
+              <dt>Job fairs</dt>
+              <dd>Campus and LGU job fairs. Bring printed copies; some hire on the spot.</dd>
+            </div>
+            <div>
+              <dt>Your school</dt>
+              <dd>The OJT coordinator or career office has partner companies looking for interns.</dd>
+            </div>
+            <div>
+              <dt>Company sites</dt>
+              <dd>Check the careers page of companies you like; some posts never reach job sites.</dd>
+            </div>
+          </dl>
           <div class="next-step">
             <div>
               <h2>Ready to build it?</h2>
