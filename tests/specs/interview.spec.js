@@ -95,7 +95,7 @@ test("write, edit, and delete your own card", async ({ page }) => {
 
   // It joins the built-ins under "All"
   await page.locator(".filter-chip", { hasText: "All" }).click();
-  await expect(page.locator("#card-count")).toHaveText(/of 23/);
+  await expect(page.locator("#card-count")).toHaveText(/of 24/);
   await expect(page.locator("#card-category")).toHaveText("Intro");
 
   // Edit it from the "Yours" shelf
@@ -112,7 +112,7 @@ test("write, edit, and delete your own card", async ({ page }) => {
   await expect(page.locator("#yours-empty")).toBeVisible();
   await expect(page.locator("#own-status")).toHaveText("Deleted.");
   await page.locator(".filter-chip", { hasText: "All" }).click();
-  await expect(page.locator("#card-count")).toHaveText(/of 22/);
+  await expect(page.locator("#card-count")).toHaveText(/of 23/);
 });
 
 test("the editor insists on a question before saving", async ({ page }) => {
