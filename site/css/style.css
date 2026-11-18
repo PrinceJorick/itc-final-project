@@ -90,10 +90,10 @@
     --surface: #18181B;
     --line: #27272A;
     --muted: #52525B;
-    --text-muted: #A1A1AA;  /* 7.8:1 on --bg */
+    --text-muted: #A1A1AA;  /* 7.7:1 on --bg */
     --ink: #FAFAFA;
     --on-ink: #0A0A0A;
-    --error: #F87171;       /* 7.0:1 on --bg */
+    --error: #F87171;       /* 7.2:1 on --bg */
     --check-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.75 2.75L12 5.5' fill='none' stroke='%230A0A0A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     --shadow-float: 0 12px 32px -12px rgb(0 0 0 / 0.7);
   }
