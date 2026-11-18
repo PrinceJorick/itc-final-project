@@ -13,10 +13,9 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/contact.js" defer></script>
+  <script src="js/backup.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -40,7 +39,6 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -61,7 +59,7 @@
     <section class="page-intro">
       <div class="container">
         <h1>About <span data-site-name>Simula</span></h1>
-        <p class="lead"><em>Simula</em> is Filipino for "beginning." We're four Computer Science students at Batangas State University – Alangilan, and we built this to make first applications easier.</p>
+        <p class="lead"><em>Simula</em> is Filipino for "beginning." Four Computer Science students at Batangas State University – Alangilan built it to make first applications easier.</p>
       </div>
     </section>
 
@@ -71,7 +69,6 @@
         <div class="flow">
           <h2 id="mission-title">Our mission</h2>
           <p>Help Filipino students turn class projects, org work, and contests into a resume they're proud of, and walk into their first interview prepared.</p>
-          <p>Everything here is free and works without an account. Your data stays on your device.</p>
         </div>
         <div class="card">
           <h3>What we believe</h3>
@@ -79,20 +76,20 @@
             <li>Start from what students already have.</li>
             <li>One path: Guide, Build, Practice.</li>
             <li>Local and accurate beats global and generic.</li>
-            <li>Free and private by default.</li>
+            <li>Free, with no account, and private.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Team (roles: see docs/TEAM-ROLES.md; the team confirms assignments) -->
+    <!-- Team -->
     <section class="section section-band reveal" aria-labelledby="team-title">
       <div class="container">
         <div class="section-head">
           <h2 id="team-title">The team</h2>
           <p class="lead">CS 1103, Group 4 · CC 100 Introduction to Computing, 1st Semester AY 2026–2027</p>
         </div>
-        <ul class="team-list">
+        <ul class="team-list reveal-stagger">
           <li class="team-member">
             <span class="avatar" aria-hidden="true">PJ</span>
             <div>
@@ -102,26 +99,48 @@
           </li>
           <li class="team-member">
             <span class="avatar" aria-hidden="true">AM</span>
-            <div>
-              <h3>Alloysia Mae</h3>
-              <p class="team-role">Content and Research</p>
-            </div>
+            <h3>Alloysia Mae</h3>
           </li>
           <li class="team-member">
             <span class="avatar" aria-hidden="true">EG</span>
-            <div>
-              <h3>Elise Guerra</h3>
-              <p class="team-role">Design and CSS</p>
-            </div>
+            <h3>Elise Guerra</h3>
           </li>
           <li class="team-member">
             <span class="avatar" aria-hidden="true">SD</span>
-            <div>
-              <h3>Sherwin Dollente Jr.</h3>
-              <p class="team-role">Documentation and Presentation</p>
-            </div>
+            <h3>Sherwin Dollente Jr.</h3>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Privacy and your data (backup.js runs the buttons) -->
+    <section id="privacy" class="section reveal" aria-labelledby="privacy-title">
+      <div class="container split">
+        <div class="flow">
+          <h2 id="privacy-title">Privacy and your data</h2>
+          <p>A resume holds personal data, so here is exactly what happens to it.</p>
+          <ul class="check-list">
+            <li><strong>Nothing is sent to us.</strong> There are no accounts, no server, and no tracking. The only outside request is for the fonts (Google Fonts).</li>
+            <li><strong>It stays in this browser</strong> (localStorage), on this device only.</li>
+            <li><strong>You control it.</strong> Download it, move it, or delete it below. Clearing your browser data also deletes it.</li>
+          </ul>
+          <p class="small muted">Personal data in the Philippines is protected by the <a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html" rel="noopener">Data Privacy Act of 2012 (RA 10173)</a>. Because Simula never collects your data, it stays under your control.</p>
+        </div>
+        <div class="card data-card">
+          <h3>What Simula saves</h3>
+          <dl class="data-list">
+            <div><dt>Resume draft</dt><dd>Everything you type in the builder</dd></div>
+            <div><dt>Interview</dt><dd>Your own cards and STAR draft</dd></div>
+            <div><dt>Checklist</dt><dd>Which documents you ticked</dd></div>
+            <div><dt>Theme</dt><dd>Light or dark, if you picked one</dd></div>
+          </dl>
+          <div class="btn-row">
+            <button class="btn btn-secondary btn-small" type="button" data-backup="download">Download my data</button>
+            <button class="btn btn-quiet btn-small" type="button" data-backup="restore">Restore</button>
+            <button class="btn btn-danger btn-small" type="button" data-backup="erase">Delete everything</button>
+          </div>
+          <p class="small muted" data-backup-status role="status"></p>
+        </div>
       </div>
     </section>
 
@@ -139,6 +158,7 @@
               <li><a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">RA 11261, First Time Jobseekers Assistance Act</a> (LawPhil)</li>
               <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2011261.pdf" rel="noopener">RA 11261 full text</a> (Senate)</li>
               <li><a href="https://legacy.senate.gov.ph/republic_acts/ra%2010911.pdf" rel="noopener">RA 10911, Anti-Age Discrimination in Employment Act</a> (Senate)</li>
+              <li><a href="https://lawphil.net/statutes/repacts/ra2012/ra_10173_2012.html" rel="noopener">RA 10173, Data Privacy Act of 2012</a> (LawPhil)</li>
               <li><a href="https://psa.gov.ph/" rel="noopener">Philippine Statistics Authority</a></li>
               <li><a href="https://clearance.nbi.gov.ph/" rel="noopener">NBI Clearance</a></li>
               <li><a href="https://pnpclearance.ph/" rel="noopener">PNP National Police Clearance System</a></li>
@@ -153,6 +173,8 @@
               <li><a href="https://ph.jobstreet.com/career-advice/article/work-experience-in-your-resume" rel="noopener">JobStreet PH: Work experience in your resume</a></li>
               <li><a href="https://www.kalibrr.com/blog/2019/08/characteristics-of-the-modern-filipino-jobseeker" rel="noopener">Kalibrr: The modern Filipino jobseeker</a></li>
             </ul>
+            <h3>Tools we compared (November 2026)</h3>
+            <p class="small">Canva Resume, Resume.io, Teal, Enhancv, Kickresume, Novoresume, Jobscan, Google Interview Warmup, Big Interview, JobStreet Career Advice, Kalibrr, and LinkedIn. Each claim on the home page is from these tools' own pages or reviews; the full table with links is in our project's <code>docs/COMPETITORS.md</code>.</p>
             <h3>Fonts and images</h3>
             <ul>
               <li><a href="https://fonts.google.com/specimen/IBM+Plex+Sans" rel="noopener">IBM Plex Sans</a> and <a href="https://fonts.google.com/specimen/IBM+Plex+Mono" rel="noopener">IBM Plex Mono</a> (SIL Open Font License).</li>
@@ -168,7 +190,7 @@
       <div class="container split">
         <div class="flow">
           <h2 id="contact-title">Contact us</h2>
-          <p>Found a mistake or have a tip for other students? Let us know.</p>
+          <p>Found a mistake or have a tip? Let us know.</p>
           <div class="note note-info">
             <p class="note-title">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
