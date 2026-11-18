@@ -13,8 +13,6 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/interview.js" defer></script>
 </head>
@@ -40,7 +38,6 @@
           <li><a href="interview.html" aria-current="page">Interview</a></li>
           <li><a href="checklist.html">Checklist</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -62,7 +59,7 @@
       <div class="container page-intro-inner">
         <div>
           <h1>Practice your first interview</h1>
-          <p class="lead">Answer common Filipino interview questions out loud, then compare with a tip and a sample answer.</p>
+          <p class="lead">Answer real questions out loud, then compare with a tip and a sample answer.</p>
           <div class="btn-row">
             <a class="btn btn-primary" href="#practice">Start practicing</a>
             <a class="btn btn-secondary" href="#star">Use the STAR method</a>
@@ -183,14 +180,14 @@
       <div class="container split">
         <div class="flow">
           <h2 id="star-title">Answer with STAR</h2>
-          <p>For <q>Tell me about a time…</q> questions, tell a short story in four parts:</p>
+          <p>For <q>Tell me about a time…</q> questions, tell a short story:</p>
           <dl class="star-list">
             <div><dt>Situation</dt><dd>Where were you? A class, org, or OJT.</dd></div>
             <div><dt>Task</dt><dd>What did you need to do?</dd></div>
             <div><dt>Action</dt><dd>What did <em>you</em> do? Spend the most time here.</dd></div>
             <div><dt>Result</dt><dd>What changed? Use a number if you can.</dd></div>
           </dl>
-          <p>Keep it under two minutes. Prepare three or four stories you can reuse.</p>
+          <p class="muted">Under two minutes. Prepare three stories you can reuse.</p>
         </div>
 
         <form class="card star-form" id="star-form" aria-labelledby="star-form-title">
@@ -224,44 +221,71 @@
       </div>
     </section>
 
-    <!-- Questions that come up in almost every Filipino interview -->
+    <!-- Questions that need a plan, not just an answer -->
     <section class="section reveal" aria-labelledby="common-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="common-title">Four questions to prepare first</h2>
+          <h2 id="common-title">Questions to plan for</h2>
           <p class="lead">They come up in most OJT, BPO, and entry-level interviews.</p>
         </div>
-        <div class="grid grid-2">
+        <div class="grid grid-2 reveal-stagger">
           <div class="card">
-            <h3><q>Tell me about yourself.</q></h3>
-            <p>One minute: what you study, one achievement that fits the job, and why you applied.</p>
+            <h3><q>What's your expected salary?</q></h3>
+            <p>Check the range for the same role and city on job sites, then give a range and say you're open to the full package. For OJT, ask about the allowance.</p>
+          </div>
+          <div class="card">
+            <h3><q>Can you work night shift?</q></h3>
+            <p>Common in BPO. Answer honestly. If yes, say you've planned your commute and sleep.</p>
+          </div>
+          <div class="card">
+            <h3><q>Are you willing to relocate?</q></h3>
+            <p>Know your answer before you apply. If it depends, say on what: housing help, start date, or family.</p>
           </div>
           <div class="card">
             <h3><q>Why should we hire you?</q></h3>
             <p>Match two or three strengths to the job post, each with a quick example.</p>
           </div>
-          <div class="card">
-            <h3><q>What's your expected salary?</q></h3>
-            <p>Research the range for the role in your city, then give a range. For OJT, ask about the allowance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online and technical interviews -->
+    <section class="section section-band reveal" aria-labelledby="online-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="online-title">Online and technical interviews</h2>
+        </div>
+        <div class="grid grid-2 prep-grid">
+          <div>
+            <h3>Online (Zoom, Meet, Teams)</h3>
+            <ol class="tip-steps">
+              <li><p><strong>Day before:</strong> test camera and mic, charge up, keep mobile data as backup.</p></li>
+              <li><p><strong>Setup:</strong> face a light, plain background, camera at eye level.</p></li>
+              <li><p><strong>During:</strong> look at the camera. If the call drops, rejoin right away.</p></li>
+            </ol>
           </div>
-          <div class="card">
-            <h3><q>Can you work night shift?</q></h3>
-            <p>Common in BPO. Answer honestly; if yes, show you've planned your commute and sleep.</p>
+          <div>
+            <h3>Technical (IT, engineering, data)</h3>
+            <ol class="tip-steps">
+              <li><p><strong>Know your projects:</strong> explain one in two minutes: the problem, your part, the tools, the result.</p></li>
+              <li><p><strong>Review the post's tools:</strong> one practice task each, like a SQL query or a spreadsheet formula.</p></li>
+              <li><p><strong>Think out loud:</strong> on a test, say your steps. "I'd check the cable first" beats silence.</p></li>
+            </ol>
           </div>
         </div>
       </div>
     </section>
 
     <!-- What to wear and bring -->
-    <section class="section section-band reveal" aria-labelledby="attire-title">
+    <section class="section reveal" aria-labelledby="attire-title">
       <div class="container split">
         <div class="flow">
           <h2 id="attire-title">What to wear and bring</h2>
-          <p>Dress one step more formal than the office. If unsure, ask HR about the dress code.</p>
+          <p>Dress one step more formal than the office. Not sure? Ask HR.</p>
           <ul class="article-list">
             <li><strong>Office:</strong> collared shirt or blouse, slacks or a knee-length skirt, closed shoes.</li>
-            <li><strong>BPO and tech:</strong> smart casual. Polo or blouse, dark pants, closed shoes.</li>
-            <li><strong>Avoid:</strong> ripped jeans, shorts, slippers, loud prints, strong perfume.</li>
+            <li><strong>BPO and tech:</strong> smart casual, closed shoes.</li>
+            <li><strong>Avoid:</strong> ripped jeans, shorts, slippers, strong perfume.</li>
           </ul>
         </div>
         <div class="card">
@@ -269,44 +293,67 @@
           <ul class="check-list">
             <li>3–5 printed copies of your resume</li>
             <li>Two valid IDs and photocopies</li>
-            <li>A black ballpen</li>
-            <li>2×2 and 1×1 ID photos</li>
-            <li>Documents the employer asked for</li>
+            <li>A black ballpen and ID photos</li>
           </ul>
-          <p class="small"><a href="checklist.html">See the full checklist</a></p>
+          <p class="small"><a href="checklist.html">Full document checklist</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Online interviews -->
-    <section class="section reveal" aria-labelledby="online-title">
+    <!-- Follow-up emails, ready to copy (interview.js wires the Copy buttons) -->
+    <section id="follow-up" class="section section-band reveal" aria-labelledby="followup-title">
       <div class="container">
         <div class="section-head">
-          <h2 id="online-title">Online interview tips</h2>
-          <p class="lead">Treat a Zoom, Meet, or Teams call like an office visit.</p>
+          <h2 id="followup-title">After the interview</h2>
+          <p class="lead">Send a thank-you the same day. No reply after a week? Follow up once.</p>
         </div>
-        <ol class="tip-steps">
-          <li>
-            <h3>The day before</h3>
-            <p>Test your camera and mic, charge your laptop, and keep mobile data as a backup.</p>
-          </li>
-          <li>
-            <h3>Your setup</h3>
-            <p>Face a light source, use a plain background, and raise the camera to eye level.</p>
-          </li>
-          <li>
-            <h3>Ten minutes before</h3>
-            <p>Close other apps, mute notifications, and keep your resume open on the side.</p>
-          </li>
-          <li>
-            <h3>During the call</h3>
-            <p>Look at the camera when you speak. If the call drops, rejoin right away.</p>
-          </li>
-          <li>
-            <h3>After the call</h3>
-            <p>Send a short thank-you email the same day.</p>
-          </li>
-        </ol>
+        <div class="grid grid-2 reveal-stagger">
+          <article class="template-card">
+            <div class="template-head">
+              <h3 id="tpl-thanks-title">Thank-you email</h3>
+              <button class="btn btn-secondary btn-small copy-btn" type="button" data-copy="tpl-thanks">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+                <svg class="icon-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre class="template-text" id="tpl-thanks" aria-labelledby="tpl-thanks-title">Subject: Thank you for the interview, [Position]
+
+Dear [Interviewer's name],
+
+Thank you for meeting with me today about the [Position] role. I enjoyed learning about [one thing they said], and I'm even more interested in joining [Company].
+
+[One line linking a project of yours to the job.]
+
+Thank you again for your time. I look forward to hearing from you.
+
+Sincerely,
+[Your name]
+[Mobile number]</pre>
+          </article>
+          <article class="template-card">
+            <div class="template-head">
+              <h3 id="tpl-follow-title">Follow-up after a week</h3>
+              <button class="btn btn-secondary btn-small copy-btn" type="button" data-copy="tpl-follow">
+                <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+                <svg class="icon-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre class="template-text" id="tpl-follow" aria-labelledby="tpl-follow-title">Subject: Following up on my application, [Position]
+
+Dear [Interviewer's name],
+
+I hope you're well. I'm following up on my interview on [date] for the [Position] role. I'm still very interested and would be glad to send anything else you need.
+
+Thank you, and I hope to hear from you soon.
+
+Sincerely,
+[Your name]
+[Mobile number]</pre>
+          </article>
+        </div>
+        <p class="small muted" id="copy-status" role="status"></p>
       </div>
     </section>
   </main>
