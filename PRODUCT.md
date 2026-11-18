@@ -27,7 +27,7 @@ Student-first and Philippines-specific: turns school projects and org work into 
 - Demoed face-to-face to an instructor; students must explain the HTML and CSS.
 
 ## Capabilities and Constraints
-Resume builder with live preview, two templates, autosave, print to PDF; rule-based bullet helper; job-fit keyword checker; interview flashcards with visitor-authored cards (add, edit, delete, kept in the browser); saved STAR template; pre-employment checklist with saved progress; optional email + password accounts (Supabase) that stay inert until configured; demo-only contact form. No AI, no data sent anywhere the visitor didn't configure.
+Resume builder with live preview, two templates, autosave, print to PDF; rule-based bullet helper; job-fit keyword checker; interview flashcards with visitor-authored cards (add, edit, delete, kept in the browser); saved STAR template; pre-employment checklist with saved progress; cover letter outline and where-to-apply guide; follow-up email templates; download/restore/delete of all saved data with a privacy notice (RA 10173); demo-only contact form. No accounts, no AI, no data sent anywhere.
 
 ## Brand Commitments
 Name: **Simula** (Filipino for "beginning," stored in `site/js/data.js`). Voice: encouraging, practical, plain English for a first-year student; benefits first; short paragraphs. Look (v1.2.0): monochrome. Seven color tokens that flip between light and dark mode, ink pill buttons, rounded cards and panels, IBM Plex Sans with Plex Mono labels and tabular numerals, and the dot-and-pill mark; one error color for form errors only (docs/DESIGN.md).
