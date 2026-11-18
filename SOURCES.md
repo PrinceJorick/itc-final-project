@@ -36,4 +36,4 @@ Interview questions, tips, and sample answers were written by the team. Sample p
 ## Fonts, images, icons
 
 - [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans) and [IBM Plex Mono](https://fonts.google.com/specimen/IBM+Plex+Mono), Google Fonts, SIL Open Font License 1.1.
-- All illustrations (`site/images/*.svg`), the Simula logo, and inline icons are original work made for this project. No stock or third-party images are used.
+- The Simula logo (dot-and-pill mark, `site/images/light/logo.svg`, `site/images/dark/logo.svg`, and the inline header mark), the favicon (`site/images/favicon.svg`), the guide, interview and checklist illustrations (`site/images/light/*.svg` and `site/images/dark/*.svg`), and inline icons are original assets made by the team for this project, created with Claude (mono set, v1.2.0). No stock or third-party images are used.
