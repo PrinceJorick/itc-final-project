@@ -46,8 +46,10 @@ body {
   max-width: none !important;
 }
 
-/* The resume: no shadow, true black text, print-friendly size */
+/* The resume: no frame, true black on white in either theme, print-friendly size */
 .resume {
+  background: #FFFFFF !important;
+  border: 0 !important;
   box-shadow: none !important;
   border-radius: 0 !important;
   padding: 0 !important;
@@ -75,7 +77,7 @@ body {
   text-decoration: none;
 }
 
-/* Keep the Modern template's blue accents when printing */
+/* Keep the Modern template's black rules exactly as drawn when printing */
 .resume-modern .resume-name,
 .resume-modern .resume-section h2 {
   -webkit-print-color-adjust: exact;
