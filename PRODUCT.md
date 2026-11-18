@@ -30,7 +30,7 @@ Student-first and Philippines-specific: turns school projects and org work into 
 Resume builder with live preview, two templates, autosave, print to PDF; rule-based bullet helper; job-fit keyword checker; interview flashcards with visitor-authored cards (add, edit, delete, kept in the browser); saved STAR template; pre-employment checklist with saved progress; optional email + password accounts (Supabase) that stay inert until configured; demo-only contact form. No AI, no data sent anywhere the visitor didn't configure.
 
 ## Brand Commitments
-Name: **Simula** (Filipino for "beginning," stored in `site/js/data.js`). Voice: encouraging, practical, plain English for a first-year student; benefits first; short paragraphs. Look: the Trusted Ledger — porcelain ground, register-green action color, serif display over hyperlegible sans, tabular numerals, gold reserved for the RA 11261 mark (docs/DESIGN.md).
+Name: **Simula** (Filipino for "beginning," stored in `site/js/data.js`). Voice: encouraging, practical, plain English for a first-year student; benefits first; short paragraphs. Look (v1.2.0): monochrome. Seven color tokens that flip between light and dark mode, ink pill buttons, rounded cards and panels, IBM Plex Sans with Plex Mono labels and tabular numerals, and the dot-and-pill mark; one error color for form errors only (docs/DESIGN.md).
 
 ## Evidence on Hand
 No testimonials, user counts, or partnerships exist. Do not invent them. Government facts must cite official sources (SOURCES.md); unverified facts say "check with the agency."

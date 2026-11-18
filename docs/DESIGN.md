@@ -1,82 +1,102 @@
-# Design System: Simula
+# Design System: Simula (mono)
 
 ## Concept
 
-*Simula* is Filipino for "beginning." The brand comes from the Simula mark: a starting point and a meter that begins to fill, "your first entry, on the record." The site carries that idea through a clean, minimal, ledger-like look: white paper, one deep green for action, ink for text, hairline rules, and rounded corners.
+*Simula* is Filipino for "beginning." The brand mark is a rounded tile with a dot and a short pill: a starting point and a line that has just begun. Since v1.2.0 the whole site is **monochrome**: ink on white in light mode, the same roles flipped in dark mode. There is no accent color. Hierarchy comes from contrast, weight, size and spacing.
 
-It should feel calm, professional, and trustworthy, with nothing childish and no "AI gradient" decoration. Every page works in **light and dark mode**.
+It should feel clean, calm and premium, with the content in front. Nothing childish, no gradients, no decorative motion. Every page works in **light and dark mode**.
 
-Per-surface mode: Home is **Persuade** (help a student decide to start), the guides are **Read** (easy to scan), and the builder, flashcards, and checklist are **Operate** (fast, predictable controls).
+Per-surface mode: Home is **Persuade** (help a student decide to start), the guides are **Read** (easy to scan), and the builder, flashcards and checklist are **Operate** (fast, predictable controls).
 
-## Color palette
+## Color tokens
 
-All colors are CSS custom properties in `site/css/style.css` (section 1). Dark values replace them when the visitor picks dark mode (`html[data-theme="dark"]`) or when their device is set to dark and they haven't picked a theme. Contrast is measured with the WCAG 2.1 formula; the Playwright tests check every page in both modes.
+All colors are CSS custom properties in section 1 of `site/css/style.css`. The dark values apply when the visitor picks dark mode (`html[data-theme="dark"]`), or when the device is dark and they haven't picked a theme (`@media (prefers-color-scheme: dark)`). The Playwright tests measure WCAG 2.1 contrast on every page in both modes.
 
 | Token | Light | Dark | Used for | Purpose |
 |-------|-------|------|----------|---------|
-| `--color-bg` | `#FFFFFF` | `#0F1311` | Page background | Clean paper; a deep green-black at night |
-| `--color-band` | `#F6F6F2` | `#131815` | Alternating section bands, tool panels | Separates sections without heavy lines |
-| `--color-surface` | `#FFFFFF` | `#171C19` | Cards, inputs | Lifts content slightly off the page |
-| `--color-ink` | `#161A17` | `#E8EBE6` | Body text, headings | Soft black/white; easier on the eyes than pure black |
-| `--color-ink-muted` | `#5B615C` | `#A3AAA4` | Secondary text, hints | Quieter text that still passes AA (6.2:1 / 7.6:1) |
-| `--color-primary` | `#1D5B4A` | `#74C7A6` | Buttons, links, active nav, focus | Ledger green from the logo; lightened in dark mode to stay readable (7.9:1 / 9.7:1) |
-| `--color-primary-tint` | `#E9F1ED` | `#1A2E27` | Current page pill, chips, info notes | Soft "selected" state |
-| `--color-gold` / `--color-gold-tint` | `#7A5D1A` / `#F6EFDC` | `#E6C77F` / `#2E2716` | "Free under RA 11261" badge, PH tips | Reserved for the one fact students shouldn't miss |
-| `--color-danger` | `#A83226` | `#F2958A` | Errors, "missing" skills, destructive buttons | Clear warning (6.5:1 on white) |
-| `--color-line` / `--color-line-strong` | `#E4E3DB` / `#8B908A` | `#29302C` / `#6B746D` | Card borders / input borders | Hairlines; input borders pass the 3:1 UI rule |
+| `--bg` | `#FFFFFF` | `#0A0A0A` | Page background, cards | Flat white paper by day, near-black at night |
+| `--surface` | `#F4F4F5` | `#18181B` | Soft panels: section bands, inputs, notes, tool panels, the "What's inside" card | Depth comes from a soft fill, not from shadows |
+| `--line` | `#E4E4E7` | `#27272A` | 1px borders, dividers, meter tracks | Quiet structure |
+| `--muted` | `#A1A1AA` | `#52525B` | Decorative only: hover borders, dashed outlines | **Never used for text** (it fails AA) |
+| `--text-muted` | `#52525B` | `#A1A1AA` | Secondary text, hints, eyebrow labels, unchecked checkbox borders | 7.7:1 in both modes |
+| `--ink` | `#0A0A0A` | `#FAFAFA` | Body text, headings, primary buttons, checked states, meter fills, focus ring | 19.8:1 light, 19.0:1 dark |
+| `--on-ink` | `#FFFFFF` | `#0A0A0A` | Text and icons placed on `--ink` | The inverted pair for buttons, badges and the answer panel |
 
-The **resume preview is always black on white**, in both templates and both themes, because it is a printed document. A test checks that every color on the sheet is a neutral gray.
+Two exceptions, both documented in the stylesheet:
+
+- **`--error`** `#B91C1C` light / `#F87171` dark: form error messages only (6.5:1 and 7.2:1 on the page). Every error also shows a "!" icon and written words, so color is never the only signal.
+- **`--paper`, `--paper-ink`, `--paper-text-muted`**: the resume preview is a printed page, so it stays black on white in **both** themes. These tokens never change. A test checks that every color on the sheet is a neutral gray.
+
+Purpose: monochrome keeps attention on the content and reads as professional, which suits a career site, and makes light and dark mode consistent (each token simply flips).
 
 ## Typography
 
-Two Google Fonts (the brand typefaces from the Simula mark), with system fallbacks so the site still looks right offline.
-
 | Role | Font | Purpose |
 |------|------|---------|
-| Everything | **IBM Plex Sans** (400, 500, 600) | Neutral, professional, very readable; the logo's wordmark face |
-| Numbers and small labels | **IBM Plex Mono** (400, 500) | Counts, step numbers, table headers, "Weak/Strong" labels; tabular figures line up |
-| Resume preview | System fonts: Classic = Georgia; Modern = Arial | ATS software and printers handle standard fonts best |
+| Everything | **IBM Plex Sans** 400 and 600 | Neutral, professional, very readable. SemiBold for headings, buttons and labels |
+| Labels, eyebrows, numbers | **IBM Plex Mono** 400 and 500 | Uppercase eyebrow labels (12-13px, 0.12em tracking, `--text-muted`), counts, step numbers, table headers; `tabular-nums` so figures line up |
+| Wordmark | Plex Sans SemiBold, lowercase "simula", -0.045em tracking | The logo lockup, next to the mark |
+| Resume preview | Classic = Georgia; Modern = Arial | ATS software and printers handle standard fonts best |
 
-Scale: body 16px / 1.65 line height; h3 20px; h2 `clamp(1.5rem, 3vw, 2rem)`; h1 `clamp(2.125rem, 5vw, 3.25rem)` (home hero up to 4rem). Headings use tight negative tracking and `text-wrap: balance`.
+Scale: body 16px / 1.6; h3 20px; h2 `clamp(1.5rem, 3vw, 2rem)`; h1 `clamp(2.125rem, 5vw, 3.25rem)` (home hero up to 4rem). Headings are SemiBold with tight tracking (-0.02em to -0.035em) and `text-wrap: balance`. Fonts load from Google Fonts with system fallbacks, so the site still works offline.
 
-## Spacing, corners, shadows
+## Shape and depth
 
-| Token | Value | Purpose |
-|-------|-------|---------|
-| `--space-1` … `--space-9` | 4, 8, 12, 16, 24, 32, 48, 64, 96 px | One 4px scale for every gap; tight inside groups, generous between sections |
-| `--radius-sm` / `md` / `lg` / `xl` | 8 / 12 / 18 / 24 px | Small controls / buttons and inputs / cards / hero cards and flashcard |
-| `--radius-pill` | 999px | Nav links, chips, filter pills, header icon buttons |
-| `--shadow-sm` / `md` / `lg` | soft, offset, low opacity | Resting cards / hover / the hero card and flashcard |
+| Token | Value | Used for |
+|-------|-------|----------|
+| `--radius-sm` | 8px | Checkboxes, small chips |
+| `--radius-md` | 12px | Inputs, small cards (STAR rows) |
+| `--radius-lg` | 16px | Cards, notes, checklist items, entries |
+| `--radius-xl` | 24px | Large panels: form sections, tool panels, flashcards, mobile menu |
+| `--radius-2xl` | 32px | Hero card; the illustrations draw their own 32px panel |
+| `--radius-pill` | 999px | Buttons, nav links, tags, filter chips, meters |
+| `--space-1` … `--space-9` | 4, 8, 12, 16, 24, 32, 48, 64, 96 px | One spacing scale for every gap |
+| `--shadow-float` | one very soft shadow | Only the floating mobile menu panel |
 
-## Buttons, links, navigation
+Borders are 1px `--line`. Meters are 4-6px tall pills (`--line` track, `--ink` fill).
+
+## Components
 
 | Element | Style | Purpose |
 |---------|-------|---------|
-| Primary button | Green fill, white text (dark text in dark mode), 12px corners, 44px tall | One main action per area |
-| Secondary button | Surface fill, hairline border | Supporting actions |
-| Quiet button | Green text only, tint on hover | Low-priority actions (Random, Edit) |
-| Danger button | Red outline | Destructive actions, always confirmed |
-| Links | Green, thin underline that strengthens on hover | Links never rely on color alone |
-| Header | Sticky, frosted glass, logo left, pill-shaped nav links, round theme switch | The current page gets **one** soft green pill: no underline, no extra bar, and no focus ring after a mouse click |
+| Header | Sticky, frosted `--bg`. Logo lockup left, page links, "Build resume" pill, round theme switch | The main action is always one tap away |
+| Current page | `--ink` SemiBold text with a 4px ink dot under it; other links `--text-muted` | One clear marker, no underline |
+| Mobile menu | Hamburger turns into a cross; a rounded 24px panel floats under the header | Easy to reach with a thumb |
+| Primary button | `--ink` pill, `--on-ink` text, 44px tall, slight opacity on hover | One main action per area |
+| Secondary / danger button | Transparent pill, 1px `--line` border, fills with `--surface` on hover | Supporting actions. Clear and Delete always ask first, so they don't need red |
+| Links | `--ink`, thin underline that strengthens on hover | Links never rely on color |
+| Cards | `--bg` with a 1px `--line` border, 16px corners, 24px padding | Quiet containers |
+| Inputs | `--surface` fill, 1px `--line`, 12px corners; border turns `--ink` on focus | Fields read as places to type |
+| Checkboxes (checklist) | Custom rounded 8px boxes; checked = `--ink` fill with an `--on-ink` tick | Still real `<input>`s, so keyboard and screen readers work |
+| Flashcard | 24px card; the revealed tip and answer flip to `--ink` with `--on-ink` text | Mirrors the answer bubble in `interview.svg` |
+| RA 11261 badge | Ink outline pill | The one fact students shouldn't miss, without a new color |
+| Job-fit chips | Found = solid ink pill; missing = outline pill with muted text | Shape and the section headings carry the meaning |
+| Resume preview | Always black on white | It is paper and it prints |
 
-## Motion and micro-interactions
+Focus: a 2px `--ink` outline with a 2px offset on every control, shown only for keyboard users (`:focus-visible`).
 
-- Buttons lift 1px on hover and settle (scale 0.98) when pressed; arrow icons nudge forward.
-- Cards and journey steps lift 2px on hover; register rows highlight their title.
-- Sections fade up as they scroll into view; the home "What's inside" counts up and its meters fill.
-- The theme switch rotates between sun and moon, and colors fade for 300ms when the theme changes.
-- The mobile menu's two lines turn into a cross, the panel slides down, and links rise in one after another.
-- Revealed answers, new entries, and success messages rise in gently.
-- **Reduced motion:** with `prefers-reduced-motion`, all of this is instant.
+## Theme switch
 
-Focus: a 2px green outline on buttons and links, and a 3px soft green ring on text fields, shown only for keyboard users (`:focus-visible`).
+- With no saved choice the site follows the device (`prefers-color-scheme`).
+- The round header button switches light/dark, sets `data-theme` on `<html>`, and saves the choice in `localStorage` (`simula-theme`, wrapped in `try/catch`). `nav.js` runs in `<head>`, so the saved theme applies before the page is drawn (no flash).
+- Illustrations use `<picture>` with a dark `<source>`. Its media query only follows the device, so `nav.js` sets the source's `media` to `all` (manual dark) or `not all` (manual light) to keep the drawings in step.
 
-## Icons and images
+## Motion
 
-- **Logo and favicon:** the Simula mark from the brand artifact (`site/images/logo.svg`; simplified `favicon.svg` for small sizes).
-- **Illustrations:** `guide.svg`, `interview.svg`, `checklist.svg` from the same artifact, shown in rounded frames on the page intros. The frames stay light in dark mode so the drawings keep their paper colors.
+- 180ms ease (`--duration`) on hover, focus and theme change only: fills, opacity, border color.
+- Buttons settle slightly (scale 0.98) when pressed; the theme icon swaps sun/moon; the mobile panel fades in.
+- No scroll reveals, counting numbers or other decorative animation.
+- **Reduced motion:** with `prefers-reduced-motion`, everything is instant.
+
+## Icons and graphics
+
+- **Mark:** the dot-and-pill tile. In the header and footer it is inline SVG painted with `var(--ink)` and `var(--bg)`, so it inverts with the theme. It is never recolored, animated, or given a tagline.
+- **Favicon:** `site/images/favicon.svg`, one file that switches black/white with the system theme.
+- **Illustrations:** `guide.svg`, `interview.svg`, `checklist.svg` in `site/images/light/` and `site/images/dark/`. Rounded, mono, each on its own 32px panel.
 - **Icons:** inline SVG line icons (1.75px stroke). Decorative icons are `aria-hidden`; icon-only buttons have labels.
+
+All of these are original assets made by the team for this project, created with Claude.
 
 ## Overall mood
 
-Minimal, calm, and professional, like a well-kept record of your first steps. Local without being kitschy.
+Clean, calm, premium, and focused on content, like a well-kept record of your first steps.

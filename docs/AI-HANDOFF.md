@@ -14,7 +14,7 @@ Course: CC 100 Introduction to Computing, CS 1103 Group 4, Batangas State Univer
 
 - **Live site:** https://simula-itc.vercel.app (Vercel, public, no login)
 - **Repository:** https://github.com/PrinceJorick/itc-final-project (`main` is the release branch)
-- **Current release:** v1.1.0, plus later fixes on `main` (see `CHANGELOG.md`)
+- **Current release:** v1.2.0, the monochrome light/dark redesign (see `CHANGELOG.md`)
 
 ## 2. Hard constraints (from the course brief)
 
@@ -53,14 +53,14 @@ site/                       the website (this is what is submitted)
   css/style.css             All styles: tokens (light + dark), components, motion
   css/print.css             Print layout for the resume only
   js/data.js                ALL content: SITE_NAME, action verbs, 90+ skill keywords, 22 interview questions, 13 checklist items, sample resume
-  js/nav.js                 Theme toggle (light/dark, saved), mobile menu, site name
+  js/nav.js                 Theme toggle (light/dark, saved), illustration swap, mobile menu, site name
   js/builder.js             Resume form, live preview, autosave, bullet helper, job-fit checker, PDF
   js/interview.js           Flashcards, filters, student-written cards, STAR draft
   js/checklist.js           Checklist with saved progress and "how to get it"
   js/contact.js             Demo contact form validation (sends nothing)
-  js/motion.js              Scroll reveals, counters, register meters
+  js/motion.js              Fills the home page's register meters
   js/auth.js, auth-config.js  Optional Supabase sign-in (empty config = no network calls)
-  images/                   Simula logo, favicon, three illustrations (original SVGs)
+  images/                   favicon.svg, plus light/ and dark/ sets of the logo and three illustrations (original SVGs)
 docs/
   AI-HANDOFF.md             This file
   COMPETITORS.md            Research on 12 competitor tools, with sources; gaps; UVP
@@ -69,9 +69,9 @@ docs/
   TEAM-ROLES.md             Roles and page ownership (proposed; see §7)
   inputs/PROMPT.md          The original build brief, verbatim
   inputs/PLANNING.md        Planning decisions
-  screenshots/              Desktop and mobile captures of every page
+  screenshots/              Desktop and mobile captures of every page, light and dark
 tests/
-  specs/*.js                Playwright tests (page, nav, builder, interview, checklist, contact, a11y, screenshots)
+  specs/*.js                Playwright tests (page, nav, theme, builder, interview, checklist, contact, a11y, screenshots)
 SOURCES.md                  Every government fact, with its verification status
 CHANGELOG.md                Keep a Changelog format; tags v0.1.0 → v1.1.0
 PRODUCT.md, .impeccable/    Product context and design-tool settings
@@ -108,9 +108,9 @@ vercel.json                 Static hosting config
 - Tests: `contact.spec.js` (3 tests).
 
 ### 5.5 Navigation, theme and accessibility (`nav.js`, `style.css`)
-- Sticky header. The current page is marked with a soft pill (`aria-current="page"`).
-- Light and dark mode. A header button switches; the choice is saved. With no saved choice, the device setting is followed.
-- Mobile menu under 64rem: a two-line icon turns into a cross, the panel slides down, the page behind locks, Escape closes it.
+- Sticky header. The current page is ink text with a small dot (`aria-current="page"`).
+- Light and dark mode (monochrome tokens). A header button switches; the choice is saved. With no saved choice, the device setting is followed. The illustrations switch with the theme.
+- Mobile menu under 64rem: a two-line icon turns into a cross, a rounded panel floats in under the header, the page behind locks, Escape closes it.
 - Skip link, visible focus (a ring for keyboard users only), labels on every input, alt text on every image, reduced-motion support.
 - Tests: `nav.spec.js` (6), `a11y.spec.js` (keyboard reach, focus visibility, labels, and WCAG AA contrast in light and dark for every page).
 
@@ -122,7 +122,7 @@ vercel.json                 Static hosting config
 
 | Check | Result |
 |---|---|
-| Playwright suite (`tests/`) | **196 passed, 16 skipped** (14 are the opt-in screenshot captures; 2 are checks that apply only at one viewport). Run at 375px and 1280px. |
+| Playwright suite (`tests/`) | **232 passed, 30 skipped** (28 are the opt-in screenshot captures; 2 are checks that apply only at one viewport). Run at 375px and 1280px; `theme.spec.js` repeats the page checks in light and dark. |
 | Console errors | None on any page in the suite |
 | Horizontal scroll | None at 375px or 1280px |
 | Outside requests | Only Google Fonts (checked by `pages.spec.js`) |
