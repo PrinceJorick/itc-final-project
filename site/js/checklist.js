@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var id = box.getAttribute("data-id");
     progress[id] = box.checked;
     box.closest(".checklist-item").classList.toggle("is-done", box.checked);
+    box.classList.add("just-changed"); /* lets CSS play the tick "pop" only now */
     saveProgress(progress);
     updateProgress(progress);
   });

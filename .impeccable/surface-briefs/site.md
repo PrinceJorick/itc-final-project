@@ -1,23 +1,19 @@
 # Surface brief: marketing site (all pages)
 
-Scope: full visual redesign of the six public pages plus a new login page; vanilla static HTML/CSS/JS. Visitor mode per surface: Home **Persuade**, guides **Read**, builder/interview/checklist **Operate**, login **Operate**.
+Scope: six public pages (index, resume-guide, builder, interview, checklist, about); vanilla static HTML/CSS/JS. Visitor mode per surface: Home **Persuade**, guides **Read**, builder/interview/checklist **Operate**. No login (removed in v1.3.0).
 
-Audience: Filipino students writing their first resume on a phone, near a deadline. Job: believe their school work already counts, then build, practice, and collect documents. Action: start the resume. Proof: the live ledger register showing preparation as tracked progress. Constraints: runs from file:// and GitHub Pages, WCAG AA, reduced-motion support, optional Supabase email+password auth that degrades gracefully offline.
+Audience: Filipino students writing their first resume on a phone, near a deadline. Job: believe their school work already counts, then build, practice, and collect documents. Action: start the resume. Proof: the hero demo turning a weak school-work line into a strong bullet, part by part. Constraints: runs from file:// and any static host, WCAG AA in light and dark, reduced-motion support, no accounts, data only in the browser with backup/restore/delete.
 
 ## Direction contract
 
-THESIS: the first application tracked with the calm precision of a money app — the category default (hero, feature cards, CTA) refused in favor of a working register on the first screen.
+THESIS: a calm, monochrome working tool whose first screen shows the transformation (school work → resume bullet) instead of describing it.
 
-OWN-WORLD: porcelain ground `#FAFAF7`, deep register-green `#1D5B4A` as the only action color, ink `#1C1E1A`, hairline rules `#E3E2D8`; white sheets with 1px borders and no shadow; tabular numerals for every count; serif display (Source Serif 4) over hyperlegible sans body; restrained gold `#A87A2E` reserved for the free-under-RA-11261 mark.
+OWN-WORLD: seven mono tokens that flip for dark mode (`--bg` #FFFFFF/#0A0A0A, `--surface` #F4F4F5/#18181B, `--line` #E4E4E7/#27272A, `--muted`, `--text-muted` #52525B/#A1A1AA, `--ink` #0A0A0A/#FAFAFA, `--on-ink`); one error color for forms only; ink pill buttons; 16px cards, 24-32px panels; IBM Plex Sans with Plex Mono labels and tabular numerals; dot-and-pill mark; rounded mono illustrations in light and dark files.
 
-STORY: the visitor sees their preparation as three ledger entries with filling meters — resume, interview, documents — understands progress is kept and private, and starts the first entry.
+STORY: the visitor watches a weak line become a strong bullet, sees the three-step path, learns what is free under RA 11261 and who qualifies, and starts the builder knowing their data stays on their device.
 
-FIRST VIEWPORT: left column headline (serif, ~13ch), one-paragraph lede, primary green action + secondary action, quiet privacy line; right column the bordered preparation register card, meters filling on load, counts in tabular figures. Header: wordmark + nav + sign-in control.
+FIRST VIEWPORT: left column headline (~13ch), one-line lede, ink primary pill + outline secondary, quiet "Free · No account · Saved only on your device" line; right column the "School work, rewritten" demo. Header: lockup + six links + Build resume pill + theme switch. Everything below reveals on scroll.
 
-FORM: The Trusted Ledger, position 2 of 7 grounded candidates, IMPECCABLE'S PICK chosen over the roll's assigned Credential Pass. seed:71361a91fbadf234
+MOTION: one focal moment (the demo's parts underlining in order); scroll reveals after the first screen; loading placeholders only where JavaScript builds content; small confirmations. All off with reduced motion.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
-
-## Unresolved decisions
-
-None; name Simula confirmed, optional-login model confirmed, team names kept without descriptions.
+FINISH: tested at 375/768/1280 in both themes; docs (DESIGN.md, DOCS-NOTES.md) updated with each release.

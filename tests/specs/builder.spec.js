@@ -132,7 +132,8 @@ test("Download PDF opens the print dialog", async ({ page }) => {
   await page.evaluate(() => { window.__printed = 0; window.print = () => { window.__printed++; }; });
   await page.fill("#fullName", "Ana Reyes");
   await page.click("#download-pdf");
-  expect(await page.evaluate(() => window.__printed)).toBe(1);
+  // The button shows a short loading state while fonts finish, then prints
+  await expect.poll(() => page.evaluate(() => window.__printed)).toBe(1);
 });
 
 test("bullet helper writes a bullet and inserts it into a project", async ({ page }) => {

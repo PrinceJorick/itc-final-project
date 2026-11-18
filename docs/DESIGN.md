@@ -1,4 +1,4 @@
-# Design System: Simula (mono)
+# Design System: Simula (mono, v1.3)
 
 ## Concept
 
@@ -61,7 +61,7 @@ Borders are 1px `--line`. Meters are 4-6px tall pills (`--line` track, `--ink` f
 |---------|-------|---------|
 | Header | Sticky, frosted `--bg`. Logo lockup left, page links, "Build resume" pill, round theme switch | The main action is always one tap away |
 | Current page | `--ink` SemiBold text with a 4px ink dot under it; other links `--text-muted` | One clear marker, no underline |
-| Mobile menu | Hamburger turns into a cross; a rounded 24px panel floats under the header | Easy to reach with a thumb |
+| Mobile menu | Hamburger turns into a cross; a rounded 24px panel floats under the header over a frosted page; links span the full panel; the list scrolls on short screens | Easy to reach with a thumb, and clearly on top |
 | Primary button | `--ink` pill, `--on-ink` text, 44px tall, slight opacity on hover | One main action per area |
 | Secondary / danger button | Transparent pill, 1px `--line` border, fills with `--surface` on hover | Supporting actions. Clear and Delete always ask first, so they don't need red |
 | Links | `--ink`, thin underline that strengthens on hover | Links never rely on color |
@@ -72,6 +72,11 @@ Borders are 1px `--line`. Meters are 4-6px tall pills (`--line` track, `--ink` f
 | RA 11261 badge | Ink outline pill | The one fact students shouldn't miss, without a new color |
 | Job-fit chips | Found = solid ink pill; missing = outline pill with muted text | Shape and the section headings carry the meaning |
 | Resume preview | Always black on white | It is paper and it prints |
+| Hero demo | Soft 32px panel: before line (struck through), arrow, after card, four legend pills | Shows the core idea instead of describing it |
+| Comparison table | Three columns; under 40rem each row becomes a stacked card with column labels | Readable on a phone without sideways scrolling |
+| Email templates | Card with the text in a soft panel and a Copy pill that turns ink with a check | One click to a usable email |
+| Data controls | "Saved only in this browser" note (builder) and "What Simula saves" card (About) | Privacy is explained where it matters |
+| "See preview" pill | Floating ink pill on phones and tablets; hides while the preview is on screen | The preview is far below the form on small screens |
 
 Focus: a 2px `--ink` outline with a 2px offset on every control, shown only for keyboard users (`:focus-visible`).
 
@@ -83,16 +88,25 @@ Focus: a 2px `--ink` outline with a 2px offset on every control, shown only for 
 
 ## Motion
 
-- 180ms ease (`--duration`) on hover, focus and theme change only: fills, opacity, border color.
-- Buttons settle slightly (scale 0.98) when pressed; the theme icon swaps sun/moon; the mobile panel fades in.
-- No scroll reveals, counting numbers or other decorative animation.
-- **Reduced motion:** with `prefers-reduced-motion`, everything is instant.
+Since v1.3.0, motion does three jobs. Each one explains something; nothing loops for decoration.
+
+| Kind | Where | How | Purpose |
+|------|-------|-----|---------|
+| Focal moment | Home hero | The four parts of the strong bullet underline in order (420ms apart); "Show another" crossfades to the next example | Teaches the bullet formula in the first five seconds |
+| Scroll reveals | Sections after the first screen on Home, Guide, Interview, Checklist, About (not the Builder) | Fade and rise 20px (600-700ms, `cubic-bezier(0.16, 1, 0.3, 1)`); lists in a `.reveal-stagger` group arrive 70ms apart | Only the hero shows at first; the page unfolds as you read |
+| Loading states | Builder preview and checklist (placeholder bars until JavaScript builds them); Job-fit, Download PDF, Restore (button spinner) | Soft gray bars with a slow shimmer; a spinner inside the busy button | The visitor always sees that something is happening |
+| Confirmations | Checkbox tick, Copy template, draft saved, inserted bullet, flashcard change, answer reveal | Small pop, check-mark swap, one-time glow, slide from the direction you moved, ink panel unfolding | Cause and result are obvious |
+| Routine feedback | Buttons, links, chips, theme | 180ms fills and opacity (`--duration`) | Calm hover and focus |
+
+- Content is hidden for a reveal only when JavaScript is on, so the page is complete without it. Jumping to an anchor (`#ra11261`) reveals everything above it at once.
+- **Reduced motion:** reveals, slides and pops are off; content shows immediately; results appear without the artificial pause. State changes (filled checkbox, "Copied") still show.
+- Smooth scrolling for in-page links (`scroll-behavior: smooth`, with `scroll-padding-top` so headings clear the sticky header).
 
 ## Icons and graphics
 
 - **Mark:** the dot-and-pill tile. In the header and footer it is inline SVG painted with `var(--ink)` and `var(--bg)`, so it inverts with the theme. It is never recolored, animated, or given a tagline.
 - **Favicon:** `site/images/favicon.svg`, one file that switches black/white with the system theme.
-- **Illustrations:** `guide.svg`, `interview.svg`, `checklist.svg` in `site/images/light/` and `site/images/dark/`. Rounded, mono, each on its own 32px panel.
+- **Illustrations:** `guide.svg`, `interview.svg`, `checklist.svg` in `site/images/light/` and `site/images/dark/`. Rounded, mono, each on its own 32px panel. The checklist envelope was redrawn in v1.3.0 with real envelope proportions (about 1.5:1, with a back, an open flap and a front pocket) instead of a flat 4:1 strip.
 - **Icons:** inline SVG line icons (1.75px stroke). Decorative icons are `aria-hidden`; icon-only buttons have labels.
 
 All of these are original assets made by the team for this project, created with Claude.

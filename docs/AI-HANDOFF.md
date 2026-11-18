@@ -14,7 +14,7 @@ Course: CC 100 Introduction to Computing, CS 1103 Group 4, Batangas State Univer
 
 - **Live site:** https://simula-itc.vercel.app (Vercel, public, no login)
 - **Repository:** https://github.com/PrinceJorick/itc-final-project (`main` is the release branch)
-- **Current release:** v1.2.0, the monochrome light/dark redesign (see `CHANGELOG.md`)
+- **Current release:** v1.3.0: concise pages, new career content, privacy and backups, motion, no sign-in (see `CHANGELOG.md`)
 
 ## 2. Hard constraints (from the course brief)
 
@@ -25,7 +25,7 @@ Course: CC 100 Introduction to Computing, CS 1103 Group 4, Batangas State Univer
 - Every government fact must cite an official or primary source (`SOURCES.md`), or say "check with the agency."
 - Playwright is a dev tool in `tests/`. The site never depends on it.
 
-Two things go beyond the brief, and are explained in §6: an **optional** sign-in (Supabase), and **Vercel hosting** of the static folder.
+One thing goes beyond the brief: **Vercel hosting** of the static folder. (An optional sign-in existed in v1.1–v1.2 and was removed in v1.3.0.)
 
 ## 3. How to run it
 
@@ -49,7 +49,6 @@ site/                       the website (this is what is submitted)
   interview.html            Flashcards, STAR draft, common questions, attire, online-interview tips
   checklist.html            Document checklist (saved progress), RA 11261 explainer
   about.html                Mission, team, sources and credits, demo contact form
-  login.html                Optional sign-in page (inert unless configured; see §6)
   css/style.css             All styles: tokens (light + dark), components, motion
   css/print.css             Print layout for the resume only
   js/data.js                ALL content: SITE_NAME, action verbs, 90+ skill keywords, 22 interview questions, 13 checklist items, sample resume
@@ -59,7 +58,8 @@ site/                       the website (this is what is submitted)
   js/checklist.js           Checklist with saved progress and "how to get it"
   js/contact.js             Demo contact form validation (sends nothing)
   js/motion.js              Fills the home page's register meters
-  js/auth.js, auth-config.js  Optional Supabase sign-in (empty config = no network calls)
+  js/home.js                Hero demo: a weak line becomes a strong bullet, part by part
+  js/backup.js              Download, restore, or delete saved data (see §6)
   images/                   favicon.svg, plus light/ and dark/ sets of the logo and three illustrations (original SVGs)
 docs/
   AI-HANDOFF.md             This file
@@ -114,15 +114,15 @@ vercel.json                 Static hosting config
 - Skip link, visible focus (a ring for keyboard users only), labels on every input, alt text on every image, reduced-motion support.
 - Tests: `nav.spec.js` (6), `a11y.spec.js` (keyboard reach, focus visibility, labels, and WCAG AA contrast in light and dark for every page).
 
-## 6. Optional sign-in (not active on the live site)
+## 6. Data, privacy, and backups
 
-`login.html` and `js/auth.js` implement email + password sign-in with Supabase. **It is inert on the live site**: `js/auth-config.js` has empty `supabaseUrl` and `supabaseAnonKey`, so no library is loaded and no network call is made. The page says accounts are not set up. Turning it on means filling in those two strings (the anon key is safe to publish only if Row Level Security is on). This was added beyond the brief and is noted here so graders know it is not a live feature.
+There are no accounts (the optional Supabase sign-in was removed in v1.3.0). Everything a visitor saves stays in their browser's `localStorage` under five keys: `resumeDraft`, `simulaCards`, `starAnswer`, `checklistProgress`, `simula-theme`. `js/backup.js` lets them download those as a `simula-backup-YYYY-MM-DD.json` file, restore it (the file is checked for `"app": "simula"`), or delete everything after a confirmation. The About page explains this and links the Data Privacy Act (RA 10173).
 
 ## 7. Verification
 
 | Check | Result |
 |---|---|
-| Playwright suite (`tests/`) | **232 passed, 30 skipped** (28 are the opt-in screenshot captures; 2 are checks that apply only at one viewport). Run at 375px and 1280px; `theme.spec.js` repeats the page checks in light and dark. |
+| Playwright suite (`tests/`) | **233 passed, 27 skipped** (24 are the opt-in screenshot captures; 3 are checks that apply only at one viewport). Run at 375px and 1280px; `theme.spec.js` repeats the page checks in light and dark, and `features-v13.spec.js` covers reveals, the hero demo, loading states, backup and restore, copy templates, and the menu backdrop. |
 | Console errors | None on any page in the suite |
 | Horizontal scroll | None at 375px or 1280px |
 | Outside requests | Only Google Fonts (checked by `pages.spec.js`) |
@@ -134,7 +134,7 @@ vercel.json                 Static hosting config
 
 ## 8. Known limits and open decisions
 
-1. **Team roles are proposed, not confirmed.** Only Prince Jorick Fajutagana's role (Developer) is fixed by the brief. Alloysia Mae (Content and Research), Elise Guerra (Design and CSS) and Sherwin Dollente Jr. (Documentation and Presentation) are a proposal, shown on the About page. The team must confirm or change them (`docs/TEAM-ROLES.md` and `about.html`).
+1. **Only the developer's role is listed.** On the owner's instruction, the About page and `docs/TEAM-ROLES.md` show a role only for Prince Jorick Fajutagana (Developer); the other members are listed by name.
 2. **Two design-detector exceptions** are recorded in `.impeccable/config.json`, each with a reason:
    - Arial in `style.css` is used on purpose for the Modern resume template (ATS and print reliability).
    - `low-contrast` on `builder.html` is a false positive: the only white element in dark mode is the resume sheet (black on white by design), and the Playwright contrast test passes on the rendered page.
@@ -163,7 +163,7 @@ vercel.json                 Static hosting config
 ## 11. If you continue this work
 
 1. Read `README.md`, then this file, then `CHANGELOG.md`.
-2. Run the tests before changing anything: `cd tests && npm test`. Expect 196 passing.
+2. Run the tests before changing anything: `cd tests && npm test`. Expect 233 passing.
 3. Make changes on a branch, run the tests, merge to `main`, and push. Vercel deploys from `main`.
 4. Keep copy short and plain (benefit first, first-year reader). Keep government facts cited in `SOURCES.md`.
 5. Do not add frameworks, a build step, or external services to the static site.

@@ -36,26 +36,22 @@ No install, no build. Either:
 
 For submission, zip or upload the `site/` folder to Google Drive.
 
-## Accounts (optional)
+## Your data
 
-The whole site works with no account: drafts, checklists, and custom cards live in `localStorage` on the visitor's device. Sign-in is email + password through Supabase, and it is **off by default**:
-
-- With `window.SIMULA_AUTH` left empty in [`site/js/auth-config.js`](site/js/auth-config.js), the site contacts no one and loads no library; the nav link simply goes to the login page, which explains that accounts aren't connected.
-- Fill in `supabaseUrl` and `supabaseAnonKey` there to switch accounts on. `js/auth.js` then loads supabase-js from a CDN on first use only. (So a configured copy makes one allowed external request beyond Google Fonts; an unconfigured copy, like the submission, makes none.)
+There are no accounts. Drafts, custom interview cards, the STAR draft, and checklist progress live in `localStorage` in the visitor's own browser; nothing is sent anywhere. Because clearing browser data would erase them, the builder and About pages offer **Download backup**, **Restore**, and (on About) **Delete everything**. The About page also has a short privacy notice that mentions the Data Privacy Act (RA 10173).
 
 ## Features
 
 | Page | What you can do |
 |------|-----------------|
-| **Home** | See the problem, who it's for, the Guide → Build → Practice journey, and a comparison with global tools |
-| **Resume Guide** | Learn each resume section, Philippine conventions (photo, age and RA 10911, address, one page), dos and don'ts, weak vs strong bullets, and what to include with no experience |
-| **Builder** | Fill in a form and watch a live preview; add/remove entries; "No experience yet" mode; Classic and Modern ATS-friendly templates; autosave (`localStorage`, key `resumeDraft`); load sample; clear with confirmation; Download PDF (one page, print-only layout) |
+| **Home** | A live "School work, rewritten" demo (a weak line becomes a strong bullet, part by part), the problem, the Guide → Build → Practice journey, the RA 11261 conditions in one line, and a comparison that names the tools |
+| **Resume Guide** | Learn each resume section, Philippine conventions (photo, age and RA 10911, address, one page), dos and don'ts, weak vs strong bullets, what to include with no experience, a cover letter outline with an example, and where to apply (job sites, PESO, job fairs, school, company sites) |
+| **Builder** | Fill in a form and watch a live preview; add/remove entries; "No experience yet" mode; Classic and Modern ATS-friendly templates; autosave (`localStorage`, key `resumeDraft`); load sample; clear with confirmation; Download PDF (one page, print-only layout); backup and restore; a "See preview" shortcut on phones and tablets |
 | | **Bullet helper** (rule-based): verb + what + tool + result → "Developed X using Y, resulting in Z", inserted with one click |
 | | **Job-fit checker**: paste a posting → matched skills, missing skills, match %, and tips (case-insensitive, whole-word matching against 90+ keywords) |
-| **Interview** | Flashcards with category filters (including a "Yours" shelf), reveal tip and sample answer, previous/next, random question; 22 built-in questions; **write, edit, and delete your own cards** (saved as `simulaCards` on the device); saved STAR template; attire and online interview tips |
-| **Checklist** | 13 pre-employment documents with saved checkboxes, a progress bar, "How to get it" steps, and RA 11261 free-document guide |
-| **About** | Mission, team, sources, and a demo contact form with validation (nothing is sent) |
-| **Sign in** | Optional email + password accounts (Supabase) with a Create account tab; inert until configured |
+| **Interview** | Flashcards with category filters (including a "Yours" shelf), reveal tip and sample answer, previous/next, random question; 23 built-in questions (including salary, night shift, and relocation); **write, edit, and delete your own cards** (saved as `simulaCards` on the device); saved STAR template; questions to plan for; online and technical interview prep; attire; thank-you and follow-up email templates with Copy buttons |
+| **Checklist** | 13 pre-employment documents with saved checkboxes, a progress bar, "How to get it" steps, and an RA 11261 guide that spells out who qualifies, what's free, and "verify with your barangay or PESO" |
+| **About** | Mission, team, privacy and your data (download, restore, delete), sources including the 12 compared tools, and a demo contact form with validation (nothing is sent) |
 
 Accessibility: skip link, keyboard-friendly navigation, visible focus everywhere, labels on every input, WCAG AA contrast in light and dark mode, and reduced-motion support.
 
@@ -66,14 +62,14 @@ Look and themes: a monochrome design (ink on white, flipped for dark mode) with 
 ```
 site/                 ← the website (this is what gets submitted)
   index.html  resume-guide.html  builder.html  interview.html
-  checklist.html  about.html  login.html
+  checklist.html  about.html
   css/style.css       ← the one shared stylesheet
   css/print.css       ← resume-only print layout
   js/data.js          ← all content data + SITE_NAME
   js/nav.js           ← shared header/menu behavior, theme switch, illustration swap
-  js/motion.js        ← fills the home page's "What's inside" meters
-  js/auth-config.js   ← empty Supabase placeholder (accounts off)
-  js/auth.js          ← optional sign-in; inert while unconfigured
+  js/motion.js        ← scroll reveals (sections rise in after the first screen)
+  js/home.js          ← the hero's before/after bullet demo
+  js/backup.js        ← download, restore, or delete saved data
   js/builder.js  js/interview.js  js/checklist.js  js/contact.js
   images/             ← original SVGs: favicon, plus light/ and dark/ sets of the logo and illustrations
 docs/                 ← research, design system, team notes, screenshots, inputs
@@ -89,20 +85,20 @@ Playwright runs every page and feature at 375px and 1280px against the site open
 cd tests
 npm install
 npx playwright install chromium
-npm test                 # 232 passing; 30 skipped (28 opt-in screenshots + 2 viewport-only checks)
+npm test                 # 233 passing; 27 skipped (24 opt-in screenshots + 3 viewport-only checks)
 npm run screenshots      # refreshes docs/screenshots/ (every page, desktop and mobile, light and dark)
 ```
 
 ## Tech and skills used
 
-- **Stack:** HTML5, one CSS file (custom properties, Flexbox, Grid, media queries), vanilla JavaScript, `localStorage`. No frameworks, build tools, or backend. Google Fonts is the only external request the site makes as submitted; optional Supabase accounts add a CDN script only when configured by hand.
+- **Stack:** HTML5, one CSS file (custom properties, Flexbox, Grid, media queries), vanilla JavaScript, `localStorage`. No frameworks, build tools, or backend. Google Fonts is the only external request the site makes.
 - **Design and build skills:** ui-ux-pro-max (design system generation), impeccable (product context, design direction, craft checks, contrast hook, finish review), web research for competitors, title checks, and PH government facts; Playwright for testing and screenshots.
 - **Visual direction (v1.2.0, mono):** seven monochrome color tokens that flip for dark mode, ink pill buttons, 16px cards and 24-32px panels, IBM Plex Sans and Mono, original rounded mono illustrations, and a dot-and-pill mark that inverts with the theme. Full detail in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Documentation for the team
 
 - [docs/DOCS-NOTES.md](docs/DOCS-NOTES.md): storyboard, wireframes, theme details, 5-minute demo script, Q&A notes
-- [docs/TEAM-ROLES.md](docs/TEAM-ROLES.md): roles and page ownership (**three roles still need team confirmation**)
+- [docs/TEAM-ROLES.md](docs/TEAM-ROLES.md): team members and the developer's role
 - [docs/DESIGN.md](docs/DESIGN.md): design system and the reason for each choice
 - [docs/COMPETITORS.md](docs/COMPETITORS.md): competitor research, gaps, UVP, differentiators
 - [docs/inputs/](docs/inputs/): the original build prompt and planning summary. Add the official guidelines, rubric, and template PDFs here. **Do not add the class groupings spreadsheet or other students' details.**
