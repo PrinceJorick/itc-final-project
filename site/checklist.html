@@ -13,8 +13,6 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/data.js"></script>
   <script src="js/nav.js"></script>
-  <script src="js/auth-config.js" defer></script>
-  <script src="js/auth.js" defer></script>
   <script src="js/motion.js" defer></script>
   <script src="js/checklist.js" defer></script>
 </head>
@@ -40,7 +38,6 @@
           <li><a href="interview.html">Interview</a></li>
           <li><a href="checklist.html" aria-current="page">Checklist</a></li>
           <li><a href="about.html">About</a></li>
-          <li class="nav-auth"><a href="login.html">Sign in</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -62,13 +59,13 @@
       <div class="container page-intro-inner">
         <div>
           <h1>Pre-employment checklist</h1>
-          <p class="lead">Most employers ask for these before your first day. Tick them off as you go; your progress saves on this device.</p>
-          <p class="small"><span class="badge-free">Free under RA 11261</span> marks documents first-time jobseekers can get free, once.</p>
+          <p class="lead">What employers ask for before day one. Tick them off; progress saves on this device.</p>
+          <p class="small"><span class="badge-free">Free under RA 11261</span> = free once for first-time jobseekers. <a href="#ra11261">Who qualifies</a></p>
         </div>
         <figure class="illus">
           <picture>
             <source data-theme-source srcset="images/dark/checklist.svg" media="(prefers-color-scheme: dark)">
-            <img src="images/light/checklist.svg" alt="An envelope with an ID card and a pre-employment checklist" width="320" height="220">
+            <img src="images/light/checklist.svg" alt="An open envelope holding an ID card and a pre-employment checklist" width="320" height="220">
           </picture>
         </figure>
       </div>
@@ -91,7 +88,11 @@
           </div>
 
           <ul class="checklist" id="checklist">
-            <!-- Items are added here by js/checklist.js -->
+            <!-- Items are added here by js/checklist.js. Until then, these
+                 placeholder rows show that the list is loading. -->
+            <li class="checklist-item skeleton" aria-hidden="true"><span class="skeleton-line is-mid"></span><span class="skeleton-line is-short"></span></li>
+            <li class="checklist-item skeleton" aria-hidden="true"><span class="skeleton-line is-mid"></span><span class="skeleton-line is-short"></span></li>
+            <li class="checklist-item skeleton" aria-hidden="true"><span class="skeleton-line is-mid"></span><span class="skeleton-line is-short"></span></li>
           </ul>
           <noscript><p class="note">Turn on JavaScript to use the checklist. The RA 11261 guide below works without it.</p></noscript>
         </div>
@@ -114,7 +115,27 @@
       <div class="container">
         <div class="section-head">
           <h2 id="ra-title">RA 11261: free documents for first-time jobseekers</h2>
-          <p class="lead">The <strong>First Time Jobseekers Assistance Act</strong> (approved April 10, 2019) waives government fees for documents you need for your first job.</p>
+          <p class="lead">The <strong>First Time Jobseekers Assistance Act</strong> (2019) waives government fees on documents for your first job.</p>
+        </div>
+
+        <!-- Who qualifies: the conditions, so "free" is never vague -->
+        <div class="qualify reveal-stagger">
+          <div class="qualify-item">
+            <h3>First job search</h3>
+            <p>You're looking for work for the first time.</p>
+          </div>
+          <div class="qualify-item">
+            <h3>Barangay certification</h3>
+            <p>Your barangay certifies you're a first-time jobseeker (Section 5); you sign an Oath of Undertaking.</p>
+          </div>
+          <div class="qualify-item">
+            <h3>Resident</h3>
+            <p>Guidelines ask for about 6 months in that barangay. Minors need a parent's consent.</p>
+          </div>
+          <div class="qualify-item">
+            <h3>Once only</h3>
+            <p>You can use the benefit one time (Section 3), so request everything together.</p>
+          </div>
         </div>
 
         <div class="grid grid-2 ra-grid">
@@ -134,10 +155,9 @@
             <div class="card">
               <h3>How to claim it</h3>
               <ol>
-                <li>Get a <strong>barangay certification</strong> that you're a first-time jobseeker (Section 5) and sign an <strong>Oath of Undertaking</strong>.</li>
-                <li>Show it whenever you request a document.</li>
+                <li>Get the <strong>barangay certification</strong> and sign the Oath of Undertaking.</li>
+                <li>Show it each time you request a document. It works <mark>only once</mark>.</li>
               </ol>
-              <p>You can use the benefit <mark>only once</mark> (Section 3), so get everything while your certification is valid.</p>
             </div>
 
             <div class="card">
@@ -155,9 +175,9 @@
         <div class="note ra-note">
           <p class="note-title">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
-            Check with your barangay
+            Verify with your barangay or PESO
           </p>
-          <p>Residency and validity rules can vary, so ask at your barangay hall first. Read the full law on <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">LawPhil</a>.</p>
+          <p>Residency, validity, and which offices honor the certification can vary by LGU. Ask at your barangay hall or your city's Public Employment Service Office (PESO) before you go. Full law: <a href="https://lawphil.net/statutes/repacts/ra2019/ra_11261_2019.html" rel="noopener">LawPhil</a>.</p>
         </div>
       </div>
     </section>

@@ -264,6 +264,12 @@ var interviewQuestions = [
     question: "When can you start?",
     tip: "Be clear and realistic. If you still need pre-employment documents, give yourself time to get them.",
     sampleAnswer: "I can start two weeks after receiving the offer. That gives me time to complete my NBI clearance and other pre-employment requirements."
+  },
+  {
+    id: "q23", category: "closing",
+    question: "Are you willing to relocate?",
+    tip: "Decide before you apply. If your answer depends on something (housing help, start date, family), say what it depends on instead of a flat no.",
+    sampleAnswer: "Yes, for the right role. I'd need about two weeks to arrange a place to stay, and I'd like to ask whether the company offers any relocation help."
   }
 ];
 
