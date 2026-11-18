@@ -51,6 +51,31 @@ test("the manual toggle also swaps the illustrations", async ({ page }) => {
   await expect.poll(async () => (await shownIllustrations(page))[0]).toContain("/images/light/");
 });
 
+test("a saved light choice never flashes the dark illustration on a dark device", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.addInitScript(() => {
+    try { localStorage.setItem("simula-theme", "light"); } catch (error) { /* storage blocked */ }
+    window.__illustrationFrames = [];
+    const sample = () => {
+      const img = document.querySelector("picture img");
+      if (img) {
+        window.__illustrationFrames.push({
+          src: img.currentSrc,
+          visible: getComputedStyle(img).visibility !== "hidden"
+        });
+      }
+      requestAnimationFrame(sample);
+    };
+    requestAnimationFrame(sample);
+  });
+  await openPage(page, "resume-guide.html");
+  await page.waitForLoadState("load");
+
+  const frames = await page.evaluate(() => window.__illustrationFrames);
+  const wrongVisible = frames.filter((frame) => frame.visible && frame.src && !frame.src.includes("/images/light/"));
+  expect(wrongVisible, "wrong-theme illustration painted").toEqual([]);
+});
+
 test("the favicon is the mono SVG and loads", async ({ page }) => {
   await openPage(page, "index.html");
   const href = await page.locator('link[rel="icon"]').getAttribute("href");

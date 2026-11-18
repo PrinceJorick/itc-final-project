@@ -39,6 +39,15 @@ if (savedTheme()) {
   document.documentElement.setAttribute("data-theme", savedTheme());
 }
 
+/* The illustrations pick their file from the device setting while the page
+   is parsed, so a saved choice that disagrees with the device starts on the
+   wrong file. Hold them back (CSS .theme-pending) until the swap is done, so
+   the wrong-theme file never flashes on screen. */
+var deviceTheme = systemDark.matches ? "dark" : "light";
+if (savedTheme() && savedTheme() !== deviceTheme) {
+  document.documentElement.classList.add("theme-pending");
+}
+
 /* Illustrations use <picture> with a dark <source>. Its media query only
    follows the device, so when a theme is picked by hand we point the query
    at "all" (always use the dark file) or "not all" (never use it). */
@@ -55,6 +64,32 @@ function syncIllustrations() {
   }
   for (var i = 0; i < sources.length; i++) {
     sources[i].setAttribute("media", media);
+  }
+
+  /* Reveal the held-back illustrations once the matching file has loaded */
+  var root = document.documentElement;
+  if (!root.classList.contains("theme-pending")) {
+    return;
+  }
+  var images = document.querySelectorAll("picture img");
+  var waiting = images.length;
+  if (!waiting) {
+    root.classList.remove("theme-pending");
+    return;
+  }
+  var reveal = function () {
+    waiting -= 1;
+    if (waiting <= 0) {
+      root.classList.remove("theme-pending");
+    }
+  };
+  for (var j = 0; j < images.length; j++) {
+    if (images[j].complete && images[j].naturalWidth > 0) {
+      reveal();
+    } else {
+      images[j].addEventListener("load", reveal, { once: true });
+      images[j].addEventListener("error", reveal, { once: true });
+    }
   }
 }
 

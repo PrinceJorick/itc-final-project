@@ -5,7 +5,7 @@ CS 1103, Group 4 · CC 100 Final Project
 | Member | Role |
 |--------|------|
 | **Prince Jorick Fajutagana** | Developer: `builder.html`, all of `site/js/`, `tests/`, the GitHub repository, and the Vercel deployment |
-| Alloysia Mae | Team member |
+| Alloysia Mae Lugue | Team member |
 | Elise Guerra | Team member |
 | Sherwin Dollente Jr. | Team member |
 

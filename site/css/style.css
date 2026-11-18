@@ -646,6 +646,13 @@ a:hover {
   width: 100%;
 }
 
+/* nav.js adds .theme-pending when a saved theme disagrees with the device:
+   the <picture> has already chosen the device's file, so keep the
+   illustration hidden for the moment it takes to swap to the right one */
+html.theme-pending .illus img {
+  visibility: hidden;
+}
+
 
 /* 7. FORMS -----------------------------------------------------------------
    Every input has a visible label above it; errors appear underneath. */
