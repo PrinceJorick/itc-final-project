@@ -8,8 +8,8 @@ Raw material for the written documentation and the demo. Copy, trim, and reword 
 
 | Frame | Page | User Action | Expected Result |
 |------:|------|-------------|-----------------|
-| 1 | Home (`index.html`) | Opens the site | Hero shows "Turn school work into your first job offer." with Build my resume and Read the guide buttons. The "What's inside" card counts up to 8, 22, and 13. |
-| 2 | Home | Scrolls down | Sections fade in: the problem ("Templates ask for" vs "You already have"), who it's for, the 3-step journey, and the comparison table vs global tools. |
+| 1 | Home (`index.html`) | Opens the site | Hero shows "Turn school work into your first job offer." with Build my resume and Read the guide buttons. Only the hero shows. In the "School work, rewritten" card, the four parts of the strong bullet (verb, what, tool, result) underline one after another. |
+| 2 | Home | Clicks "Show another", then scrolls down | The demo swaps to the next example. Sections rise in as they scroll into view: the problem, the 3-step journey (with the RA 11261 line), and the comparison table that names the tools. |
 | 3 | Home | Clicks "Read the guide" | Resume Guide opens with "Resume Guide" marked in the nav with ink text and a small dot. |
 | 4 | Resume Guide | Clicks "Philippine conventions" in the table of contents | Page jumps to the section on photo, age (RA 10911), address, and one-page length. |
 | 5 | Resume Guide | Reads Weak vs Strong bullets, clicks "Open the builder" | Builder page opens. |
@@ -20,15 +20,17 @@ Raw material for the written documentation and the demo. Copy, trim, and reword 
 | 10 | Builder | Fills the Bullet helper (verb, what, tool, result) and clicks "Insert bullet" | Sentence "Developed … using …, resulting in …." is added to the chosen project and appears in the preview. |
 | 11 | Builder | Clicks "Use a sample posting" in Job-fit checker | Shows a match percentage, solid chips for matched skills, outline chips for missing skills, and tips. |
 | 12 | Builder | Refreshes the page | Everything typed is still there (restored from localStorage). |
-| 13 | Builder | Clicks "Download PDF" | Print dialog opens with only the resume on one page; user picks "Save as PDF". |
+| 13 | Builder | Clicks "Download PDF" | The button shows a spinner for a moment, then the print dialog opens with only the resume on one page; user picks "Save as PDF". |
+| 13b | Builder | Clicks "Download backup" | A `simula-backup-….json` file downloads. "Restore" brings it back on another browser. |
 | 14 | Interview | Clicks the "Behavioral" filter | Flashcard shows only behavioral questions; counter says "Question 1 of 6". |
 | 15 | Interview | Clicks "Reveal tip and answer", then "Random" | Tip and sample answer appear; a different random question loads with the answer hidden. |
 | 16 | Interview | Types a STAR answer, refreshes | Answer is still in the boxes. |
+| 16b | Interview | Clicks "Copy" on the thank-you email | The button turns ink with a check mark and says "Copied"; the email is on the clipboard. |
 | 17 | Checklist | Ticks PSA Birth Certificate and NBI Clearance | Progress bar fills to 15%; label reads "2 of 13 documents ready"; ticked boxes fill with ink and the items turn gray and are crossed out. |
 | 18 | Checklist | Opens "How to get it" on NBI Clearance | Shows requirements, cost, steps, and the official website link. |
 | 19 | About | Submits the contact form empty | Error messages with a "!" icon appear under each field; focus moves to the first error. |
 | 20 | About | Fills the form correctly and submits | Success message: "Thanks, Ana! … This is a demo, so nothing was sent." |
-| 21 | Any page (phone) | Taps "Menu", then a link | Menu slides down, link goes to the page, menu closes. |
+| 21 | Any page (phone or tablet) | Taps "Menu", then a link | A rounded panel opens over a frosted page; the link goes to the page and the menu closes. |
 | 22 | Any page | Clicks the moon button in the header | The site switches to dark mode; the choice is remembered on every page. The resume preview stays black on white. |
 
 ---
@@ -38,12 +40,11 @@ Raw material for the written documentation and the demo. Copy, trim, and reword 
 All pages share: **Header** (logo left, nav right; on phones, a "Menu" button that opens a vertical list) → **Main** → **Footer** (logo, links, class credit); a sun/moon button in the header switches light and dark mode. A "Skip to main content" link appears on the first Tab press.
 
 **Home (`index.html`)**
-1. Hero: two columns on desktop (headline, lead, 2 buttons, small note | "What's inside" card with three rows, counts, and meters). Stacked on phones.
-2. Problem: two columns (text | two side-by-side lists: dashed "Templates ask for" and white "You already have").
-3. Audience band (light band): three columns with an ink top rule each.
-4. Journey: three rounded cards, each with a numbered heading, text, and link. One line below about the checklist.
-5. Comparison band: full-width table (3 columns), source note under it.
-6. Call to action: centered headline, line, ink pill button.
+1. Hero: two columns on desktop (headline, lead, 2 buttons, small note | "School work, rewritten" card: before line, arrow, after bullet, 4-part legend, Show another). Stacked on phones.
+2. Problem: two columns (text | two lists: dashed "Templates ask for" and gray "You already have").
+3. Journey band: three rounded cards, each with a numbered heading, text, and link. One line below on RA 11261.
+4. Comparison: table (3 columns) naming the tools; on phones each row becomes a stacked card.
+5. Call to action band: centered headline, line, ink pill button.
 
 **Resume Guide (`resume-guide.html`)**
 1. Page intro: title + lead | guide illustration in a rounded frame (desktop).
@@ -51,9 +52,9 @@ All pages share: **Header** (logo left, nav right; on phones, a "Menu" button th
 3. Article sections: definition list of resume sections; PH conventions as a definition list with a gray "PH tip" box; two-column Do / Don't cards; formula chips + three weak/strong bullet pairs; no-experience list, gray info note, and a "Ready to build it?" box with a button.
 
 **Builder (`builder.html`)**
-1. Short intro (title + lead).
+1. Intro: title + lead | "Saved only in this browser" note with Download backup and Restore.
 2. Sticky toolbar under the header: Template chips, No experience switch, Load sample / Clear all / Download PDF, save status.
-3. Two columns on desktop: form (left) | sticky live preview in a grey "desk" with a white resume sheet (right). On phones, the preview comes after the form.
+3. Two columns on desktop: form (left) | sticky live preview in a grey "desk" with a white resume sheet (right). On phones and tablets, the preview comes after the form and a floating "See preview" pill jumps to it.
 4. Form: rounded cards for each section; repeatable entries in inner boxes with Remove; "+ Add" buttons.
 5. Two tool panels at the end of the form: Bullet helper, Job-fit checker (results with big percentage, bar, chips, tips).
 
@@ -61,21 +62,23 @@ All pages share: **Header** (logo left, nav right; on phones, a "Menu" button th
 1. Page intro with two buttons | interview illustration (desktop).
 2. Flashcard practice: filter pills + "Add your own" button → large rounded flashcard (category chip, counter, big question, hidden answer, buttons) → collapsible question list.
 3. STAR band: explanation with S/T/A/R rows | white form card with 5 fields.
-4. "Four questions to prepare first": 2×2 cards.
-5. Attire band: text and list | "Bring in a folder" checklist card.
-6. Online tips: five numbered steps in three columns.
+4. "Questions to plan for": 2×2 cards (salary, night shift, relocation, why hire you).
+5. Online and technical band: two columns of numbered tips.
+6. Attire: text and list | "Bring in a folder" card.
+7. "After the interview" band: two email templates, each with a Copy button.
 
 **Checklist (`checklist.html`)**
 1. Page intro with the outlined "Free under RA 11261" badge explained | checklist illustration (desktop).
 2. Two columns on desktop: progress box + list of 13 document cards (checkbox, name, badge, where, expandable how-to) | sticky "Get them in this order" card.
-3. RA 11261 band: what's free (card) | how to claim + not covered (two cards); gray "Check with your barangay" note.
+3. RA 11261 band: "who qualifies" row of four conditions → what's free (card) | how to claim + not covered (two cards); "Verify with your barangay or PESO" note.
 
 **About (`about.html`)**
 1. Intro: title + lead.
 2. Mission text | "What we believe" card.
-3. Team band: 2×2 cards with initials avatars, name, and role.
-4. Sources: two cards (government sources | career advice, fonts, images).
-5. Contact band: text + gray "Demo form" note | form card (name, email, topic, message, button, success message).
+3. Team band: 2×2 cards with initials avatars and names (role shown for the developer).
+4. Privacy and your data: three plain promises | "What Simula saves" card with Download, Restore, Delete everything.
+5. Sources: two cards (government sources | career advice, the 12 compared tools, fonts, images).
+6. Contact band: text + "Demo form" note | form card (name, email, topic, message, button, success message).
 
 ---
 
@@ -97,20 +100,20 @@ All pages share: **Header** (logo left, nav right; on phones, a "Menu" button th
 
 Open `site/index.html` (or the live URL) before starting. In the builder, press **Clear all** first so the demo starts empty.
 
-**Speaker 1: Problem and solution (0:00–1:15). Suggested: Content and Research**
+**Speaker 1: Problem and solution (0:00–1:15).**
 > "Most of us in this room will apply for OJT soon. When we tried global resume tools like Canva, Resume.io, and Teal, we hit three problems. First, their templates start with Work Experience, which students don't have. Second, some charge just to download your PDF. Third, they don't cover Philippine realities like NBI clearance, PSA birth certificates, or the free documents under RA 11261.
-> We researched 12 tools. You can see the comparison here on our home page. Our solution is **OJT to Offer**: a free site that turns school projects and org work into a one-page resume, then prepares you for the interview and the paperwork."
-*(Scroll the home page: hero → problem lists → comparison table.)*
+> We researched 12 tools. You can see the comparison here on our home page. Our solution is **Simula**: a free site that turns school projects and org work into a one-page resume, then prepares you for the interview and the paperwork."
+*(Point at the hero demo as the bullet's parts underline, press "Show another", then scroll: problem lists → comparison table, which names the tools.)*
 
-**Speaker 2: Design and guide (1:15–2:15). Suggested: Design and CSS**
+**Speaker 2: Design and guide (1:15–2:15).**
 > "Our name, Simula, means beginning. The look is monochrome, like our logo: black on white by day, white on black at night, with IBM Plex fonts and rounded shapes. It's minimal on purpose, so the content stands out, and every color passes accessibility contrast checks in both modes. You can switch themes with this button, and even the illustrations change."
 *(Hover a button to show the fill. Open Resume Guide, click a table-of-contents link, show the PH tip box and weak vs strong bullets. On a phone or narrow window, show the Menu button.)*
 
 **Speaker 3: Builder (2:15–3:45). Suggested: Developer, Prince Jorick**
-> "This is the resume builder. Watch the preview as I type my name." *(type)* "If I have no work experience, I turn this on, and projects and orgs move to the top. Stuck on a bullet? The bullet helper builds it from an action verb, what I did, the tool, and the result, and inserts it with one click." *(insert)* "I can switch to the Modern template. Now let me paste an OJT posting into the job-fit checker." *(Use a sample posting)* "It shows what I match and what I'm missing. Everything is saved in the browser, so if I refresh…" *(refresh)* "…it's still here. Download PDF prints just the resume on one page." *(open print dialog, cancel.)*
+> "This is the resume builder. Watch the preview as I type my name." *(type)* "If I have no work experience, I turn this on, and projects and orgs move to the top. Stuck on a bullet? The bullet helper builds it from an action verb, what I did, the tool, and the result, and inserts it with one click." *(insert)* "I can switch to the Modern template. Now let me paste an OJT posting into the job-fit checker." *(Use a sample posting)* "It shows what I match and what I'm missing. Everything is saved in the browser, so if I refresh…" *(refresh)* "…it's still here. Download PDF prints just the resume on one page." *(open print dialog, cancel.)* "It's saved only in this browser, so I can download a backup file and restore it anywhere."
 
-**Speaker 4: Interview, checklist, wrap-up (3:45–5:00). Suggested: Documentation and Presentation**
-> "Next is interview practice. I can filter to Behavioral questions, try answering out loud, then reveal the tip and a sample answer. The STAR template saves my own answer. After the offer comes the paperwork: this checklist saves my progress and explains how to get each document and which ones are free under RA 11261. All facts are cited on our About page, where there's also a contact form. It's a demo, so it validates but doesn't send anything.
+**Speaker 4: Interview, checklist, wrap-up (3:45–5:00).**
+> "Next is interview practice. I can filter to Behavioral questions, try answering out loud, then reveal the tip and a sample answer. The STAR template saves my own answer. After the offer comes the paperwork: this checklist saves my progress and explains how to get each document and which ones are free under RA 11261. All facts are cited on our About page, where there's also a contact form. It's a demo, so it validates but doesn't send anything. After an interview, I can copy a thank-you email in one click.
 > To sum up: Guide, Build, Practice, all free, no sign-up, and it works offline. Thank you!"
 
 ---
@@ -123,7 +126,7 @@ Open `site/index.html` (or the live URL) before starting. In the builder, press 
 - Dark mode: the same custom properties are redefined under `:root[data-theme="dark"]` and inside `@media (prefers-color-scheme: dark)`. `nav.js` saves the choice in `localStorage` (`simula-theme`) and sets `data-theme` on `<html>` before the page draws, so there's no flash.
 - JS: `nav.js` adds a `js` class to `<html>`; on phones the CSS hides `.js .site-nav` (opacity and `visibility: hidden`) until the Menu button adds `.is-open`, which slides the panel down.
 
-**Home**: CSS Grid for the hero (`grid-template-columns: 1.2fr 1fr`), the audience list, and the 3-step journey (`repeat(3, 1fr)`). `<ol>` for the journey because order matters. `<table>` with `<caption>`, `<thead>`, `<th scope="col">`/`scope="row"` for the comparison. `motion.js` sets the width of each "What's inside" meter from its `data-fill` value.
+**Home**: CSS Grid for the hero (`grid-template-columns: 1.2fr 1fr`) and the 3-step journey (`repeat(3, 1fr)`). `<ol>` for the journey because order matters. The demo is a `<figure>`; `home.js` adds `.is-lit` to each `<span class="part">` in turn, and CSS grows an underline drawn with `background-size` from 0% to 100%. `<table>` with `<caption>`, `<thead>`, `<th scope>` for the comparison; under 40rem a media query sets every table part to `display: block` and shows each column name with `td::before { content: attr(data-label) }`. `motion.js` uses `IntersectionObserver` to add `.is-revealed` to each `.reveal` section as it scrolls in (hidden only when the `js` class is on, shown at once with reduced motion).
 
 **Resume Guide**: two-column Grid layout with a `position: sticky` table of contents. `<dl>`, `<dt>`, `<dd>` for "section name + explanation". `<mark>` highlights "One page." `<q>` for quotes, `<code>` for file names. `<picture>` with a dark `<source>` shows the light or dark illustration; `nav.js` updates the source's `media` when the theme is picked by hand. `.note` boxes use the `--surface` gray.
 
