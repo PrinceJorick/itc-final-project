@@ -73,7 +73,7 @@ test("follows the device's dark setting when nothing is saved", async ({ page })
   await openPage(page, "index.html");
   await expect(page.locator(".theme-toggle")).toHaveAttribute("aria-pressed", "true");
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(bg).toBe("rgb(15, 19, 17)");
+  expect(bg).toBe("rgb(10, 10, 10)"); // --bg in dark mode (#0A0A0A)
 });
 
 test("the current page has a single highlight, with no underline", async ({ page }) => {
