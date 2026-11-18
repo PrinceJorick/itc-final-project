@@ -1189,8 +1189,14 @@ html:not(.js) .theme-toggle {
 /* 10. PAGE SECTIONS --------------------------------------------------------
    Blocks used on the content pages. */
 
-/* Home hero: promise on the left, "What's inside" card on the right */
+/* Home hero: promise on the left, "What's inside" card on the right.
+   It fills the first screen (below the sticky header), so nothing after it
+   shows until the visitor scrolls. motion.js reveals those sections then. */
 .hero {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 4.0625rem); /* header: 4rem + its 1px border */
+  min-height: calc(100svh - 4.0625rem);
   padding-top: var(--space-7);
   padding-bottom: var(--space-8);
 }
