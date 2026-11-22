@@ -83,7 +83,7 @@ vercel.json                 Static hosting config
 ### 5.1 Resume builder (`builder.html`, `builder.js`)
 - Sections: personal details, objective, education, projects, organizations, optional experience, skills (technical and soft), certifications. Repeatable entries can be added and removed.
 - **No experience yet** hides the Experience section and moves Projects and Organizations to the top.
-- Live preview on the right. Two templates: Classic (serif) and Modern (sans-serif). **The preview is always black on white**, a deliberate choice for printing and ATS parsing.
+- Live preview on the right. Two templates: Classic (Garamond serif, modeled on a professional one-page resume: uppercase name and organizations, dates on the role line, honors indented) and Modern (sans-serif). **The preview is always black on white**, a deliberate choice for printing and ATS parsing.
 - Autosave to `localStorage` under the key `resumeDraft`. Restored on reload. Every storage access is wrapped in `try/catch`.
 - Load sample (demo resume), Clear all (asks first), Download PDF (`window.print()` with `print.css`, one page on A4 and Letter).
 - **Bullet helper** (rule-based, no AI): verb + what + tool + result → "Verb X using Y, resulting in Z." Inserts into a chosen project or organization.

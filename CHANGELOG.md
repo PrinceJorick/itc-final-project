@@ -3,6 +3,8 @@
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Builder: the Classic resume template now follows a professional one-page layout: Garamond serif, centered uppercase name, uppercase school and employer names, dates on the degree or role line, honors on their own indented line, and round bullets. Experience in Classic leads with the company, then the job title.
 
 ## [1.3.0] - 2026-11-18
 ### Added

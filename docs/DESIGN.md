@@ -36,7 +36,7 @@ Purpose: monochrome keeps attention on the content and reads as professional, wh
 | Everything | **IBM Plex Sans** 400 and 600 | Neutral, professional, very readable. SemiBold for headings, buttons and labels |
 | Labels, eyebrows, numbers | **IBM Plex Mono** 400 and 500 | Uppercase eyebrow labels (12-13px, 0.12em tracking, `--text-muted`), counts, step numbers, table headers; `tabular-nums` so figures line up |
 | Wordmark | Plex Sans SemiBold, lowercase "simula", -0.045em tracking | The logo lockup, next to the mark |
-| Resume preview | Classic = Georgia; Modern = Arial | ATS software and printers handle standard fonts best |
+| Resume preview | Classic = Garamond (Georgia fallback), laid out like a professional one-page resume; Modern = Arial | ATS software and printers handle standard fonts best |
 
 Scale: body 16px / 1.6; h3 20px; h2 `clamp(1.5rem, 3vw, 2rem)`; h1 `clamp(2.125rem, 5vw, 3.25rem)` (home hero up to 4rem). Headings are SemiBold with tight tracking (-0.02em to -0.035em) and `text-wrap: balance`. Fonts load from Google Fonts with system fallbacks, so the site still works offline.
 

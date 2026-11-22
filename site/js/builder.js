@@ -369,17 +369,23 @@ function previewSection(title) {
   return section;
 }
 
-/* One item: bold title on the left, dates on the right, details below */
+/* One item: bold title on the left, dates on the right, details below.
+   Classic puts the dates on the subtitle line, like a professional resume. */
 function previewItem(title, subtitle, dates, bullets) {
   var item = el("div", "resume-item");
   var head = el("div", "resume-item-head");
   head.appendChild(el("span", "resume-item-title", title));
-  if (dates) {
-    head.appendChild(el("span", "resume-item-dates", dates));
-  }
   item.appendChild(head);
-  if (subtitle) {
+  var dateRow = head;
+  if (subtitle && draft.template === "classic") {
+    dateRow = el("div", "resume-item-head");
+    dateRow.appendChild(el("span", "resume-item-sub", subtitle));
+    item.appendChild(dateRow);
+  } else if (subtitle) {
     item.appendChild(el("p", "resume-item-sub", subtitle));
+  }
+  if (dates) {
+    dateRow.appendChild(el("span", "resume-item-dates", dates));
   }
   if (bullets && bullets.length) {
     var list = el("ul");
@@ -396,9 +402,15 @@ function buildEducation() {
   var items = draft.education.filter(function (e) { return !isEntryEmpty(e); });
   if (!items.length) { return null; }
   var section = previewSection("Education");
+  var classic = draft.template === "classic";
   items.forEach(function (e) {
-    var sub = [e.degree, e.honors].filter(Boolean).join(" · ");
-    section.appendChild(previewItem(e.school || "School", sub, e.years));
+    /* Classic gives honors their own indented line under the degree */
+    var sub = classic ? e.degree : [e.degree, e.honors].filter(Boolean).join(" · ");
+    var item = previewItem(e.school || "School", sub, e.years);
+    if (classic && e.honors) {
+      item.appendChild(el("p", "resume-item-note", e.honors));
+    }
+    section.appendChild(item);
   });
   return section;
 }
@@ -428,7 +440,12 @@ function buildExperience() {
   if (!items.length) { return null; }
   var section = previewSection("Experience");
   items.forEach(function (e) {
-    section.appendChild(previewItem(e.position || "Position", e.company, e.years, e.bullets));
+    if (draft.template === "classic") {
+      /* Classic leads with the employer, then the job title */
+      section.appendChild(previewItem(e.company || "Company", e.position, e.years, e.bullets));
+    } else {
+      section.appendChild(previewItem(e.position || "Position", e.company, e.years, e.bullets));
+    }
   });
   return section;
 }

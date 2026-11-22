@@ -3178,13 +3178,51 @@ tbody tr:hover {
   font-style: italic;
 }
 
-/* Classic template: serif, centered header */
+/* Classic template: modeled on a professional one-page resume. Garamond
+   serif, centered uppercase name, uppercase organization names, dates on
+   the role line, honors indented, round bullets. */
 .resume-classic {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Garamond, "EB Garamond", Georgia, "Times New Roman", Times, serif;
 }
 
 .resume-classic .resume-header {
   text-align: center;
+}
+
+.resume-classic .resume-name {
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.resume-classic .resume-contact {
+  margin-top: 0.1rem;
+  color: var(--paper-ink);
+}
+
+.resume-classic .resume-section h2 {
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.resume-classic .resume-item-title {
+  text-transform: uppercase;
+}
+
+.resume-classic .resume-item-sub {
+  font-style: normal;
+}
+
+.resume-classic .resume-item-note {
+  padding-left: 2.5rem;
+}
+
+.resume-classic ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.resume-classic li::marker {
+  font-size: 1.2em;
 }
 
 /* Modern template: sans-serif, left header, a heavy black rule under the name */
