@@ -28,3 +28,7 @@ Thumbs.db
 # Vercel CLI link (local only)
 .vercel/
 .env*
+
+# Playwright MCP run output and local screenshots
+.playwright-mcp/
+site-images/
