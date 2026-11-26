@@ -17,6 +17,7 @@
   <script src="js/motion.js" defer></script>
   <script src="js/scroll.js" defer></script>
   <script src="js/builder.js" defer></script>
+  <script src="js/jobs.js" defer></script>
   <script src="js/backup.js" defer></script>
 </head>
 <body class="builder-page">
@@ -254,6 +255,16 @@
             <h3>Tips</h3>
             <ul class="jf-tips" id="jf-tips"></ul>
           </div>
+        </section>
+
+        <!-- Jobs to search for: roles suggested from the resume (jobs.js) -->
+        <section class="tool-panel" id="job-matches" aria-labelledby="jobs-title">
+          <h2 id="jobs-title">Jobs to search for</h2>
+          <p class="hint">Entry-level roles that line up with your degree, skills, and projects. A match means the role is worth a look, not that you meet every requirement, so read each post's qualifications.</p>
+          <p class="note note-info small" id="jobs-offline" hidden><strong>You're offline.</strong> Your matches still work. The search links open once you're back online.</p>
+          <p class="small" id="jobs-status" role="status" aria-live="polite"></p>
+          <ul class="job-list" id="jobs-list" hidden></ul>
+          <p class="small muted">Links open search results on each job site in a new tab. They aren't job offers, and Simula doesn't send your resume anywhere.</p>
         </section>
       </form>
 

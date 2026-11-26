@@ -6,6 +6,7 @@
    4. Toolbar: template switch, No experience toggle, sample, clear, PDF
    5. Bullet helper (rule-based sentence builder)
    6. Job-fit checker (keyword matching against skillKeywords in data.js)
+   Job suggestions live in jobs.js and refresh from renderPreview().
    ========================================================================== */
 
 var STORAGE_KEY = "resumeDraft";
@@ -524,6 +525,10 @@ function renderPreview() {
 
   if (!added && !draft.objective.trim()) {
     preview.appendChild(el("p", "resume-empty resume-section", "Start filling in the form, or press Load sample, and your resume will appear here."));
+  }
+  /* Keep "Jobs to search for" in step with the resume (jobs.js) */
+  if (typeof updateJobMatches === "function") {
+    updateJobMatches();
   }
 }
 

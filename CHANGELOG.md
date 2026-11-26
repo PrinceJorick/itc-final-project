@@ -3,6 +3,10 @@
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Builder: "Jobs to search for" suggests up to six entry-level roles from your degree, skills, projects, experience, organizations, and certificates (`js/jobs.js`). Each card says why the role may fit and links to search results on JobStreet, Indeed, OnlineJobs.ph, Kalibrr, and LinkedIn (new tab). Nothing is fetched or sent; an offline note appears when the browser is offline.
+- `tests/specs/jobs.spec.js` for the job suggestions.
+
 ### Changed
 - Builder: the Classic resume template now follows a professional one-page layout: Garamond serif, centered uppercase name, uppercase school and employer names, dates on the degree or role line, honors on their own indented line, and round bullets. Experience in Classic leads with the company, then the job title.
 
