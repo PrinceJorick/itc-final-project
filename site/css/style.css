@@ -3020,6 +3020,47 @@ tbody tr:hover {
   margin-top: var(--space-2);
 }
 
+/* Jobs to search for: one card per suggested role */
+.job-list {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.job-card {
+  padding: var(--space-4);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.job-card > * + * {
+  margin-top: var(--space-2);
+}
+
+.job-card h3 {
+  font-size: var(--text-lg);
+}
+
+.job-card .label {
+  margin-top: var(--space-3);
+}
+
+.job-reasons {
+  padding-left: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.job-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
 /* "See preview" pill: floats at the bottom on phones and tablets, where
    the preview is below the form; hidden once the two sit side by side */
 .preview-jump {
